@@ -28,7 +28,7 @@
 #### Branches
 
 - **Main**: producción.
-- **Hotfixes**g: soluciones particulares a errores puntuales.
+- **Hotfixes**: soluciones particulares a errores puntuales.
 - **Release**: preproducción / fase de testeo.
 - **Develop**: desarrollo donde se combinan las features.
 - **Features**: de las disintas características a realizar.
