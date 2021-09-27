@@ -12,9 +12,9 @@
 ## Recursos
 
 - [Enunciado Reto](https://ikas.egibide.org/moodle/pluginfile.php/111928/mod_resource/content/12/RETO1_ALUMNO-AV1.pdf)
-- [Discord.](#wip)
-- [Kanban.](https://egibidedawgrupo3reto1.kanbantool.com/b/764751-reto1)
-- [Drive (unidad compartida).](https://drive.google.com/drive/u/1/folders/0AIKzzKTSVREIUk9PVA)
+- [Discord](#wip)
+- [Kanban](https://egibidedawgrupo3reto1.kanbantool.com/b/764751-reto1)
+- [Drive (unidad compartida)](https://drive.google.com/drive/u/1/folders/0AIKzzKTSVREIUk9PVA)
 
 
 -----------------------------------------------------------------------
@@ -22,6 +22,7 @@
 ## Metodología Git
 
 > Nota: empatizando con la sensibilidad cultural con respecto a los términos *master y slave* denominaremos a nuestra rama principal **main**.
+>
 > [¿Por qué se ha estandarizado este cambio?](https://www.genbeta.com/actualidad/github-comenzara-a-utilizar-main-principal-vez-maestro-semana-que-viene)
 
 #### Branches
