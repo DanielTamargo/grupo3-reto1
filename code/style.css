@@ -12,7 +12,6 @@
 
 #content
 {
-    background-color: grey;
     max-width: 1800px;
     margin: 0 auto;
     width: 100%;
@@ -56,8 +55,19 @@ nav ul li{
     float: left;
 }
 
+nav ul li a{
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
 main{
     display: block;
+}
+
+main .nombre{
+    width: 80%;
+    font-family: 'Montserrat', sans-serif;
 }
 
 /*
