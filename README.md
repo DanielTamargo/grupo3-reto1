@@ -15,6 +15,7 @@
 - [Discord](#wip)
 - [Kanban](https://egibidedawgrupo3reto1.kanbantool.com/b/764751-reto1)
 - [Drive (unidad compartida)](https://drive.google.com/drive/u/1/folders/0AIKzzKTSVREIUk9PVA)
+- [Rúbrica](https://tknika.setskills.org/ebaluazioa/faces/pages/consultaMediciones/consultaMedicionAlumno.xhtml)
 
 
 -----------------------------------------------------------------------
