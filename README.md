@@ -54,3 +54,8 @@
 - Armonizador: Todos
 
 > *¿Por qué algunos roles desempeñados por todos? Al ser un grupo pequeño para un proyecto pequeño donde tenemos múltiples reuniones diarias, podremos discutir y planificar de manera conjunta, acordando objetivos, tiempos y prioridades.*
+
+--------------------------------------------------------------------
+
+## Sobre Nosotros
+https://codefun973161967.wordpress.com/
