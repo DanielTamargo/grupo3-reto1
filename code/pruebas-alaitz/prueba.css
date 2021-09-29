@@ -1,0 +1,64 @@
+*{
+    border:0;
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+body{
+    background:linear-gradient(135deg,#009036 , #ffdc00);
+    background-repeat: no-repeat;
+}
+h1{
+
+    float: right;
+    clear: both;
+}
+.header{
+    min-height: 10vh;
+}
+.main{
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    
+}
+
+.tranviaParada{
+    margin:0 auto;
+}
+/*
+----------------------------------------------------------------------------
+INICIO PARADAS TRANVIA
+----------------------------------------------------------------------------
+*/
+
+.paradas{
+    cursor: pointer;
+    height:1.6em;
+    width:1.6em;
+    background-color: lightgray;
+    border-radius: 50%;
+    display: inline-block;
+    margin:0 1em;
+    z-index:0;
+}
+.tranvia{
+position:relative;
+}
+
+@keyframes paradas01{
+    from{
+        margin-left:0%;
+        
+    }
+    to{
+        margin-left:25%;
+    }
+}
+/*
+----------------------------------------------------------------------------
+INICIO MEDIA QUERY
+----------------------------------------------------------------------------
+*/
+@media (max-width:992px){}
+@media (max-width:480px){}
