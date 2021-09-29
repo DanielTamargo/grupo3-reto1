@@ -32,6 +32,13 @@ INICIO PARADAS TRANVIA
 ----------------------------------------------------------------------------
 */
 
+.animacion-tranvia{
+    margin: 0 auto;
+    min-height: 50vh;
+    position: flex;
+    align-items: center;
+}
+
 .paradas{
     cursor: pointer;
     height:1.6em;
@@ -42,17 +49,67 @@ INICIO PARADAS TRANVIA
     margin:0 1em;
     z-index:0;
 }
-.tranvia{
-position:relative;
+
+#tranvia{
+    width: 10%;
+    position:relative;
+    left: -11%;
+    z-index: 1;
+    animation-duration: 1s;
+    animation-timing-function: linear;
 }
 
-@keyframes paradas01{
-    from{
-        margin-left:0%;
-        
-    }
+@keyframes paradas0{
     to{
-        margin-left:25%;
+        left:0%;
+    }
+}
+
+@keyframes paradas1{
+    to{
+        left:11%;
+    }
+}
+
+@keyframes paradas2{
+    to{
+        left:22%;
+    }
+}
+
+@keyframes paradas3{
+    to{
+        left:33%;
+    }
+}
+
+@keyframes paradas4{
+    to{
+        left:44%;
+    }
+}
+
+@keyframes paradas5{
+    to{
+        left:55%;
+    }
+}
+
+@keyframes paradas6{
+    to{
+        left:66%;
+    }
+}
+
+@keyframes paradas7{
+    to{
+        left:77%;
+    }
+}
+
+@keyframes paradas8{
+    to{
+        left:88%;
     }
 }
 /*
