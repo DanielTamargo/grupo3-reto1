@@ -9,8 +9,22 @@
     font-size: 16px;
 }
 
+/*
+---------------------------------------------------------------------------
+Genéricos
+---------------------------------------------------------------------------
+*/
+
+.no-editable{
+    user-select: none; /* Chrome & Opera */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror Html */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer & Microsoft Edge */
+}
+
 body{
-    background: linear-gradient(#004494,#1dbbea);
+    background: linear-gradient(135deg,#004494,#009036);
     background-repeat: no-repeat;
 }
 
@@ -21,15 +35,12 @@ body{
 header{
     width: 100%;
     padding: 1em;
+    height: 10vh;
 }
 
 .logo-container{
     width: 20%;
     display: inline-block;
-}
-
-.logo-container img{
-    max-width: 100%;
 }
 
 /*
@@ -39,6 +50,7 @@ Barra de navegación
 */
 
 nav{
+    margin-top: 0.5em;
     float: right;
     width: 80%;
 }
@@ -75,6 +87,9 @@ nav ul li a:hover{
 
 .main{
     width: 100%;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
 }
 
 /*
@@ -84,6 +99,7 @@ Nombre en grande de la empresa
 */
 
 .nombre{
+    vertical-align: middle;
     display: inline-block;
     text-align: center;
     width: 100%;
@@ -105,7 +121,7 @@ Menú desplegable
 .desplegable{
     display: none;
     width: 0%;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.7);
     height: 100%;
     position: fixed;
     transition: 0.5s;
@@ -146,7 +162,11 @@ BOTON MENÚ
 }
 
 @media screen and (max-width: 992px) {
-    
+
+    .main{
+        height: 100vh;
+    }
+
     .desplegable{
         display: block;
     }
@@ -164,8 +184,59 @@ BOTON MENÚ
     }
 
     .container {
-        float: right;
         display: inline-block;
+        float: right;
+        cursor: pointer;
+    }
+
+    .bar1, .bar2, .bar3 {
+        z-index: 2;
+        width: 35px;
+        height: 5px;
+        background-color: white;
+        margin: 6px 0;
+        transition: 0.4s;
+    }
+      
+    .change .bar1 {
+        -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+        transform: rotate(-45deg) translate(-9px, 6px);
+    }
+      
+    .change .bar2 {opacity: 0;}
+      
+    .change .bar3 {
+        -webkit-transform: rotate(45deg) translate(-8px, -8px);
+        transform: rotate(45deg) translate(-8px, -8px);
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+    .main{
+        height: 100vh;
+        width: 100%;
+    }
+
+    .desplegable{
+        display: block;
+    }
+    
+    header{
+        position: fixed;
+    }
+    
+    .nombre b{
+        font-size: 3em;
+    }
+    
+    nav{
+        display: none;
+    }
+
+    .container {
+        display: inline-block;
+        float: right;
         cursor: pointer;
     }
 

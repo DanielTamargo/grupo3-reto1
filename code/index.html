@@ -18,7 +18,11 @@
     <div id="content">
         <header>
             <div class="logo-container">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Euskotren_logo_2012.svg/1200px-Euskotren_logo_2012.svg.png" alt="logo">
+                <picture>
+                    <source media="(max-width: 480px)" srcset="./img/logoEuskotrenPequenno.png">
+                    <source media="(min-width: 480.01px)" srcset="./img/logoEuskotrenEntero.png">
+                    <img src="./img/logoEuskotrenEntero.png" alt="logo">
+                </picture>
             </div>
             <div class="container" id="menu-button" onclick="cambiar(this)">
                 <div class="bar1"></div>
@@ -41,9 +45,8 @@
             </nav>
         </header>
 
-
         <section class="main">
-            <div class="nombre"><b>EUSKO <br> TREN</b></div>
+            <div class="nombre no-editable"><b>EUSKO <br> TREN<br>&nbsp;</b></div>
         </section>
 
 
