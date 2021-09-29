@@ -47,16 +47,15 @@ INICIO PARADAS TRANVIA
     border-radius: 50%;
     display: inline-block;
     margin:0 1em;
-    z-index:0;
 }
 
 #tranvia{
     width: 10%;
+    left:-11%;
     position:relative;
-    left: -11%;
-    z-index: 1;
     animation-duration: 1s;
     animation-timing-function: linear;
+    animation-fill-mode: both;
 }
 
 @keyframes paradas0{
