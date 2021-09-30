@@ -51,6 +51,10 @@ body{
     background: linear-gradient(135deg,#58ab27,#ffdc00);
 }
 
+.rojo{
+    background: linear-gradient(135deg,#004494, #cb022b);
+}
+
 .content{
     max-width: 1800px;
 }
@@ -105,8 +109,8 @@ nav ul li a{
 nav ul li a:hover{
     font-family: 'Montserrat', sans-serif;
     display: block;
-    border: 1px solid #e6ff8a;
-    color: #e6ff8a;
+    border: 1px solid white;
+    color: white;
     width: 100%;
     transition: 0.2s;
 }
@@ -195,10 +199,10 @@ footer{
 }
 
 .footer-hover:hover{
-    border-bottom: 1px solid #e6ff8a;
+    border-bottom: 1px solid white;
     transition: 0.3s;
     text-decoration: none;
-    color: #e6ff8a;
+    color: white;
 }
 
 .rrss-container{
@@ -233,6 +237,13 @@ BOTON MENÚ
     z-index: 2;
     display: none;
     cursor: pointer;
+}
+
+.parada{
+    background-color: rgba(255,255,255,0.2);
+    margin: 1%;
+    padding: 1%;
+    border-radius: 15px;
 }
 
 /*
