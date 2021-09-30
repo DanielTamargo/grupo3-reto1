@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../style.css">
+    <title>Euskotren | Inicio</title>
+</head>
+<body class="amarillo">
+    <div class="content">
+        <header>
+            <div class="logo-container">
+                <a href="../index.html">
+                    <picture>
+                        <source media="(max-width: 480px)" srcset="../img/logoEuskotrenPequenno.png">
+                        <source media="(min-width: 480.01px)" srcset="../img/logoEuskotrenEntero.png">
+                        <img src="./img/logoEuskotrenEntero.png" alt="logo">
+                    </picture>
+                </a>
+            </div>
+            <div class="container" id="menu-button" onclick="cambiar(this)">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+            <div class="desplegable">
+                <a id="first" href="../index.html">INICIO</a>
+                <a href="./tranvia.html">TIEMPO&nbsp;REAL</a>
+                <a href="./estadisiticas.html">ESTAD&Iacute;STICAS</a>
+                <a href="./informacion.html">INFORMACI&Oacute;N</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">INICIO</a></li>
+                    <li><a href="./tranvia.html">TIEMPO REAL</a></li>
+                    <li><a href="./estadisiticas.html">ESTAD&Iacute;STICAS</a></li>
+                    <li><a href="./informacion.html">INFORMACI&Oacute;N</a></li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+
+    <div class="est__main__wrapper__header-space">
+        <hr>
+    </div>
+    <div class="est__main">
+        <div class="est__main__wrapper">
+            <div class="est__main__content">
+                <br>
+                <div class="est__main__content__intro">
+                    <div class="est__main__content__intro__left">
+                        <div class="est__main__content__intro__left__animation__box">
+                        </div>
+                    </div>
+                    <div class="est__main__content__intro__right">
+                        <h2>ESTADISTICAS</h2>
+                        <p>Disponemos de una serie de gráficas que se actualizan en tiempo real para consultar los datos constantemente.</p>
+                        <p>De esta manera, podremos observar todos los datos registrados*  y analizarlos en pos de mejorar el servicio que ofrece EuskoTren.</p>
+                        <br>
+                        <p class="small-italic">*registrados: <br>Realmente no están registrados, debido a que no disponemos de una BBDD donde guardar registros, son datos que se generan aleatoriamente. <br>De hecho, se generan a una velocidad no natural con la intención de que se aprecie el resultado de las gráficas al cambiar dinámicamente con el flujo de datos en tiempo real.</p>
+                        <br>
+                        <br>
+                    </div>
+                </div>
+                <div class="est__main__content__graph">
+                    <div class="est__main__content__graph__left">
+                        Información de la gráfica
+                    </div>
+                    <div class="est__main__content__graph__right">
+                        Gráfica
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <hr>
+        <div class="texto">
+            <div class="copyright"><a class="footer-hover" target="blank" href="http://govindtiwari.blogspot.com/">Informaci&oacute;n legal y copyright &copy;</a></div>
+            <div class="sobre-nosotros"><a class="footer-hover" target="blank" href="https://codefun973161967.wordpress.com/">Enlace a la pagina web de los desarrolladores</a></div>
+        </div>
+        <div class="rrss-container">
+            <a target="blank" href="https://www.instagram.com/euskotren/"><img id="instagram" class="rrss" src="../img/instagram.png" alt="instagram"></a>
+            <a target="blank" href="https://www.facebook.com/EuskotrenEJGV"><img id="facebook" class="rrss" src="../img/facebook.png" alt="facebook"></a>
+            <a target="blank" href="https://twitter.com/euskotren"><img id="twitter" class="rrss" src="../img/twitter.png" alt="twitter"></a>
+            <a target="blank" href="https://www.youtube.com/channel/UCHLmG5i2LeHqQ7wN4s11Ddg"><img id="youtube" class="rrss" src="../img/youtube.png" alt="twitter"></a>
+        </div>
+    </footer>
+    
+    <script src="../app.js"></script>
+</body>
+</html>

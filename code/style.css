@@ -51,6 +51,19 @@ body{
     background: linear-gradient(135deg,#58ab27,#ffdc00);
 }
 
+.rojo{
+    background: linear-gradient(135deg,#004494, #cb022b);
+}
+
+.amarillo{
+    background: linear-gradient(135deg,#ffdc00, #cb022b);
+}
+
+.small-italic{
+    font-style: italic;
+    font-size: 0.7em;
+}
+
 .content{
     max-width: 1800px;
 }
@@ -116,6 +129,62 @@ nav ul li a:hover{
     min-height: 90vh;
     display: flex;
     align-items: center;
+}
+
+/* ESTADISTICAS */
+.est__main{
+    position: relative;
+    z-index: -3;
+    background-color: #505050;
+    min-height: 90vh;
+}
+
+.est__main__wrapper{
+    margin: 0 auto;
+    max-width: 1800px;
+}
+
+.est__main__content{
+    position: relative;
+    z-index: -2;
+    padding: 1em;
+    color: white;
+    font-family: 'Roboto';
+}
+
+.est__main h2 {
+    font-family: 'Montserrat';
+    font-size: 3em;
+}
+
+.est__main__wrapper__header-space{
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10vh;
+    background-color: #3c3c3c;
+    display: none;
+}
+.est__main__wrapper__header-space hr{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-top: 1px solid gray;
+}
+
+.est__main__content__intro__left__animation__box{
+    border: 1px solid gray;
+    width: 400px;
+    height: 300px;
+    margin-right: 3em;
+    margin-bottom: 3em;
+    float: left;
+}
+.est__main__content__graph{
+    clear: left;
 }
 
 /*
@@ -185,6 +254,10 @@ footer{
     font-family: 'Roboto', sans-serif;
     background-color: #3c3c3c;
     color: white;
+}
+
+footer hr{
+    border-top: 1px solid gray;
 }
 
 .footer-hover{
@@ -289,6 +362,28 @@ MEDIA QUERIES
         -webkit-transform: rotate(45deg) translate(-8px, -8px);
         transform: rotate(45deg) translate(-8px, -8px);
     }
+
+    .est__main{
+        min-height: 100vh;
+    }
+
+    .est__main__content{
+        padding: 4em 1em 1em 1em;
+    }
+
+    .est__main__wrapper__header-space{
+        display: block;
+    }
+
+    .est__main__content__intro{
+        margin-top: 1em;
+    }
+
+    .est__main__content__intro__left__animation__box{
+        margin-right: 1em;
+        margin-bottom: 1em;
+    }
+
 }
 
 @media screen and (max-width: 480px) {
@@ -299,6 +394,32 @@ MEDIA QUERIES
     
     .nombre b{
         font-size: 3em;
+    }
+
+    .est__main{
+        width: 100%;
+    }
+    
+    .est__main__wrapper{
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .est__main h2{
+        font-size: 1.5em;
+        text-align: center;
+    }
+    
+    .est__main p {
+        font-size: 0.8em;
+        text-align: left;
+    }
+
+    .est__main__content__intro__left__animation__box{
+        margin: 0 auto;
+        width: 83vw;
+        height: calc(83vw * 3 / 4);
+        margin-bottom: 1em;
     }
 }
 
