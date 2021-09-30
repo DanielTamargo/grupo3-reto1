@@ -112,7 +112,7 @@ nav ul li a:hover{
     transition: 0.2s;
 }
 
-.main{
+#main{
     width: 100%;
     min-height: 90vh;
     display: flex;
@@ -216,64 +216,6 @@ BOTON MENÚ
     cursor: pointer;
 }
 
-/*
----------------------------------------------------------------------------
-MEDIA QUERIES
----------------------------------------------------------------------------
-*/
-
-@media screen and (max-width: 992px) {
-
-    .main{
-        height: 100vh;
-    }
-
-    .desplegable{
-        display: block;
-    }
-    
-    header{
-        position: fixed;
-    }
-    
-    nav{
-        display: none;
-    }
-
-    .container {
-        display: block;
-        float: right;
-        cursor: pointer;
-    }
-
-    .bar1, .bar2, .bar3 {
-        z-index: 2;
-        width: 35px;
-        height: 5px;
-        background-color: white;
-        margin: 6px 0;
-        transition: 0.4s;
-    }
-      
-    .change .bar1 {
-        -webkit-transform: rotate(-45deg) translate(-9px, 6px);
-        transform: rotate(-45deg) translate(-9px, 6px);
-    }
-      
-    .change .bar2 {opacity: 0;}
-      
-    .change .bar3 {
-        -webkit-transform: rotate(45deg) translate(-8px, -8px);
-        transform: rotate(45deg) translate(-8px, -8px);
-    }
-}
-
-@media screen and (max-width: 480px) {
-
-    .main{
-        width: 100%;
-    }
-}
 
 /*
 ----------------------------------------------------------------------------
@@ -313,12 +255,12 @@ INICIO PARADAS TRANVIA
 
 .paradas{
     cursor: pointer;
-    height:3em;
-    width:3em;
+    height: calc(100vw / 26);
+    width:calc(100vw / 26);
     background-color: lightgray;
-    border-radius: 50%;
-    display: inline-block;
-    margin:0 1em;
+    border-radius: 51%;
+    display:inline-block;
+    margin:0 0.5em;
 }
 
 .paradas:hover{
@@ -326,7 +268,7 @@ INICIO PARADAS TRANVIA
 }
 
 #tranvia{
-    width: 10%;
+    width:15%;
     left:-11%;
     position:relative;
     transition:  1s;
@@ -338,8 +280,74 @@ INICIO MEDIA QUERY
 ----------------------------------------------------------------------------
 */
 
-@media and (max-width: 992px){
+@media screen and (max-width: 992px) {
+
+    #main{
+        height: 100vh;
+    }
+
+    .desplegable{
+        display: block;
+    }
+    
+    header{
+        position: fixed;
+    }
+    
+    nav{
+        display: none;
+    }
     .animacion-tranvia{
-        padding-top:10em;
+        padding-top:3em;
+    }
+
+    .container {
+        display: block;
+        float: right;
+        cursor: pointer;
+    }
+
+    .bar1, .bar2, .bar3 {
+        z-index: 2;
+        width: 35px;
+        height: 5px;
+        background-color: white;
+        margin: 6px 0;
+        transition: 0.4s;
+    }
+      
+    .change .bar1 {
+        -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+        transform: rotate(-45deg) translate(-9px, 6px);
+    }
+      
+    .change .bar2 {opacity: 0;}
+      
+    .change .bar3 {
+        -webkit-transform: rotate(45deg) translate(-8px, -8px);
+        transform: rotate(45deg) translate(-8px, -8px);
+    }
+}
+@media screen and (max-width:480px){
+    #main{
+        width: 100%;
+    }
+    .paradas{
+        cursor: pointer;
+        height: calc(100vw / 18);
+        width:calc(100vw / 18);
+        background-color: lightgray;
+        border-radius: 50%;
+        display:block;
+        margin:1em auto;
+    }
+    #tranvia{
+        transform: rotate(90deg);
+        width:15%;
+        left:50%;
+        top:0%;
+        padding-bottom:2em;
+        position:absolute;
+        transition:1s;
     }
 }
