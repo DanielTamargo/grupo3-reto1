@@ -269,9 +269,73 @@ INICIO PARADAS TRANVIA
 
 #tranvia{
     width:15%;
-    left:-11%;
+    left:-20%;
     position:relative;
     transition:  1s;
+}
+/*
+--------------------------------------------------------------------------
+INICIO MODAL BOX
+--------------------------------------------------------------------------
+*/
+
+.modal{
+    display:none;
+    position:fixed;
+    z-index:1;
+    padding-top:100px;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    overflow:auto;
+    background-color:rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content{
+    background-color:rgba(0,0,0,0.4);
+    margin:auto;
+    padding:20px;
+    border:1px solid #888;
+    width:80%;
+}
+
+.close{
+    color:#aaa;
+    float:right;
+    font-size:28px;
+    font-weight:bold;
+}
+
+.close:hover, .close:focus{
+    color:black;
+    text-decoration:none;
+    cursor:pointer;
+}
+
+#parada{
+    background-color:rgba(0,0,0,0);
+    color:white;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    width:40%;
+    
+}
+#parada:hover{
+    font-size:1.5em;
+}
+
+#directa{
+    background-color:rgba(0,0,0,0);
+    color:white;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    width:40%;
+}
+
+#directa:hover{
+    font-size:1.5em;
 }
 
 /*
@@ -345,7 +409,7 @@ INICIO MEDIA QUERY
         transform: rotate(90deg);
         width:15%;
         left:50%;
-        top:0%;
+        top:15%;
         padding-bottom:2em;
         position:absolute;
         transition:1s;
