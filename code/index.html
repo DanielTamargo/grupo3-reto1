@@ -4,25 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    
-    <!--Fuentes-->
-    <!--Montserrat-->
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <title>Euskotren | Inicio</title>
 </head>
-<body>
-    <div id="content">
+<body class="azul">
+    <div class="content">
         <header>
             <div class="logo-container">
-                <picture>
-                    <source media="(max-width: 480px)" srcset="./img/logoEuskotrenPequenno.png">
-                    <source media="(min-width: 480.01px)" srcset="./img/logoEuskotrenEntero.png">
-                    <img src="./img/logoEuskotrenEntero.png" alt="logo">
-                </picture>
+                <a href="./index.html">
+                    <picture>
+                        <source media="(max-width: 480px)" srcset="./img/logoEuskotrenPequenno.png">
+                        <source media="(min-width: 480.01px)" srcset="./img/logoEuskotrenEntero.png">
+                        <img src="./img/logoEuskotrenEntero.png" alt="logo">
+                    </picture>
+                </a>
             </div>
             <div class="container" id="menu-button" onclick="cambiar(this)">
                 <div class="bar1"></div>
@@ -45,17 +40,25 @@
             </nav>
         </header>
 
-        <section class="main">
-            <div class="nombre no-editable"><b>EUSKO <br> TREN<br>&nbsp;</b></div>
-        </section>
-
-
-        <footer>
-            <div class="copyright"></div>
-            <div class="sobre-Nosotros"></div>
-            <div class="contacto"></div>
-        </footer>
+        <div class="main">
+            <div class="nombre no-editable"><b>EUSKO<br>TREN<span class="landscape-hide"><br>&nbsp;</span></b></div>
+        </div>
+        
     </div>
+    
+    <footer>
+        <div class="texto">
+            <div class="copyright"><a class="footer-hover" target="blank" href="http://govindtiwari.blogspot.com/">Informaci&oacute;n legal y copyright &copy;</a></div>
+            <div class="sobre-nosotros"><a class="footer-hover" target="blank" href="https://codefun973161967.wordpress.com/">Enlace a la pagina web de los desarrolladores</a></div>
+        </div>
+        <div class="rrss-container">
+            <a target="blank" href="https://www.instagram.com/euskotren/"><img id="instagram" class="rrss" src="./img/instagram.png" alt="instagram"></a>
+            <a target="blank" href="https://www.facebook.com/EuskotrenEJGV"><img id="facebook" class="rrss" src="./img/facebook.png" alt="facebook"></a>
+            <a target="blank" href="https://twitter.com/euskotren"><img id="twitter" class="rrss" src="./img/twitter.png" alt="twitter"></a>
+            <a target="blank" href="https://www.youtube.com/channel/UCHLmG5i2LeHqQ7wN4s11Ddg"><img id="youtube" class="rrss" src="./img/youtube.png" alt="twitter"></a>
+        </div>
+    </footer>
+    
     <script src="app.js"></script>
 </body>
 </html>

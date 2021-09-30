@@ -1,3 +1,19 @@
+
+/*
+---------------------------------------------------------------------------
+IMPORTS
+---------------------------------------------------------------------------
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+/*
+---------------------------------------------------------------------------
+TODO
+---------------------------------------------------------------------------
+*/
+
 *
 {
     margin: 0 auto;
@@ -11,7 +27,7 @@
 
 /*
 ---------------------------------------------------------------------------
-Genéricos
+GENÉRICOS
 ---------------------------------------------------------------------------
 */
 
@@ -24,11 +40,18 @@ Genéricos
 }
 
 body{
-    background: linear-gradient(135deg,#004494,#009036);
     background-repeat: no-repeat;
 }
 
-#content{
+.azul{
+    background: linear-gradient(135deg,#004494,#009036);
+}
+
+.verde{
+    background: linear-gradient(135deg,#58ab27,#ffdc00);
+}
+
+.content{
     max-width: 1800px;
 }
 
@@ -45,7 +68,7 @@ header{
 
 /*
 ---------------------------------------------------------------------------
-Barra de navegación
+BARRA DE NAVEGACIÓN
 ---------------------------------------------------------------------------
 */
 
@@ -70,9 +93,11 @@ nav ul li{
 }
 
 nav ul li a{
+    transition: 0.2s;
     font-family: 'Montserrat', sans-serif;
     display: block;
     text-decoration: none;
+    border: 1px solid rgba(0, 0, 0, 0);
     color: white;
     width: 100%;
 }
@@ -80,9 +105,10 @@ nav ul li a{
 nav ul li a:hover{
     font-family: 'Montserrat', sans-serif;
     display: block;
-    text-decoration: underline solid white;
-    color: white;
+    border: 1px solid #e6ff8a;
+    color: #e6ff8a;
     width: 100%;
+    transition: 0.2s;
 }
 
 .main{
@@ -94,7 +120,7 @@ nav ul li a:hover{
 
 /*
 ---------------------------------------------------------------------------
-Nombre en grande de la empresa
+NOMBRE EUSKO TREN
 ---------------------------------------------------------------------------
 */
 
@@ -114,7 +140,7 @@ Nombre en grande de la empresa
 
 /*
 ---------------------------------------------------------------------------
-Menú desplegable
+MENÚ DESPLEGABLE
 ---------------------------------------------------------------------------
 */
 
@@ -150,6 +176,54 @@ Menú desplegable
 
 /*
 ---------------------------------------------------------------------------
+FOOTER
+---------------------------------------------------------------------------
+*/
+
+footer{
+    position: relative;
+    font-family: 'Roboto', sans-serif;
+    background-color: #3c3c3c;
+    color: white;
+}
+
+.footer-hover{
+    transition: 0.3s;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0);
+    color: inherit;
+}
+
+.footer-hover:hover{
+    border-bottom: 1px solid #e6ff8a;
+    transition: 0.3s;
+    text-decoration: none;
+    color: #e6ff8a;
+}
+
+.rrss-container{
+    position: relative;
+    z-index: 0;
+}
+
+.rrss{
+    transition: 0.3s;
+    filter:opacity(0.4);
+}
+
+.rrss:hover{
+    transition: 0.3s;
+    filter:opacity(0.8);
+}
+
+footer div{
+    width: 100%;
+    text-align: center;
+    padding: 1em;
+}
+
+/*
+---------------------------------------------------------------------------
 BOTON MENÚ
 ---------------------------------------------------------------------------
 */
@@ -160,6 +234,12 @@ BOTON MENÚ
     display: none;
     cursor: pointer;
 }
+
+/*
+---------------------------------------------------------------------------
+MEDIA QUERIES
+---------------------------------------------------------------------------
+*/
 
 @media screen and (max-width: 992px) {
 
@@ -184,7 +264,7 @@ BOTON MENÚ
     }
 
     .container {
-        display: inline-block;
+        display: block;
         float: right;
         cursor: pointer;
     }
@@ -214,51 +294,17 @@ BOTON MENÚ
 @media screen and (max-width: 480px) {
 
     .main{
-        height: 100vh;
         width: 100%;
-    }
-
-    .desplegable{
-        display: block;
-    }
-    
-    header{
-        position: fixed;
     }
     
     .nombre b{
         font-size: 3em;
     }
-    
-    nav{
+}
+
+@media (orientation:landscape) and (max-width: 992px){
+    .landscape-hide{
         display: none;
-    }
-
-    .container {
-        display: inline-block;
-        float: right;
-        cursor: pointer;
-    }
-
-    .bar1, .bar2, .bar3 {
-        z-index: 2;
-        width: 35px;
-        height: 5px;
-        background-color: white;
-        margin: 6px 0;
-        transition: 0.4s;
-    }
-      
-    .change .bar1 {
-        -webkit-transform: rotate(-45deg) translate(-9px, 6px);
-        transform: rotate(-45deg) translate(-9px, 6px);
-    }
-      
-    .change .bar2 {opacity: 0;}
-      
-    .change .bar3 {
-        -webkit-transform: rotate(45deg) translate(-8px, -8px);
-        transform: rotate(45deg) translate(-8px, -8px);
     }
 }
 
