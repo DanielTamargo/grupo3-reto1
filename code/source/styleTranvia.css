@@ -313,74 +313,33 @@ INICIO PARADAS TRANVIA
 
 .paradas{
     cursor: pointer;
-    height:1.6em;
-    width:1.6em;
+    height:3em;
+    width:3em;
     background-color: lightgray;
     border-radius: 50%;
     display: inline-block;
     margin:0 1em;
 }
 
+.paradas:hover{
+    background-color: black;
+}
+
 #tranvia{
     width: 10%;
     left:-11%;
     position:relative;
-    animation-duration: 1s;
-    animation-fill-mode: forwards;
-
-    /*transition:  1s;*/
+    transition:  1s;
 }
 
-@keyframes paradas0{
-    to{
-        left:0%;
-    }
-}
+/*
+----------------------------------------------------------------------------
+INICIO MEDIA QUERY
+----------------------------------------------------------------------------
+*/
 
-@keyframes paradas1{
-    to{
-        left:11%;
-    }
-}
-
-@keyframes paradas2{
-    to{
-        left:22%;
-    }
-}
-
-@keyframes paradas3{
-    to{
-        left:33%;
-    }
-}
-
-@keyframes paradas4{
-    to{
-        left:44%;
-    }
-}
-
-@keyframes paradas5{
-    to{
-        left:55%;
-    }
-}
-
-@keyframes paradas6{
-    to{
-        left:66%;
-    }
-}
-
-@keyframes paradas7{
-    to{
-        left:77%;
-    }
-}
-
-@keyframes paradas8{
-    to{
-        left:88%;
+@media and (max-width: 992px){
+    .animacion-tranvia{
+        padding-top:10em;
     }
 }

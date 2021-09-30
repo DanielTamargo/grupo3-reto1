@@ -53,10 +53,11 @@ INICIO PARADAS TRANVIA
     width: 10%;
     left:-11%;
     position:relative;
-    animation-duration: 1s;
-    animation-fill-mode: forwards;
+    /* animation-duration: 1s;
+    animation-fill-mode: forwards;*/
+   
 
-    /*transition:  1s;*/
+    transition:  1s;
 }
 
 @keyframes paradas0{
