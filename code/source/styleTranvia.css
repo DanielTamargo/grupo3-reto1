@@ -1,3 +1,4 @@
+
 /*
 ---------------------------------------------------------------------------
 IMPORTS
@@ -13,10 +14,11 @@ TODO
 ---------------------------------------------------------------------------
 */
 
-*{
-    border:none;
-    margin:0 auto;
-    padding:0;
+*
+{
+    margin: 0 auto;
+    padding: 0;
+    border: none;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -29,30 +31,41 @@ GENÉRICOS
 ---------------------------------------------------------------------------
 */
 
+.no-editable{
+    user-select: none; /* Chrome & Opera */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror Html */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer & Microsoft Edge */
+}
 
 body{
     background:linear-gradient(135deg,#009036 , #ffdc00);
     background-repeat: no-repeat;
 }
+
+.azul{
+    background: linear-gradient(135deg,#004494,#009036);
+}
+
+.verde{
+    background: linear-gradient(135deg,#58ab27,#ffdc00);
+}
+
 .content{
     max-width: 1800px;
 }
-.header{
-    min-height: 10vh;
-    width:100%;
-    padding:1em;
+
+header{
+    width: 100%;
+    padding: 1em;
+    height: 10vh;
 }
+
 .logo-container{
-    width:20%;
+    width: 20%;
     display: inline-block;
 }
-
-.main{
-    min-height: 90vh;
-    display: flex;
-    align-items: center;
-}
-
 
 /*
 ---------------------------------------------------------------------------
@@ -60,51 +73,50 @@ BARRA DE NAVEGACIÓN
 ---------------------------------------------------------------------------
 */
 
-.nav{
-    margin-top:0.5em;
-    float:right;
-    width:80%;
+nav{
+    margin-top: 0.5em;
+    float: right;
+    width: 80%;
 }
 
 nav ul{
-    overflow:auto;
-    float:right;
-    width:80%
+    overflow: auto;
+    float: right;
+    width: 80%;
 }
 
 nav ul li{
     overflow: auto;
-    width:25%;
-    float:left;
-    list-style:none;
+    width: 25%;
+    float: left;
+    list-style: none;
     text-align: center;
 }
 
 nav ul li a{
-    transition:0.2s;
-    font-family:'Montserrat', sans-serif;
-    display:block;
-    text-decoration:none;
-    border: 1px solid rgba(0,0,0,0);
-    color:white;
-    width:100%;
+    transition: 0.2s;
+    font-family: 'Montserrat', sans-serif;
+    display: block;
+    text-decoration: none;
+    border: 1px solid rgba(0, 0, 0, 0);
+    color: white;
+    width: 100%;
 }
 
 nav ul li a:hover{
-    transition:0.2s;
-    font-family:'Montserrat', sans-serif;
-    display:block;
-    border: 1px solid #ffd4b0;
-    color:#ffd4b0;
-    width:100%;
-    transition:0.2em;
+    font-family: 'Montserrat', sans-serif;
+    display: block;
+    border: 1px solid #fcdb8f;
+    color: #fcdb8f;
+    width: 100%;
+    transition: 0.2s;
 }
 
 .main{
-    width:100%;
+    width: 100%;
     min-height: 90vh;
-    display:flex;
-    align-items:center;
+    display: flex;
+    align-items: center;
 }
 
 /*
@@ -116,7 +128,7 @@ MENÚ DESPLEGABLE
 .desplegable{
     display: none;
     width: 0%;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 0, 0, 0.7);
     height: 100%;
     position: fixed;
     transition: 0.5s;
@@ -145,19 +157,6 @@ MENÚ DESPLEGABLE
 
 /*
 ---------------------------------------------------------------------------
-BOTON MENÚ
----------------------------------------------------------------------------
-*/
-
-.container {
-    position: relative;
-    z-index: 2;
-    display: none;
-    cursor: pointer;
-}
-
-/*
----------------------------------------------------------------------------
 FOOTER
 ---------------------------------------------------------------------------
 */
@@ -180,7 +179,7 @@ footer{
     border-bottom: 1px solid #e6ff8a;
     transition: 0.3s;
     text-decoration: none;
-    color: inherit;
+    color: #e6ff8a;
 }
 
 .rrss-container{
@@ -205,19 +204,16 @@ footer div{
 }
 
 /*
-----------------------------------------------------------------------------
-INICIO PARADAS TRANVIA
-----------------------------------------------------------------------------
+---------------------------------------------------------------------------
+BOTON MENÚ
+---------------------------------------------------------------------------
 */
 
-.paradas{
+.container {
+    position: relative;
+    z-index: 2;
+    display: none;
     cursor: pointer;
-    height:1.6em;
-    width:1.6em;
-    background-color: lightgray;
-    border-radius: 50%;
-    display: inline-block;
-    margin:0 1em;
 }
 
 /*
@@ -240,15 +236,13 @@ MEDIA QUERIES
         position: fixed;
     }
     
-    
     nav{
         display: none;
     }
 
-  header  .container {
-        display: inline-block;
-        margin-left:255%;
-
+    .container {
+        display: block;
+        float: right;
         cursor: pointer;
     }
 
@@ -277,51 +271,7 @@ MEDIA QUERIES
 @media screen and (max-width: 480px) {
 
     .main{
-        height: 100vh;
         width: 100%;
-    }
-
-    .desplegable{
-        display: block;
-    }
-    
-    header{
-        position: fixed;
-    }
-    
-    .nombre b{
-        font-size: 3em;
-    }
-    
-    nav{
-        display: none;
-    }
-
-    .container {
-        display: inline-block;
-        float: right;
-        cursor: pointer;
-    }
-
-    .bar1, .bar2, .bar3 {
-        z-index: 2;
-        width: 35px;
-        height: 5px;
-        background-color: white;
-        margin: 6px 0;
-        transition: 0.4s;
-    }
-      
-    .change .bar1 {
-        -webkit-transform: rotate(-45deg) translate(-9px, 6px);
-        transform: rotate(-45deg) translate(-9px, 6px);
-    }
-      
-    .change .bar2 {opacity: 0;}
-      
-    .change .bar3 {
-        -webkit-transform: rotate(45deg) translate(-8px, -8px);
-        transform: rotate(45deg) translate(-8px, -8px);
     }
 }
 
@@ -346,4 +296,91 @@ INICIO SCROLLBAR
 {
     border-radius: 10px;
     background-color: gray;
+}
+
+/*
+----------------------------------------------------------------------------
+INICIO PARADAS TRANVIA
+----------------------------------------------------------------------------
+*/
+
+.animacion-tranvia{
+    margin: 0 auto;
+    min-height: 50vh;
+    position: flex;
+    align-items: center;
+}
+
+.paradas{
+    cursor: pointer;
+    height:1.6em;
+    width:1.6em;
+    background-color: lightgray;
+    border-radius: 50%;
+    display: inline-block;
+    margin:0 1em;
+}
+
+#tranvia{
+    width: 10%;
+    left:-11%;
+    position:relative;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+
+    /*transition:  1s;*/
+}
+
+@keyframes paradas0{
+    to{
+        left:0%;
+    }
+}
+
+@keyframes paradas1{
+    to{
+        left:11%;
+    }
+}
+
+@keyframes paradas2{
+    to{
+        left:22%;
+    }
+}
+
+@keyframes paradas3{
+    to{
+        left:33%;
+    }
+}
+
+@keyframes paradas4{
+    to{
+        left:44%;
+    }
+}
+
+@keyframes paradas5{
+    to{
+        left:55%;
+    }
+}
+
+@keyframes paradas6{
+    to{
+        left:66%;
+    }
+}
+
+@keyframes paradas7{
+    to{
+        left:77%;
+    }
+}
+
+@keyframes paradas8{
+    to{
+        left:88%;
+    }
 }
