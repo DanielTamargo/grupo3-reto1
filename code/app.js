@@ -133,12 +133,14 @@ function numeroRandom(minimo, maximo) {
 /** ----------------------------------------------------------------- */
 /** ----------------------------------------------------------------- */
 /** ESTADISTICAS: GENERAR GRÁFICA */
-var estilo_grafica = 2; 
+var estilo_grafica = 1; 
 // 1 = estadisticas mes seleccionado
 // 2 = estadisticas generales año (?)
 // 3 = estadisticas por paradas (?)
 
-var seleccion_mes = new Date().getMonth() + 1;
+// TODO dani: descomentar y borrar
+// var seleccion_mes = new Date().getMonth() + 1;
+var seleccion_mes = 9
 var seleccion_anyo = new Date().getFullYear();
 
 // Variables estadísticas 1
@@ -159,18 +161,54 @@ svg.selectAll('rect')
     .data(datos_grafica)
     .enter()
     .append('rect')
-    .attr('fill', (d, i) => datos[i].color)
-    .attr('y', (d, i) => (row_height * i) + '%')
+    .attr('fill', (d, i) => datos_grafica[i].color)
+    .attr('y', (d, i) => (row_height * i + 5) + '%')
     .attr('x', 0)
     .attr('height', (row_height - 10) + '%')
-    .attr('width', 0); // Anchura inicial de 0 para la animación
+    .attr('width', 0); // Anchura inicial de 0 para la animación inicial
 
-// Animación inicial
+// Animación inicial rectas
 svg.selectAll('rect')
     .transition()
     .duration(2000)
     .attr('width', calcularPorcentajaBarraGraficaMesAnyo);
 
+// Eventos mouse
+
+
+/** Añadimos y configuramos las etiquetas de la leyenda */
+// Izquierda
+svg.selectAll('legend-left')
+    .data(datos_grafica)
+    .enter()
+    .append('text')
+    .attr('id', (d, i) => datos_grafica[i].id + '-name')
+    .attr('x', -10) // Posición inicial de 0 para la animación inicial
+    .attr('y', (d, i) => (row_height * i + 5 + (row_height / 4) + '%'))
+    .attr('fill', 'black')
+    .text((d, i) => datos_grafica[i].tipo)
+    .attr('text-anchor', 'end')
+    .attr('dominant-baseline', 'middle')
+    .attr('class', 'graph-legend legend-name graph-text');
+
+// Cantidad
+svg.selectAll('legend-qt')
+    .data(datos_grafica)
+    .enter()
+    .append('text')
+    .attr('id', (d, i) => datos_grafica[i].id + '-qt')
+    .attr('x', 0) // Posición inicial de 0 para la animación inicial
+    .attr('y', (d, i) => (row_height * i + 5 + (row_height / 4) + '%'))
+    .attr('fill', 'black')
+    .text((d, i) => datos_grafica[i].cantidad)
+    .attr('dominant-baseline', 'middle')
+    .attr('class', 'graph-legend legend-qt graph-text');
+
+// Animación inicial textos cantidad
+svg.selectAll('.legend-qt')
+    .transition()
+    .duration(2000)
+    .attr('x', calcularPorcentajaBarraGraficaMesAnyo)
 
 
 /** funciones: barras graficas */
@@ -183,7 +221,7 @@ function calcularPorcentajaBarraGraficaMesAnyo(d, index) {
     let valor_maximo = Math.max.apply(Math, datos_grafica.map((obj) => obj.cantidad));
 
     // Obtenemos el valor que estamos mirando
-    let valor = datos[index].cantidad;
+    let valor = datos_grafica[index].cantidad;
 
     // Realizamos la regla de 3 y devolvemos el % que le corresponde
     let porcentaje = valor * 100 / valor_maximo;
@@ -191,16 +229,26 @@ function calcularPorcentajaBarraGraficaMesAnyo(d, index) {
 }
 
 /** funciones: cargar datos grafica */
-/** */
+/**
+ * En base al 
+ * @param {string} seleccion_parada literal de la parada por la que filtrar
+ * @returns array con los datos cargados para la gráfica
+ */
 function cargarDatosGrafica(seleccion_parada) {
     if (datos_cargados_con_exito) {
-        let COLORES = ['#A2E1DB', '#CCE2CB', '#FFFFB5', '#FFCCB6', '#FF968A'];
+        let COLORES = ['#33C7FF', '#33FF3C', '#FCFF33', '#FFC433', '#FF7433'];
         switch(estilo_grafica) {
             case 1: // Datos totales por año y mes, sin filtrar parada
                 return cargarDatosGraficaMesAnyo(COLORES);
             case 2: // Datos totales por año y mes, filtrando por parada
                 return cargarDatosGraficaMesAnyo(COLORES, seleccion_parada);
-            case 3: // Datos por año, viendo los meses (si da tiempo y lo consigo)
+            case 3: // Datos pasajeros por parada por año y mes
+                console.log('WIP')
+                break;
+            case 4: // Datos pasajeros por parada en total
+                console.log('WIP')
+                break;
+            case 5: // Datos por año, viendo los meses (si da tiempo y lo consigo)
                 console.log('WIP')
                 break;
             default:
@@ -210,9 +258,7 @@ function cargarDatosGrafica(seleccion_parada) {
     } else {
         // TODO dani: si falla al cargar datos, ¿bloquear estadísticas? ¿vaciar datos y ya?
     }
-
 }
-
 
 /**
  * Carga, de la variable global datos, los datos que vamos a utilizar en la gráfica mes año
@@ -261,7 +307,7 @@ function cargarDatosGraficaMesAnyo(COLORES, seleccion_parada) {
     });
     datos_para_la_grafica.push({ 
         id: 'graph-sin-pagar-escapados',
-        tipo: 'Escapados',
+        tipo: 'Sin pagar | Escapados',
         cantidad: total_num_sin_pagar_escapados,
         color: COLORES[3]
     });

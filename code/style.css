@@ -7,6 +7,7 @@ IMPORTS
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&display=swap');
 
 /*
 ---------------------------------------------------------------------------
@@ -219,7 +220,7 @@ nav ul li a:hover{
     display: inline-block;
 }
 
-.est__main__content__graph__right{
+.est__main__content__graph__left{
     float: left;
 }
 
@@ -227,21 +228,27 @@ nav ul li a:hover{
     float: right;
 }
 
+.est__main__content__graph__left, .est__main__content__graph__right{
+    margin-bottom: 2em;
+}
+
 .graph-container{
     border: 1px solid gray;
+    padding: 1em;
     width: 700px;
     height: 525px;
     background-color: rgb(230, 230, 230);
+    box-shadow: 0 0 5px black;
 }
 
 .graph-chart{
     overflow: visible;
     margin-top: 1em;
-    margin-right: 0.2em;
+    margin-right: 3.5em;
     float: right;
-    width: 85%;
+    width: 67%;
     height: 90%;
-    border: 1px solid black;
+    border-left: 1px solid gray;
 }
 
 .graph-chart-text{
@@ -254,6 +261,13 @@ nav ul li a:hover{
     clear: both;
     margin-top: 1em;
     text-align: center;
+}
+
+.graph-text{
+    font-family: 'Fira Mono';
+}
+.legend-name {
+    font-size: 0.8em;
 }
 
 /*
