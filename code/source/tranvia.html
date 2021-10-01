@@ -38,14 +38,15 @@
                 </nav>
             </header>
             <section id="main">
+                <!--INICIO BOX MODEL-->
                 <div id="Mimodal" class="modal">
                     <div class="modal-content">
                         <span class="close">&times;</span>
-                        <button class="tipoRecorrido" id="parada">POR PARADAS</button>
-                        <button class="tipoRecorrido" id="directa">DIRECTO</button>
+                        <p class="tipoRecorrido" id="parada" onclick="elegirOpc(this.id)">POR PARADAS</p>
+                        <p class="tipoRecorrido" id="directa" onclick="elegirOpc(this.id)">DIRECTO</p>
                     </div>
                 </div>
-               
+                 <!--INICIO ANIMACIÓN TRANVIA-->
                 <div class="animacion-tranvia">
                     <img id="tranvia" src="../img/tranvia.png"></img>
                 <div class="tranviaParada">
