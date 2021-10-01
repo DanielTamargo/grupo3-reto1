@@ -51,6 +51,10 @@ body{
     background: linear-gradient(135deg,#58ab27,#ffdc00);
 }
 
+.rojo{
+    background: linear-gradient(135deg,#004494, #cb022b);
+}
+
 .content{
     max-width: 1800px;
 }
@@ -105,8 +109,8 @@ nav ul li a{
 nav ul li a:hover{
     font-family: 'Montserrat', sans-serif;
     display: block;
-    border: 1px solid #e6ff8a;
-    color: #e6ff8a;
+    border: 1px solid white;
+    color: white;
     width: 100%;
     transition: 0.2s;
 }
@@ -195,10 +199,10 @@ footer{
 }
 
 .footer-hover:hover{
-    border-bottom: 1px solid #e6ff8a;
+    border-bottom: 1px solid white;
     transition: 0.3s;
     text-decoration: none;
-    color: #e6ff8a;
+    color: white;
 }
 
 .rrss-container{
@@ -237,6 +241,64 @@ BOTON MENÚ
 
 /*
 ---------------------------------------------------------------------------
+ESTRUCTURA PÁGINA DE INFORMACIÓN
+---------------------------------------------------------------------------
+*/
+
+.main2{
+    width: 100%;
+}
+
+.parada{
+    transition: 0.3s ease-in-out;
+    display: inline-block;
+    border-radius: 20px;
+    box-sizing: border-box;
+    background: rgba(0,0,0,0.5);
+    padding: 2%;
+    margin: 1.5%;
+    margin-top: 80px;
+    width: 30%;
+}
+
+.parada h2{
+    margin-bottom: 10px;
+}
+
+.parada a{
+    color: lightblue;
+    text-decoration: none;
+    transition: 0.3s ease-in-out;
+}
+
+.parada a:hover{
+    color: rgb(46, 190, 238);
+    text-decoration: underline solid rgb(46, 190, 238);
+    transition: 0.3s ease-in-out;
+}
+
+.container-img-parada{
+    position: relative;
+    top: 0px;
+    width: 100%;
+    transition: 0.3s ease-in-out;
+}
+
+.container-img-parada img{
+    width: 100%;
+    border-radius: 4px;
+}
+
+.info-parada{
+    margin-top: 10px;
+    font-family: 'Montserrat', sans-serif;
+    transition: 0.3s ease-in-out;
+    color: white;
+    text-align: center;
+}
+
+/*
+---------------------------------------------------------------------------
 MEDIA QUERIES
 ---------------------------------------------------------------------------
 */
@@ -247,11 +309,18 @@ MEDIA QUERIES
         height: 100vh;
     }
 
+    .parada{
+        width: 46.5%;
+        margin-top: 120px;
+    }
+
     .desplegable{
         display: block;
     }
     
     header{
+        background-color: rgba(0,0,0,0.5);
+        z-index: 1;
         position: fixed;
     }
     
@@ -296,6 +365,13 @@ MEDIA QUERIES
     .main{
         width: 100%;
     }
+
+    .parada{
+        width: 90%;
+        padding: 15px;
+        margin: 15px;
+        margin-top: 90px;
+    }
     
     .nombre b{
         font-size: 3em;
@@ -305,6 +381,10 @@ MEDIA QUERIES
 @media (orientation:landscape) and (max-width: 992px){
     .landscape-hide{
         display: none;
+    }
+
+    header{
+        height: 70px;
     }
 }
 
