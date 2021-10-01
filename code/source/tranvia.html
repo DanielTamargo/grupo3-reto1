@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE-edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel= "stylesheet" href="./styleTranvia.css"/>
+        <title>Tranvia a tiempo real</title>
+    </head>
+    <body>
+        <div class="content">
+            <header>
+                <div class="logo-container">
+                    <picture>
+                        <source media="(max-width: 480px)" srcset="../img/logoEuskotrenPequenno.png">
+                        <source media="(min-width: 480.01px)" srcset="../img/logoEuskotrenEntero.png">
+                        <img src="../img/logoEuskotrenEntero.png" alt="logo">
+                    </picture>
+                </div>
+                <div class="container" id="menu-button" onclick="cambiar(this)">
+                    <div class="bar1"></div>
+                    <div class="bar2"></div>
+                    <div class="bar3"></div>
+                </div>
+                <div class="desplegable">
+                    <a id="first" href="../index.html">INICIO</a>
+                    <a href="./tranvia.html">TIEMPO&nbsp;REAL</a>
+                    <a href="./estadisiticas.html">ESTAD&Iacute;STICAS</a>
+                    <a href="./informacion.html">INFORMACI&Oacute;N</a>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="../index.html">INICIO</a></li>
+                        <li><a href="./tranvia.html">TIEMPO REAL</a></li>
+                        <li><a href="./estadisiticas.html">ESTAD&Iacute;STICAS</a></li>
+                        <li><a href="./informacion.html">INFORMACI&Oacute;N</a></li>
+                    </ul>
+                </nav>
+            </header>
+            <section id="main">
+                <!--INICIO BOX MODEL-->
+                <div id="Mimodal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <p class="tipoRecorrido" id="parada" onclick="elegirOpc(this.id)">POR PARADAS</p>
+                        <p class="tipoRecorrido" id="directa" onclick="elegirOpc(this.id)">DIRECTO</p>
+                    </div>
+                </div>
+                 <!--INICIO ANIMACIÓN TRANVIA-->
+                <div class="animacion-tranvia">
+                    <img id="tranvia" src="../img/tranvia.png"></img>
+                <div class="tranviaParada">
+                    <div class="paradas" id="0">&nbsp;</div>
+                    <div class="paradas" id="1">&nbsp;</div>
+                    <div class="paradas" id="2">&nbsp;</div>
+                    <div class="paradas" id="3">&nbsp;</div>
+                    <div class="paradas" id="4">&nbsp;</div>
+                    <div class="paradas" id="5">&nbsp;</div>
+                    <div class="paradas" id="6">&nbsp;</div>
+                    <div class="paradas" id="7">&nbsp;</div>
+                    <div class="paradas" id="8">&nbsp;</div>
+                </div>
+            </div>
+            </section>
+        </div>
+        <footer>
+            <div class="texto">
+                <div class="copyright"><a class="footer-hover" target="blank" href="http://govindtiwari.blogspot.com/">Informaci&oacute;n legal y copyright &copy;</a></div>
+                <div class="sobre-nosotros"><a class="footer-hover" target="blank" href="https://codefun973161967.wordpress.com/">Enlace a la pagina web de los desarrolladores</a></div>
+            </div>
+            <div class="rrss-container">
+                <a target="blank" href="https://www.instagram.com/euskotren/"><img id="instagram" class="rrss" src="../img/instagram.png" alt="instagram"></a>
+                <a target="blank" href="https://www.facebook.com/EuskotrenEJGV"><img id="facebook" class="rrss" src="../img/facebook.png" alt="facebook"></a>
+                <a target="blank" href="https://twitter.com/euskotren"><img id="twitter" class="rrss" src="../img/twitter.png" alt="twitter"></a>
+                <a target="blank" href="https://www.youtube.com/channel/UCHLmG5i2LeHqQ7wN4s11Ddg"><img id="youtube" class="rrss" src="../img/youtube.png" alt="twitter"></a>
+            </div>
+        </footer>
+    <script src="appTranvia.js"></script>
+    </body>
+</html>

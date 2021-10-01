@@ -40,6 +40,7 @@ GENÉRICOS
 }
 
 body{
+    background:linear-gradient(135deg,#009036 , #ffdc00);
     background-repeat: no-repeat;
 }
 
@@ -49,10 +50,6 @@ body{
 
 .verde{
     background: linear-gradient(135deg,#58ab27,#ffdc00);
-}
-
-.rojo{
-    background: linear-gradient(135deg,#004494, #cb022b);
 }
 
 .content{
@@ -109,37 +106,17 @@ nav ul li a{
 nav ul li a:hover{
     font-family: 'Montserrat', sans-serif;
     display: block;
-    border: 1px solid white;
-    color: white;
+    border: 1px solid #fcdb8f;
+    color: #fcdb8f;
     width: 100%;
     transition: 0.2s;
 }
 
-.main{
+#main{
     width: 100%;
     min-height: 90vh;
     display: flex;
     align-items: center;
-}
-
-/*
----------------------------------------------------------------------------
-NOMBRE EUSKO TREN
----------------------------------------------------------------------------
-*/
-
-.nombre{
-    vertical-align: middle;
-    display: inline-block;
-    text-align: center;
-    width: 100%;
-    padding: 3em;
-    font-family: 'Montserrat', sans-serif;
-}
-
-.nombre b{
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 10em;
 }
 
 /*
@@ -199,10 +176,10 @@ footer{
 }
 
 .footer-hover:hover{
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid #e6ff8a;
     transition: 0.3s;
     text-decoration: none;
-    color: white;
+    color: #e6ff8a;
 }
 
 .rrss-container{
@@ -239,79 +216,143 @@ BOTON MENÚ
     cursor: pointer;
 }
 
+
 /*
----------------------------------------------------------------------------
-ESTRUCTURA PÁGINA DE INFORMACIÓN
----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+INICIO SCROLLBAR
+----------------------------------------------------------------------------
 */
 
-.main2{
-    width: 100%;
+::-webkit-scrollbar
+{
+    width: 10px;
 }
 
-.parada{
-    transition: 0.3s ease-in-out;
-    display: inline-block;
-    border-radius: 20px;
-    box-sizing: border-box;
-    background: rgba(0,0,0,0.5);
-    padding: 2%;
-    margin: 1.5%;
-    margin-top: 80px;
-    width: 30%;
+::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    background-color: rgb(184, 182, 182);
 }
 
-.parada h2{
-    margin-bottom: 10px;
-}
-
-.parada a{
-    color: lightblue;
-    text-decoration: none;
-    transition: 0.3s ease-in-out;
-}
-
-.parada a:hover{
-    color: rgb(46, 190, 238);
-    text-decoration: underline solid rgb(46, 190, 238);
-    transition: 0.3s ease-in-out;
-}
-
-.container-img-parada{
-    position: relative;
-    top: 0px;
-    width: 100%;
-    transition: 0.3s ease-in-out;
-}
-
-.container-img-parada img{
-    width: 100%;
-    border-radius: 4px;
-}
-
-.info-parada{
-    margin-top: 10px;
-    font-family: 'Montserrat', sans-serif;
-    transition: 0.3s ease-in-out;
-    color: white;
-    text-align: center;
+::-webkit-scrollbar-thumb:hover
+{
+    border-radius: 10px;
+    background-color: gray;
 }
 
 /*
----------------------------------------------------------------------------
-MEDIA QUERIES
----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+INICIO PARADAS TRANVIA
+----------------------------------------------------------------------------
+*/
+
+.animacion-tranvia{
+    margin: 0 auto;
+    min-height: 50vh;
+    position: flex;
+    align-items: center;
+}
+
+.paradas{
+    cursor: pointer;
+    height: calc(100vw / 26);
+    width:calc(100vw / 26);
+    background-color: lightgray;
+    border-radius: 51%;
+    display:inline-block;
+    margin:0 0.5em;
+}
+
+.paradas:hover{
+    background-color: black;
+}
+
+#tranvia{
+    width:15%;
+    left:-20%;
+    position:relative;
+    transition:  1s;
+}
+/*
+--------------------------------------------------------------------------
+INICIO MODAL BOX
+--------------------------------------------------------------------------
+*/
+
+.modal{
+    display:none;
+    position:fixed;
+    z-index:1;
+    padding-top:100px;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    overflow:auto;
+    background-color:rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content{
+    background-color:rgba(0,0,0,0.4);
+    margin:auto;
+    padding:20px;
+    border:1px solid #888;
+    width:90%;
+    height:9%;
+}
+
+.close{
+    color:#aaa;
+    float:right;
+    padding-left:2%;
+    font-size:28px;
+    font-weight:bold;
+}
+
+.close:hover, .close:focus{
+    color:black;
+    text-decoration:none;
+    cursor:pointer;
+}
+
+#parada{
+    background-color:rgba(0,0,0,0);
+    color:white;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    float:left;
+    position:relative;
+    cursor: pointer;
+    
+}
+#parada:hover{
+    font-size:1.5em;
+}
+
+#directa{
+    background-color:rgba(0,0,0,0);
+    color:white;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    float:right;
+    position:relative;
+    cursor: pointer;
+}
+#directa:hover{
+    font-size:1.5em;
+}
+
+/*
+----------------------------------------------------------------------------
+INICIO MEDIA QUERY
+----------------------------------------------------------------------------
 */
 
 @media screen and (max-width: 992px) {
 
-    .main{
+    #main{
         height: 100vh;
-    }
-
-    .parada{
-        width: 46.5%;
-        margin-top: 120px;
     }
 
     .desplegable{
@@ -319,17 +360,14 @@ MEDIA QUERIES
     }
     
     header{
-        background-color: rgba(0,0,0,0.5);
-        z-index: 1;
         position: fixed;
-    }
-    
-    .nombre b{
-        font-size: 6em;
     }
     
     nav{
         display: none;
+    }
+    .animacion-tranvia{
+        padding-top:3em;
     }
 
     .container {
@@ -359,54 +397,92 @@ MEDIA QUERIES
         transform: rotate(45deg) translate(-8px, -8px);
     }
 }
-
-@media screen and (max-width: 480px) {
-
-    .main{
+@media screen and (max-width:480px){
+    #main{
         width: 100%;
     }
-
-    .parada{
-        width: 90%;
-        padding: 15px;
-        margin: 15px;
-        margin-top: 90px;
+    .paradas{
+        cursor: pointer;
+        height: calc(100vw / 18);
+        width:calc(100vw / 18);
+        background-color: lightgray;
+        border-radius: 50%;
+        display:block;
+        margin:1em auto;
+    }
+    #tranvia{
+        transform: rotate(90deg);
+        width:15%;
+        left:50%;
+        top:15%;
+        padding-bottom:2em;
+        position:absolute;
+        transition:1s;
+    }
+    .modal{
+        position:fixed;
+        z-index:1;
+        padding-top:100px;
+        left:0;
+        top:0;
+        width:100%;
+        height:100%;
+        overflow:auto;
+        background-color:rgb(0,0,0);
+        background-color: rgba(0,0,0,0.4);
     }
     
-    .nombre b{
-        font-size: 3em;
+    .modal-content{
+        background-color:rgba(0,0,0,0.4);
+        margin:auto;
+        padding:15%;
+        border:1px solid #888;
+        width:90%;
+        display:block;
     }
-}
 
-@media (orientation:landscape) and (max-width: 992px){
-    .landscape-hide{
-        display: none;
+    .modal-content p{
+        display:inline-block;
     }
-
-    header{
-        height: 70px;
+    
+    .close{
+        color:#aaa;
+        float:right;
+        padding-left:2%;
+        font-size:28px;
+        font-weight:bold;
     }
-}
-
-/*
-----------------------------------------------------------------------------
-INICIO SCROLLBAR
-----------------------------------------------------------------------------
-*/
-
-::-webkit-scrollbar
-{
-    width: 10px;
-}
-
-::-webkit-scrollbar-thumb
-{
-    border-radius: 10px;
-    background-color: rgb(184, 182, 182);
-}
-
-::-webkit-scrollbar-thumb:hover
-{
-    border-radius: 10px;
-    background-color: gray;
+    
+    .close:hover, .close:focus{
+        color:black;
+        text-decoration:none;
+        cursor:pointer;
+    }
+    
+    #parada{
+        background-color:rgba(0,0,0,0);
+        color:white;
+        text-decoration: none;
+        font-family: 'Montserrat', sans-serif;
+        position:relative;
+        top:0;
+        cursor: pointer;
+        
+    }
+    #parada:hover{
+        font-size:1.5em;
+    }
+    
+    #directa{
+        background-color:rgba(0,0,0,0);
+        color:white;
+        text-decoration: none;
+        font-family: 'Montserrat', sans-serif;
+        float:right;
+        position:relative;
+        cursor: pointer;
+    }
+    #directa:hover{
+        font-size:1.5em;
+    }
 }
