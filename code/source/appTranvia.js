@@ -133,25 +133,28 @@ function paradasPorParada(){
         }
         else{
             console.log(id);
-            switch(id){
-                case '0':tranvia.style.left='-2%';
-                    break;
-                case '1':tranvia.style.animationName= "parada2";
-                     break;
-                case '2':tranvia.style.left='20%';
-                    break;
-                case '3':tranvia.style.left='31%';
-                    break;
-                case '4':tranvia.style.left='42%';
-                    break;
-                case '5':tranvia.style.left='53%';
-                    break;
-                case '6':tranvia.style.left='64%';
-                    break;
-                case '7':tranvia.style.left='75%';
-                    break;
-                case '8':tranvia.style.left='86%';
-                    break;
+            let paradas=["-2%","9%","20%","31%","42%","53%","64%","75%","86%"];
+        /*
+        for(let x=-1;x<Number(id);x++){
+                console.log(paradas+'%')
+                window.setTimeout(tranvia.style.left=paradas+'%',2000);
+                paradas=paradas+11;
+            }
+        */
+            var intervalo=setInterval(mover,1000);
+            let p=-13;
+
+            function mover(){
+                console.log("entra funcions")
+                if(tranvia.style.left==paradas[id]){
+                    clearInterval(intervalo);
+                }
+                else{
+                    tranvia.style.left=p+11+"%";
+                    p+=11;
+                    console.log(tranvia.style.left);
+
+                }
             }
         }
     }

@@ -486,11 +486,3 @@ INICIO MEDIA QUERY
         font-size:1.5em;
     }
 }
-@keyframes parada2 {
-    from{
-        background-color: #004494;
-    }
-    to{
-       background-color: #009036;
-    }
-}
