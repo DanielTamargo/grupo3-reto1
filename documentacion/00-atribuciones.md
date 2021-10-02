@@ -7,13 +7,13 @@ Algunos de los iconos e imágenes utilizados son de fuentes externas que requier
 ## Listado de iconos
 
 **SVG Pueblo 1**  
-![pueblo-1.svg](./../code/img/pueblo-1.svg)
+![pueblo-1.svg](./../code/img/pueblo-1.svg =100x)
 
 **SVG Pueblo 2**  
-![pueblo-2.svg](./../code/img/pueblo-2.svg)
+![pueblo-2.svg](./../code/img/pueblo-2.svg =100x)
 
 **SVG Montaña**  
-![mountain.svg](./../code/img/mountain.svg)
+![mountain.svg](./../code/img/mountain.svg =100x)
 
 ----------------------------------------------------------------------
 
