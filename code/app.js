@@ -165,7 +165,9 @@ svg.selectAll('rect')
     .attr('y', (d, i) => (row_height * i + 5) + '%')
     .attr('x', 0)
     .attr('height', (row_height - 10) + '%')
-    .attr('width', 0); // Anchura inicial de 0 para la animación inicial
+    .attr('width', 0) // Anchura inicial de 0 para la animación inicial
+    .on('mouseover', svgEventoMouseOver)
+    .on('mouseout', svgEventoMouseOut);
 
 // Animación inicial rectas
 svg.selectAll('rect')
@@ -173,8 +175,41 @@ svg.selectAll('rect')
     .duration(2000)
     .attr('width', calcularPorcentajaBarraGraficaMesAnyo);
 
-// Eventos mouse
+/** funciones: eventos mouse */
+var contador_mouse_over = 0;
+function svgEventoMouseOver(element, object) {
+    // Obtenemos las posiciones
+    let posX = this.width.baseVal.value / 2;
+    let posY = this.y.baseVal.value - 2;
 
+    // Preparamos el texto
+    let texto = `${object.tipo} (${object.cantidad})`;
+    let longitud_px_texto = texto.length * 7.7;
+
+    // Preparamos la clase (servirá para borrarlo más adelante)
+    let clase = object.id + '-tmp';
+    // Preparamos el id (servirá para calcular alineación texto)
+    let id = clase + '-' + contador_mouse_over;
+
+    // Alinearemos el texto al centro cuando pueda caber
+    let text_anchor = 'start';
+    if (posX - longitud_px_texto / 2 > 0) {
+        text_anchor = 'middle';
+    }
+
+    // Creamos el texto
+    svg.append('text')
+        .attr('class', 'graph-text graph-text-small' + ' ' + clase + ' ' + id)
+        .attr('x', posX)
+        .attr('y', posY)
+        .attr('text-anchor', text_anchor)
+        .text(texto);
+
+    contador_mouse_over++;
+}
+function svgEventoMouseOut(element, object) {
+    svg.selectAll('.' + object.id + '-tmp').remove();
+}
 
 /** Añadimos y configuramos las etiquetas de la leyenda */
 // Izquierda
@@ -208,7 +243,7 @@ svg.selectAll('legend-qt')
 svg.selectAll('.legend-qt')
     .transition()
     .duration(2000)
-    .attr('x', calcularPorcentajaBarraGraficaMesAnyo)
+    .attr('x', calcularPorcentajaBarraGraficaMesAnyo);
 
 
 /** funciones: barras graficas */
@@ -301,13 +336,13 @@ function cargarDatosGraficaMesAnyo(COLORES, seleccion_parada) {
     });
     datos_para_la_grafica.push({ 
         id: 'graph-sin-pagar-atrapados',
-        tipo: 'Sin pagar | Atrapados',
+        tipo: 'SP | Atrapados',
         cantidad: total_num_sin_pagar_atrapados,
         color: COLORES[2]
     });
     datos_para_la_grafica.push({ 
         id: 'graph-sin-pagar-escapados',
-        tipo: 'Sin pagar | Escapados',
+        tipo: 'SP | Escapados',
         cantidad: total_num_sin_pagar_escapados,
         color: COLORES[3]
     });
