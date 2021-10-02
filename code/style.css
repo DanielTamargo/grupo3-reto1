@@ -191,7 +191,8 @@ nav ul li a:hover{
     border-radius: 10px;
     width: 100%;
     height: 100%;
-    background-color: rgb(230, 230, 230);
+    /* background-color: rgb(230, 230, 230); */
+    background-color: rgb(211, 246, 255);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -220,14 +221,25 @@ nav ul li a:hover{
     height: 40%;
     width: 100%;
     background: url(./img/egibide-tranvia-vias.png) repeat-x 0 / 100% auto;
-    animation: animacion-vias 1000s linear infinite;
+    animation: 8s linear infinite;
 }
 .animation-tranvia__vias.sentido-contrario{
     height: 50%;
 }
-@keyframes animacion-vias{
-    0%{background-position: 0;}
-    100%{background-position: -60000px;}
+.animation-tranvia__vias.via-anim-1{
+    animation-name: animacion-vias-anim-1;
+}
+.animation-tranvia__vias.via-anim-2{
+    animation-name: animacion-vias-anim-2;
+}
+@keyframes animacion-vias-anim-1{
+    99.999%{transform: translateX(-100%);}
+    100%{transform: translateX(0%);}
+}
+@keyframes animacion-vias-anim-2{
+    0%{transform: translateX(100%);}
+    99.999%{transform: translateX(0%);}
+    100%{transform: translateX(100%);}
 }
 
 .animation-tranvia__tranvia{
@@ -241,7 +253,7 @@ nav ul li a:hover{
     left: 5%;
 }
 .animation-tranvia__tranvia.sentido-contrario{
-    height: 42%;
+    height: 41%;
     animation: animacion-tranvia-sentido-contrario 15s linear infinite;
     background-position: 400px;
 }
@@ -253,10 +265,10 @@ nav ul li a:hover{
 
 .animation-tranvia__suelo{
     position: absolute;
-    bottom: 3.5%;
+    bottom: 0;
     left: 0;
     width: 100%;
-    height: 15%;
+    height: 18%;
     background: #8db99e;
 }
 .animation-tranvia__suelo__via{
@@ -265,13 +277,33 @@ nav ul li a:hover{
     width: 100%;
     background: #b9a8a1;
 }
-.animation-tranvia__suelo__via.via-1{
+.animation-tranvia__suelo__via.suelo-via-1{
     bottom: 7.1%;
     height: 3%;
 }
-.animation-tranvia__suelo__via.via-2{
+.animation-tranvia__suelo__via.suelo-via-2{
     bottom: 12.2%;
     height: 3%;
+}
+
+.animation-tranvia__edificio{
+    position: absolute;
+    bottom: 0%;
+    left: 0;
+    width: 100%;
+    height: 65%;
+    animation: animacion-pueblo 15s linear infinite;
+    animation-delay: calc(-3s * var(--i));
+}
+.animation-tranvia__edificio.pueblo-1{
+    background: url(./img/pueblo-1.svg) no-repeat 0 / 23%;
+}
+.animation-tranvia__edificio.pueblo-2{
+    background: url(./img/pueblo-2.svg) no-repeat 0 / 23%;
+}
+@keyframes animacion-pueblo{
+    0%{background-position: 140%;} /* JS coger width y ponerle dicha posición */
+    100%{background-position: -100%;}
 }
 
 
