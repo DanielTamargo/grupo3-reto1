@@ -139,7 +139,7 @@ var estilo_grafica = 1;
 // 3 = estadisticas por paradas (?)
 
 // TODO dani: descomentar y borrar
-// var seleccion_mes = new Date().getMonth() + 1;
+//var seleccion_mes = new Date().getMonth() + 1;
 var seleccion_mes = 9
 var seleccion_anyo = new Date().getFullYear();
 
@@ -334,9 +334,7 @@ function filtrarDatosGraficaMesAnyo(anyo, mes, parada, seleccion_parada) {
     if (seleccion_parada != undefined && seleccion_parada != null && seleccion_parada != '' && paradas.includes(seleccion_parada)) {
         return anyo == seleccion_anyo && mes == seleccion_mes && parada == seleccion_parada;
     } 
-    
     return anyo == seleccion_anyo && mes == seleccion_mes;
-    
 }
 /** ----------------------------------------------------------------- */
 /** ----------------------------------------------------------------- */

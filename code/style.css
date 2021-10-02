@@ -57,7 +57,7 @@ body{
 }
 
 .amarillo{
-    background: linear-gradient(135deg,#ffdc00, #cb022b);
+    background: linear-gradient(90deg,#ffdc00, #cb022b);
 }
 
 .small-italic{
@@ -132,7 +132,7 @@ nav ul li a:hover{
     align-items: center;
 }
 
-/* ESTADISTICAS */
+/* INICIO ESTADÍSTICAS */
 .est__main{
     position: relative;
     z-index: -3;
@@ -184,6 +184,8 @@ nav ul li a:hover{
     float: left;
 }
 
+
+/* INICIO ANIMACIÓN TRANVÍA */
 .animation-tranvia{
     border: 1px solid white;
     border-radius: 10px;
@@ -194,7 +196,9 @@ nav ul li a:hover{
     justify-content: center;
     align-items: center;
     position: relative;
+    overflow: hidden;
 }
+
 .animation-tranvia__sun{
     position: absolute;
     top: 10%;
@@ -208,9 +212,68 @@ nav ul li a:hover{
     0 0 80px #ffff5b,
     0 0 100px #ffff5b;
 }
+
 .animation-tranvia__vias{
-    /* TODO vias */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 40%;
+    width: 100%;
+    background: url(./img/egibide-tranvia-vias.png) repeat-x 0 / 100% auto;
+    animation: animacion-vias 1000s linear infinite;
 }
+.animation-tranvia__vias.sentido-contrario{
+    height: 50%;
+}
+@keyframes animacion-vias{
+    0%{background-position: 0;}
+    100%{background-position: -60000px;}
+}
+
+.animation-tranvia__tranvia{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: url(./img/egibide-tranvia.png) no-repeat 0 / 30% auto;
+}
+.animation-tranvia__tranvia.sentido-principal{
+    height: 31%;
+    left: 5%;
+}
+.animation-tranvia__tranvia.sentido-contrario{
+    height: 42%;
+    animation: animacion-tranvia-sentido-contrario 15s linear infinite;
+    background-position: 400px;
+}
+@keyframes animacion-tranvia-sentido-contrario{
+    0%{background-position: 140%;}
+	40%{background-position: -100%;}
+	100%{background-position: -100%;}
+}
+
+.animation-tranvia__suelo{
+    position: absolute;
+    bottom: 3.5%;
+    left: 0;
+    width: 100%;
+    height: 15%;
+    background: #8db99e;
+}
+.animation-tranvia__suelo__via{
+    position: absolute;
+    left: 0;
+    width: 100%;
+    background: #b9a8a1;
+}
+.animation-tranvia__suelo__via.via-1{
+    bottom: 7.1%;
+    height: 3%;
+}
+.animation-tranvia__suelo__via.via-2{
+    bottom: 12.2%;
+    height: 3%;
+}
+
 
 .est__main__content__graph{
     clear: left;
@@ -232,6 +295,7 @@ nav ul li a:hover{
     margin-bottom: 2em;
 }
 
+/* INICIO GRÁFICAS */
 .graph-container{
     border: 1px solid gray;
     padding: 1em;
