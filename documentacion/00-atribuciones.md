@@ -7,15 +7,17 @@ Algunos de los iconos e imágenes utilizados son de fuentes externas que requier
 ## Listado de iconos
 
 **SVG: Pueblo 1, Pueblo 2 y Montaña**  
-<img src="./../code/img/pueblo-1.svg" alt="pueblo-1" width="100"/>
-<img src="./../code/img/pueblo-2.svg" alt="pueblo-1" width="100"/>
-<img src="./../code/img/mountain.svg" alt="pueblo-1" width="100"/>
+<a href="https://www.flaticon.es/autores/srip" target="_blank"><img src="./../code/img/pueblo-1.svg" alt="pueblo-1" width="100"/></a>
+<a href="https://www.freepik.com" target="_blank"><img src="./../code/img/pueblo-2.svg" alt="pueblo-1" width="100"/></a>
+<a href="https://www.freepik.com" target="_blank"><img src="./../code/img/mountain.svg" alt="pueblo-1" width="100"/></a>
 
 ----------------------------------------------------------------------
 
 
-## Atribuciones Iconos
+## Autores de los iconos
 
-- [SVG Pueblo 1 (flaticon/srip)](https://www.flaticon.es/autores/srip)
-- [SVG Pueblo 2 (freepik)](https://www.freepik.com)
-- [SVG Montaña (freepik)](https://www.freepik.com)
+- [Flaticon/srip](https://www.flaticon.es/autores/srip)
+  - Pueblo 1
+- [Freepik](https://www.freepik.com)
+  - Pueblo 2
+  - Montaña
