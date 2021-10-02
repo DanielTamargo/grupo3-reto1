@@ -307,6 +307,20 @@ nav ul li a:hover{
     100%{background-position: -100%;}
 }
 
+.animation-tranvia__mountain{
+    position: absolute;
+    bottom: 15%;
+    left: 0;
+    width: 100%;
+    height: 80%;
+    animation: animacion-montana 40s linear infinite;
+    background: url(./img/mountain.svg) no-repeat 0 / 60%;
+    animation-delay: calc(-5s * var(--i));
+}
+@keyframes animacion-montana{
+    0%{transform: translateX(100%);} /* JS coger width y ponerle dicha posición */
+    100%{transform: translateX(-180%);}
+}
 
 .est__main__content__graph{
     clear: left;
