@@ -44,13 +44,20 @@
     <div class="est__main__wrapper__header-space z-index-10">
         <hr>
     </div>
-    <div class="est__main">
-        <div class="est__main__wrapper">
+    <div class="est__main gris">
+        <div class="est__main__wrapper content">
             <div class="est__main__content">
                 <br>
                 <div class="est__main__content__intro">
                     <div class="est__main__content__intro__left">
-                        <div class="est__main__content__intro__left__animation__box">
+                        <h2>ESTADISTICAS</h2>
+                        <p>Disponemos de una serie de gráficas que se actualizan en tiempo real para consultar los datos constantemente. De esta manera, podremos observar todos los datos registrados*  y analizarlos en pos de mejorar el servicio que ofrece EuskoTren.</p>
+                        <br>
+                        <p class="small-italic">*registrados: <br>Realmente no están registrados, debido a que no disponemos de una BBDD donde guardar registros, son datos que se generan aleatoriamente. <br>De hecho, se generan a una velocidad no natural con la intención de que se aprecie el resultado de las gráficas al cambiar dinámicamente con el flujo de datos en tiempo real.</p>
+                        <br>
+                    </div>
+                    <div class="est__main__content__intro__right">
+                        <div class="est__main__content__intro__animation__box">
                             <div class="animation-tranvia">
                                 <!-- Entorno fondo -->
                                 <div class="animation-tranvia__sun"></div>
@@ -75,36 +82,39 @@
                                 <div class="animation-tranvia__vias sentido-principal via-anim-1"></div>
                                 <div class="animation-tranvia__vias sentido-principal via-anim-2"></div>
                                 <div class="animation-tranvia__tranvia sentido-contrario"></div>
-                                <div class="animation-tranvia__tranvia sentido-principal via-anim-2"></div>
-
-                                <!-- Detalles -->
-                                
-
+                                <div class="animation-tranvia__tranvia sentido-principal"></div>
                             </div>
                         </div>
                     </div>
-                    <div class="est__main__content__intro__right">
-                        <h2>ESTADISTICAS</h2>
-                        <p>Disponemos de una serie de gráficas que se actualizan en tiempo real para consultar los datos constantemente.</p>
-                        <p>De esta manera, podremos observar todos los datos registrados*  y analizarlos en pos de mejorar el servicio que ofrece EuskoTren.</p>
-                        <br>
-                        <p class="small-italic">*registrados: <br>Realmente no están registrados, debido a que no disponemos de una BBDD donde guardar registros, son datos que se generan aleatoriamente. <br>De hecho, se generan a una velocidad no natural con la intención de que se aprecie el resultado de las gráficas al cambiar dinámicamente con el flujo de datos en tiempo real.</p>
-                        <br>
-                        <br>
+                </div>
+                <hr class="cool-hr-separator">
+                <div class="est__main__content__graph-selector">
+                    <div class="est__main__content__graph-selector__title">
+                        <p>Selecciona el tipo de gráfica que quieres visualizar</p>
+                    </div>
+                    <div class="est__main__content__graph-selector__left">
+                        selector grafica
+                    </div>
+                    <div class="est__main__content__graph-selector__right">
+                        especificacion
                     </div>
                 </div>
+                <hr class="cool-hr-separator">
                 <div class="est__main__content__graph">
-                    <div class="est__main__content__graph__left">
+                    <div class="est__main__content__graph__title">
                         <h2 id="graph-title">Titulo Grafica</h2>
-                        <p id="graph-desc">Descripción gráfica</p>
                     </div>
-                    <div class="est__main__content__graph__right">
+                    <div class="est__main__content__graph__left">
                         <div class="graph-container">
                             <svg class="graph-chart">
                                 
                             </svg>
                         </div>
                     </div>
+                    <div class="est__main__content__graph__right">
+                        <p id="graph-desc">Descripción gráfica</p>
+                    </div>
+
                 </div>
                 <div class="est__main__content__end">
                     <p>Fin</p>

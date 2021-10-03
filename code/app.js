@@ -1,3 +1,5 @@
+/** ----------------------------------------------------------------- */
+/** FUNCIONES COMUNES */
 function cambiar(evt) {
     evt.classList.toggle("change");
     if(document.getElementsByClassName("desplegable")[0].style.width==""){
@@ -9,52 +11,76 @@ function cambiar(evt) {
 }
 
 
-
-
-
-
 /** ----------------------------------------------------------------- */
+/** CONSTANTES */
+const LOCALSTORAGE_CLAVE_DATOS = 'datos_ficticios';
+const LOCALSTORAGE_CLAVE_ESTILOGRAFICA = 'estilo_grafica';
+const LOCALSTORAGE_CLAVE_PARADASELECCIONADA = 'parada_seleccionada';
+const paradas = ['Ibaiondo',  'Landaberde', 'Lakuabizkarra', 'Wellington', 'Txagorritxu', 'Euskal Herria', 'Honduras', 'Europa', 'Sancho El Sabio'];
+
+
 /** ----------------------------------------------------------------- */
 /** ESTADISTICAS: INICIALIZAR DATOS */
 
 /** Obtenemos los datos del almacenamiento local (así podemos mover los datos entre páginas) */
-const NOMBRE_DATOS_LOCALSTORAGE = 'datos_ficticios';
-const paradas = ['Ibaiondo',  'Landaberde', 'Lakuabizkarra', 'Wellington', 'Txagorritxu', 'Euskal Herria', 'Honduras', 'Europa', 'Sancho El Sabio'];
+
 var datos_cargados_con_exito = false;
 var datos = [];
+
+/** Cargar datos del almacenamiento local */
 try {
-    datos = localStorage.getItem(NOMBRE_DATOS_LOCALSTORAGE);
+    datos = localStorage.getItem(LOCALSTORAGE_CLAVE_DATOS);
     if (datos == null || datos == undefined || datos == '') {
         // Si no existen, los inicializamos
         datos = inicializarDatos();
-        localStorage.setItem(NOMBRE_DATOS_LOCALSTORAGE, JSON.stringify(datos));
+        localStorage.setItem(LOCALSTORAGE_CLAVE_DATOS, JSON.stringify(datos));
         console.log('Datos inicializados con éxito.');
     } else {
         // Si existen, los cargamos
         console.log('Datos cargados con éxito.');
-        datos = JSON.parse(localStorage.getItem(NOMBRE_DATOS_LOCALSTORAGE));
+        datos = JSON.parse(localStorage.getItem(LOCALSTORAGE_CLAVE_DATOS));
     }
     datos_cargados_con_exito = true;
 } catch (err) {
-    console.error(`Error al cargar los datos:\n${err}`)
+    console.error(`Error al cargar los datos:\n${err}`);
 }
 
+// Valores por defecto de qué gráfica se va a mostrar
+var estilo_grafica = 1; 
+var parada_seleccionada = undefined;
+/** Cargar del almacenamiento local si venimos de la pestaña info */
+try {
+    let eg = localStorage.getItem(LOCALSTORAGE_CLAVE_ESTILOGRAFICA);
+    let ps = localStorage.getItem(LOCALSTORAGE_CLAVE_PARADASELECCIONADA);
+
+    // Miramos que existan y no sean valores no válidos o nulos
+    if (eg != null && eg != undefined && eg != '' &&
+    ps != null && ps != undefined && ps != '' && paradas.includes(ps)) {
+        // Si existen, lo configuramos
+        estilo_grafica = parseInt(eg);
+        parada_seleccionada = paradas[parseInt(ps)];
+    }
+
+} catch (err) {
+    console.error(`Error al cargar especificacion:\n${err}`);
+    estilo_grafica = 1;
+    parada_seleccionada = undefined;
+}
 
 /** ----------------------------------------------------------------- */
 /** INICIALIZAR DATOS */
 /** Función que inicializa todos los datos */
-
 function inicializarDatos() {
     /** Tabla que se pretende simular:
      *  año | mes | parada | num_pasajeros | num_sin_pagar_escapados | num_sin_pagar_atrapados | num_revisores_subieron | num_incidentes
      */
 
-    // TODO cuando surge una incidencia, ¿mostrarlo como alerta?
+    // TODO dani: cuando surge una incidencia, ¿mostrarlo como alerta?
 
-    // TODO confirmar con Raúl nombres paradas
 
     let array_datos = [];
 
+    // Por cada parada se generarán una serie de datos aleatorios
     for (let parada of paradas) {
         array_datos.push(inicializarDatosParada(parada));
     }
@@ -133,10 +159,6 @@ function numeroRandom(minimo, maximo) {
 /** ----------------------------------------------------------------- */
 /** ----------------------------------------------------------------- */
 /** ESTADISTICAS: GENERAR GRÁFICA */
-var estilo_grafica = 1; 
-// 1 = estadisticas mes seleccionado
-// 2 = estadisticas generales año (?)
-// 3 = estadisticas por paradas (?)
 
 // TODO dani: descomentar y borrar
 //var seleccion_mes = new Date().getMonth() + 1;
@@ -336,13 +358,13 @@ function cargarDatosGraficaMesAnyo(COLORES, seleccion_parada) {
     });
     datos_para_la_grafica.push({ 
         id: 'graph-sin-pagar-atrapados',
-        tipo: 'SP | Atrapados',
+        tipo: 'Atrapados',
         cantidad: total_num_sin_pagar_atrapados,
         color: COLORES[2]
     });
     datos_para_la_grafica.push({ 
         id: 'graph-sin-pagar-escapados',
-        tipo: 'SP | Escapados',
+        tipo: 'Escapados',
         cantidad: total_num_sin_pagar_escapados,
         color: COLORES[3]
     });

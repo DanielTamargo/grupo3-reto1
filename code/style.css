@@ -60,6 +60,10 @@ body{
     background: linear-gradient(90deg,#ffdc00, #cb022b);
 }
 
+.gris{
+    background-color: #505050;
+}
+
 .small-italic{
     font-style: italic;
     font-size: 0.7em;
@@ -85,6 +89,16 @@ header{
 }
 .z-index-11{
     z-index: 11;
+}
+
+.cool-hr-separator{
+    margin-bottom: 1em;
+    clear: both;
+    border: 0;
+    height: 2px;
+    background-image: linear-gradient(to right, rgba(82, 82, 82, 0), 
+                    rgba(107, 107, 107, 0.75), 
+                    rgba(53, 53, 53, 0));
 }
 
 /*
@@ -141,13 +155,11 @@ nav ul li a:hover{
 
 /* INICIO ESTADÍSTICAS */
 .est__main{
-    background-color: #505050;
     min-height: 90vh;
 }
 
 .est__main__wrapper{
     margin: 0 auto;
-    max-width: 1800px;
 }
 
 .est__main__content{
@@ -156,7 +168,7 @@ nav ul li a:hover{
     font-family: 'Roboto';
 }
 
-.est__main h2 {
+.est__main h2{
     font-family: 'Montserrat';
     font-size: 3em;
 }
@@ -177,12 +189,19 @@ nav ul li a:hover{
     border-top: 1px solid gray;
 }
 
-.est__main__content__intro__left__animation__box{
-    width: 400px;
-    height: 300px;
-    margin-right: 3em;
-    margin-bottom: 3em;
+.est__main__content__intro__left{
+    width: calc(100% - 500px - 3em);
     float: left;
+}
+
+.est__main__content__intro__right{
+    float: right;
+}
+
+.est__main__content__intro__animation__box{
+    width: 500px;
+    height: calc(500px / 4 * 3);
+    margin-bottom: 3em;
 }
 
 
@@ -322,8 +341,25 @@ nav ul li a:hover{
     100%{transform: translateX(-180%);}
 }
 
+.est__main__content__graph-selector__title{
+    text-align: center;
+    text-transform: uppercase;
+}
+.est__main__content__graph-selector__left{
+    float: left;
+}
+.est__main__content__graph-selector__right{
+    float: right;
+}
+
 .est__main__content__graph{
-    clear: left;
+    clear: both;
+}
+
+.est__main__content__graph__title{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 1em;
 }
 
 .est__main__content__graph div{
@@ -332,14 +368,12 @@ nav ul li a:hover{
 }
 
 .est__main__content__graph__left{
-    /* float: left; */
-    text-align: left;
+    text-align: right;
     margin-right: 1em;
 }
 
 .est__main__content__graph__right{
-    /* float: right; */
-    text-align: right;
+    text-align: left;
 }
 
 .est__main__content__graph__left, .est__main__content__graph__right{
@@ -383,7 +417,7 @@ nav ul li a:hover{
 .graph-text-small{
     font-size: 0.8em;
 }
-.legend-name {
+.legend-name{
     font-size: 0.8em;
 }
 
@@ -563,6 +597,17 @@ MEDIA QUERIES
         transform: rotate(45deg) translate(-8px, -8px);
     }
 
+    .est__main__content__intro__left{
+        width: 100%;
+    }
+    
+    .est__main__content__intro__right{
+        width: 100%;
+        clear: left;
+        text-align: center;
+        float: right;
+    }
+
     .est__main{
         min-height: 100vh;
     }
@@ -580,9 +625,30 @@ MEDIA QUERIES
         margin-top: 1em;
     }
 
+    .est__main__content__intro__animation__box{
+        /* TODO dani: ¿reescalar progresivo o tamaño fijo? */
+        /*width: 90vw;
+        height: calc(90vw / 4 * 3);*/
+        width: 450px;
+        height: calc(450px / 4 * 3);
+        margin-bottom: 3em;
+    }
+
     .est__main__content__intro__left__animation__box{
         margin-right: 1em;
         margin-bottom: 1em;
+    }
+
+    .est__main__content__graph__left{
+        clear: both;
+        width: 100%;
+    }
+    .graph-container{
+        margin: 0 auto;
+        width: 100%;
+    }
+    .graph-chart{
+        width: 71%;
     }
 
 }
@@ -616,12 +682,24 @@ MEDIA QUERIES
         text-align: left;
     }
 
-    .est__main__content__intro__left__animation__box{
+    .est__main__content__intro__animation__box{
         margin: 0 auto;
         width: 83vw;
         height: calc(83vw * 3 / 4);
         margin-bottom: 1em;
     }
+
+    .graph-container{
+        width: 100%;
+        height: auto;
+    }
+    .graph-legend{
+        display: none;
+    }
+    .graph-text{
+        font-size: 0.7em;
+    }
+
 }
 
 @media (orientation:landscape) and (max-width: 992px){
