@@ -406,11 +406,13 @@ nav ul li a:hover{
     font-size: 0.8em;
 }
 
-.est__main__content__end{
-    clear: both;
-    margin-top: 1em;
-    text-align: center;
+.graph-bar:nth-child(even){
+    fill: #506781;
 }
+.graph-bar:nth-child(odd){
+    fill: #9ab5d4;
+}
+
 
 .graph-text{
     font-family: 'Fira Mono';
@@ -420,6 +422,12 @@ nav ul li a:hover{
 }
 .legend-name{
     font-size: 0.8em;
+}
+
+.est__main__content__end{
+    clear: both;
+    margin-top: 1em;
+    text-align: center;
 }
 
 /*

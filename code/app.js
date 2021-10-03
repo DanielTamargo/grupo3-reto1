@@ -16,14 +16,15 @@ function cambiar(evt) {
 const LOCALSTORAGE_CLAVE_DATOS = 'datos_ficticios';
 const LOCALSTORAGE_CLAVE_ESTILOGRAFICA = 'estilo_grafica';
 const LOCALSTORAGE_CLAVE_PARADASELECCIONADA = 'parada_seleccionada';
-const paradas = ['Ibaiondo',  'Landaberde', 'Lakuabizkarra', 'Wellington', 'Txagorritxu', 'Euskal Herria', 'Honduras', 'Europa', 'Sancho El Sabio'];
+const COLORES = ['#33C7FF', '#33FF3C', '#FCFF33', '#FFC433', '#FF7433'];
+const PARADAS = ['Ibaiondo',  'Landaberde', 'Lakuabizkarra', 'Wellington', 'Txagorritxu', 'Euskal Herria', 'Honduras', 'Europa', 'Sancho El Sabio'];
 
 
 /** ----------------------------------------------------------------- */
 /** ESTADISTICAS: INICIALIZAR DATOS */
 
-/** Obtenemos los datos del almacenamiento local (así podemos mover los datos entre páginas) */
-
+/** Obtenemos los datos del almacenamiento local 
+ * (así podemos mover los datos entre páginas) */
 var datos_cargados_con_exito = false;
 var datos = [];
 
@@ -46,19 +47,20 @@ try {
 }
 
 // Valores por defecto de qué gráfica se va a mostrar
-var estilo_grafica = 1; 
+// TODO dani: volver a poner el por defecto (valor 1)
+var estilo_grafica = 3; 
 var parada_seleccionada = undefined;
-/** Cargar del almacenamiento local si venimos de la pestaña info */
+/** Miramos en el almacenamiento local si venimos de la pestaña info */
 try {
     let eg = localStorage.getItem(LOCALSTORAGE_CLAVE_ESTILOGRAFICA);
     let ps = localStorage.getItem(LOCALSTORAGE_CLAVE_PARADASELECCIONADA);
 
     // Miramos que existan y no sean valores no válidos o nulos
     if (eg != null && eg != undefined && eg != '' &&
-    ps != null && ps != undefined && ps != '' && paradas.includes(ps)) {
+    ps != null && ps != undefined && ps != '' && PARADAS.includes(ps)) {
         // Si existen, lo configuramos
         estilo_grafica = parseInt(eg);
-        parada_seleccionada = paradas[parseInt(ps)];
+        parada_seleccionada = PARADAS[parseInt(ps)];
     }
 
 } catch (err) {
@@ -81,7 +83,7 @@ function inicializarDatos() {
     let array_datos = [];
 
     // Por cada parada se generarán una serie de datos aleatorios
-    for (let parada of paradas) {
+    for (let parada of PARADAS) {
         array_datos.push(inicializarDatosParada(parada));
     }
 
@@ -152,17 +154,22 @@ function inicializarDatosParada(parada) {
     return array;
 }
 
+/**
+ * Función que devuelve un número aleatorio entre dos valores
+ * @param {int} minimo número mínimo a devolver
+ * @param {int} maximo número máximo a devolver 
+ * @returns 
+ */
 function numeroRandom(minimo, maximo) {
     return Math.floor(Math.random() * (maximo - minimo + 1) + minimo)
 }
 
 /** ----------------------------------------------------------------- */
-/** ----------------------------------------------------------------- */
 /** ESTADISTICAS: GENERAR GRÁFICA */
 
 // TODO dani: descomentar y borrar
-//var seleccion_mes = new Date().getMonth() + 1;
-var seleccion_mes = 9
+var seleccion_mes = new Date().getMonth() + 1;
+//var seleccion_mes = 9
 var seleccion_anyo = new Date().getFullYear();
 
 // Variables estadísticas 1
@@ -171,41 +178,169 @@ var row_width = 0,
     estadisticas_pausadas = false,
     motivo_pausa = 0; // 0 = en marcha, 1 = pausada por boton, 2 = pausada por evento
 
+    
+/** Seleccionamos el elemento SVG (imagen vectorial) donde dibujar la gráfica */
+const svg = d3.select('svg');
+
 /** Preparar datos */
 var datos_grafica = cargarDatosGrafica();
 
-/** Seleccionamos el elemento SVG (imagen vectorial) */
-const svg = d3.select('svg');
+/** Dependiendo del estilo_grafica, cargaremos una gráfica u otra */
+pintarGrafica();
 
-/** Añadimos y configuramos las rectas */
-// Las añadimos
-svg.selectAll('rect')
-    .data(datos_grafica)
-    .enter()
-    .append('rect')
-    .attr('fill', (d, i) => datos_grafica[i].color)
-    .attr('y', (d, i) => (row_height * i + 5) + '%')
-    .attr('x', 0)
-    .attr('height', (row_height - 10) + '%')
-    .attr('width', 0) // Anchura inicial de 0 para la animación inicial
-    .on('mouseover', svgEventoMouseOver)
-    .on('mouseout', svgEventoMouseOut);
+function pintarGrafica() {
+    switch(estilo_grafica) {
+        case 1:
+        case 2:
+            graficaDatosParada();
+            break;
+        case 3:
+            graficaParadas();
+            break;
+        case 4:
 
-// Animación inicial rectas
-svg.selectAll('rect')
-    .transition()
-    .duration(2000)
-    .attr('width', calcularPorcentajaBarraGraficaMesAnyo);
+            break;
+        default:
+            break;
+    }
+}
+
+/** Dibuja la gráfica estilo 3 */
+function graficaParadas() {
+    /** Limpiamos el contenido */
+    svg.selectAll("*").remove();
+
+    svg.selectAll('rect')
+        .data(datos_grafica)
+        .enter()
+        .append('rect')
+        .attr('fill', () => COLORES[numeroRandom(0, COLORES.length - 1)])
+        .attr('y', (d, i) => ((100 / datos_grafica.length * (i + 1)) - 100 / datos_grafica.length) + '%')
+        .attr('x', 0)
+        .attr('height', (d, i) => (100 / datos_grafica.length) + '%')
+        .attr('width', 0)
+        .attr('class', (d, i) => datos_grafica[i].clase)
+        .on('mouseover', svgDatosParadaEventoMouseOver)
+        .on('mouseout', svgDatosParadaEventoMouseOut);
+    
+    // Animación inicial rectas
+    svg.selectAll('rect')
+       .transition()
+       .duration(2000)
+       .attr('width', calcularPorcentajaBarraGraficaMesAnyo);
+
+    /** Añadimos y configuramos las etiquetas de la leyenda */
+    // Izquierda
+    svg.selectAll('legend-left')
+        .data(datos_grafica)
+        .enter()
+        .append('text')
+        .attr('id', (d, i) => datos_grafica[i].id + '-name')
+        .attr('x', -5)
+        .attr('y', (d, i) => ((100 / datos_grafica.length * (i + 1)) - 50 / datos_grafica.length) + '%')
+        .attr('fill', 'black')
+        .text((d, i) => datos_grafica[i].parada)
+        .attr('text-anchor', 'end')
+        .attr('dominant-baseline', 'middle')
+        .attr('class', 'graph-legend legend-name graph-text medium-query-text');
+
+    // Cantidad
+    svg.selectAll('legend-qt')
+        .data(datos_grafica)
+        .enter()
+        .append('text')
+        .attr('id', (d, i) => datos_grafica[i].id + '-qt')
+        .attr('x', 0) // Posición inicial de 0 para la animación inicial
+        .attr('y', (d, i) =>((100 / datos_grafica.length * (i + 1)) - 50 / datos_grafica.length) + '%')
+        .attr('fill', 'black')
+        .text((d, i) => datos_grafica[i].cantidad)
+        .attr('dominant-baseline', 'middle')
+        .attr('class', 'graph-legend legend-qt graph-text');
+
+    // Animación inicial textos cantidad
+    svg.selectAll('.legend-qt')
+        .transition()
+        .duration(2000)
+        .attr('x', calcularPorcentajaBarraGraficaMesAnyo);
+}
+
+
+/** Dibuja la gráfica estilo 1 y 2, donde salen todos los 5 datos */
+function graficaDatosParada() {
+    /** Limpiamos el contenido */
+    svg.selectAll("*").remove();
+
+    /** Añadimos y configuramos las rectas */
+    // Las añadimos
+    svg.selectAll('rect')
+        .data(datos_grafica)
+        .enter()
+        .append('rect')
+        .attr('fill', (d, i) => datos_grafica[i].color)
+        .attr('y', (d, i) => (row_height * i + 5) + '%')
+        .attr('x', 0)
+        .attr('height', (row_height - 10) + '%')
+        .attr('width', 0) // Anchura inicial de 0 para la animación inicial
+        .on('mouseover', svgDatosParadaEventoMouseOver)
+        .on('mouseout', svgDatosParadaEventoMouseOut);
+
+    // Animación inicial rectas
+    svg.selectAll('rect')
+        .transition()
+        .duration(2000)
+        .attr('width', calcularPorcentajaBarraGraficaMesAnyo);
+
+    /** Añadimos y configuramos las etiquetas de la leyenda */
+    // Izquierda
+    svg.selectAll('legend-left')
+        .data(datos_grafica)
+        .enter()
+        .append('text')
+        .attr('id', (d, i) => datos_grafica[i].id + '-name')
+        .attr('x', -5)
+        .attr('y', (d, i) => (row_height * i + 5 + (row_height / 4) + '%'))
+        .attr('fill', 'black')
+        .text((d, i) => datos_grafica[i].tipo)
+        .attr('text-anchor', 'end')
+        .attr('dominant-baseline', 'middle')
+        .attr('class', 'graph-legend legend-name graph-text medium-query-text');
+
+    // Cantidad
+    svg.selectAll('legend-qt')
+        .data(datos_grafica)
+        .enter()
+        .append('text')
+        .attr('id', (d, i) => datos_grafica[i].id + '-qt')
+        .attr('x', 0) // Posición inicial de 0 para la animación inicial
+        .attr('y', (d, i) => (row_height * i + 5 + (row_height / 4) + '%'))
+        .attr('fill', 'black')
+        .text((d, i) => datos_grafica[i].cantidad)
+        .attr('dominant-baseline', 'middle')
+        .attr('class', 'graph-legend legend-qt graph-text');
+
+    // Animación inicial textos cantidad
+    svg.selectAll('.legend-qt')
+        .transition()
+        .duration(2000)
+        .attr('x', calcularPorcentajaBarraGraficaMesAnyo);
+}
+
 
 /** funciones: eventos mouse */
 var contador_mouse_over = 0;
-function svgEventoMouseOver(element, object) {
+function svgDatosParadaEventoMouseOver(element, object) {
     // Obtenemos las posiciones
     let posX = this.width.baseVal.value / 2;
     let posY = this.y.baseVal.value - 2;
 
     // Preparamos el texto
-    let texto = `${object.tipo} (${object.cantidad})`;
+    let texto;
+    if(object.tipo != undefined) {
+        texto = `${object.tipo} (${object.cantidad})`;
+    } else {
+        texto = `${object.parada} (${object.cantidad})`;
+        posY += this.height.baseVal.value / 2 + 5;
+    }
     let longitud_px_texto = texto.length * 7.7;
 
     // Preparamos la clase (servirá para borrarlo más adelante)
@@ -221,7 +356,7 @@ function svgEventoMouseOver(element, object) {
 
     // Creamos el texto
     svg.append('text')
-        .attr('class', 'graph-text graph-text-small' + ' ' + clase + ' ' + id)
+        .attr('class', 'no-editable graph-text graph-text-small' + ' ' + clase + ' ' + id)
         .attr('x', posX)
         .attr('y', posY)
         .attr('text-anchor', text_anchor)
@@ -229,46 +364,17 @@ function svgEventoMouseOver(element, object) {
 
     contador_mouse_over++;
 }
-function svgEventoMouseOut(element, object) {
+function svgDatosParadaEventoMouseOut(element, object) {
     svg.selectAll('.' + object.id + '-tmp').remove();
 }
 
-/** Añadimos y configuramos las etiquetas de la leyenda */
-// Izquierda
-svg.selectAll('legend-left')
-    .data(datos_grafica)
-    .enter()
-    .append('text')
-    .attr('id', (d, i) => datos_grafica[i].id + '-name')
-    .attr('x', -10) // Posición inicial de 0 para la animación inicial
-    .attr('y', (d, i) => (row_height * i + 5 + (row_height / 4) + '%'))
-    .attr('fill', 'black')
-    .text((d, i) => datos_grafica[i].tipo)
-    .attr('text-anchor', 'end')
-    .attr('dominant-baseline', 'middle')
-    .attr('class', 'graph-legend legend-name graph-text medium-query-text');
-
-// Cantidad
-svg.selectAll('legend-qt')
-    .data(datos_grafica)
-    .enter()
-    .append('text')
-    .attr('id', (d, i) => datos_grafica[i].id + '-qt')
-    .attr('x', 0) // Posición inicial de 0 para la animación inicial
-    .attr('y', (d, i) => (row_height * i + 5 + (row_height / 4) + '%'))
-    .attr('fill', 'black')
-    .text((d, i) => datos_grafica[i].cantidad)
-    .attr('dominant-baseline', 'middle')
-    .attr('class', 'graph-legend legend-qt graph-text');
-
-// Animación inicial textos cantidad
-svg.selectAll('.legend-qt')
-    .transition()
-    .duration(2000)
-    .attr('x', calcularPorcentajaBarraGraficaMesAnyo);
-
-
 /** funciones: barras graficas */
+/**
+ * En base a los valores del array datos_grafica, calcula en alcho que le corresponde
+ * @param {obj} d datos 
+ * @param {int} index índice del objeto que se modifica
+ * @returns porcentaje de la anchura que le corresponde a la barra
+ */
 function calcularPorcentajaBarraGraficaMesAnyo(d, index) {
     // Se hace una regla de 3:
     // valor maximo = 100%
@@ -287,21 +393,19 @@ function calcularPorcentajaBarraGraficaMesAnyo(d, index) {
 
 /** funciones: cargar datos grafica */
 /**
- * En base al 
+ * En base al valor de la variable estilo_grafica devolverá unso datos u otros
  * @param {string} seleccion_parada literal de la parada por la que filtrar
  * @returns array con los datos cargados para la gráfica
  */
 function cargarDatosGrafica(seleccion_parada) {
     if (datos_cargados_con_exito) {
-        let COLORES = ['#33C7FF', '#33FF3C', '#FCFF33', '#FFC433', '#FF7433'];
         switch(estilo_grafica) {
             case 1: // Datos totales por año y mes, sin filtrar parada
-                return cargarDatosGraficaMesAnyo(COLORES);
+                return cargarDatosGraficaMesAnyo();
             case 2: // Datos totales por año y mes, filtrando por parada
-                return cargarDatosGraficaMesAnyo(COLORES, seleccion_parada);
+                return cargarDatosGraficaMesAnyo(seleccion_parada);
             case 3: // Datos pasajeros por parada por año y mes
-                console.log('WIP')
-                break;
+                return cargarDatosGraficaPasajerosParadasMesAnyo()
             case 4: // Datos pasajeros por parada en total
                 console.log('WIP')
                 break;
@@ -317,14 +421,34 @@ function cargarDatosGrafica(seleccion_parada) {
     }
 }
 
+function cargarDatosGraficaPasajerosParadasMesAnyo() {
+    let nombre_parada;
+
+    let datos_para_la_grafica = []; // De entre todos los datos, obtenemos los que nos interesan
+    for (let index in datos) { // Recorremos cada parada, recogiendo datos en base al año y mes seleccionados
+        nombre_parada = datos[index][0].parada;
+        let datos_parada_mes_anyo = datos[index].filter((elm) => filtrarDatosGraficaMesAnyo(elm.anyo, elm.mes, elm.parada, nombre_parada))[0];
+        if (datos_parada_mes_anyo != null && datos_parada_mes_anyo != undefined) {
+            datos_para_la_grafica.push({ 
+                id: 'graph-parada-' + nombre_parada.toLowerCase().replace(/ /g, ''),
+                parada: nombre_parada,
+                cantidad: datos_parada_mes_anyo.num_pasajeros,
+                clase: 'graph-bar'
+            });
+        }
+    }
+
+    console.log(datos_para_la_grafica)
+    return datos_para_la_grafica;
+}
+
 /**
  * Carga, de la variable global datos, los datos que vamos a utilizar en la gráfica mes año
  * Si no recibe valor de parada, sumará todos los números.
  * Si recibe valor de parada, se filtrará también por parada
- * @param {Array} COLORES array con los códigos hex de los colores a asignar a cada barra
  * @param {string} seleccion_parada texto con el nombre de la parada a cotejar
  */
-function cargarDatosGraficaMesAnyo(COLORES, seleccion_parada) {
+function cargarDatosGraficaMesAnyo(seleccion_parada) {
     let total_num_pasajeros = 0;
     let total_num_sin_pagar_escapados = 0;
     let total_num_sin_pagar_atrapados = 0;
@@ -388,7 +512,7 @@ function cargarDatosGraficaMesAnyo(COLORES, seleccion_parada) {
  * @returns comprobación para el filtro
  */
 function filtrarDatosGraficaMesAnyo(anyo, mes, parada, seleccion_parada) {
-    if (seleccion_parada != undefined && seleccion_parada != null && seleccion_parada != '' && paradas.includes(seleccion_parada)) {
+    if (seleccion_parada != undefined && seleccion_parada != null && seleccion_parada != '' && PARADAS.includes(seleccion_parada)) {
         return anyo == seleccion_anyo && mes == seleccion_mes && parada == seleccion_parada;
     } 
     return anyo == seleccion_anyo && mes == seleccion_mes;
