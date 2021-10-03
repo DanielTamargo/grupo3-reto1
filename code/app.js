@@ -246,7 +246,7 @@ svg.selectAll('legend-left')
     .text((d, i) => datos_grafica[i].tipo)
     .attr('text-anchor', 'end')
     .attr('dominant-baseline', 'middle')
-    .attr('class', 'graph-legend legend-name graph-text');
+    .attr('class', 'graph-legend legend-name graph-text medium-query-text');
 
 // Cantidad
 svg.selectAll('legend-qt')
