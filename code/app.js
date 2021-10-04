@@ -773,3 +773,48 @@ function incNumRec(numeroInicial, numeroFinal, elemento, velocidad) {
         }, velocidad);
     }
 }
+
+
+
+/**
+ * TODO dani: 
+ * - cargar las opciones del select spec por defecto
+ * - cargar las opciones del select spec si viene de la pestaña info
+ * - cargar las opciones del select spec si ha cambiado la opción del selector
+ */
+
+document.getElementById('graph-selector').addEventListener('change', cambiarOpcionesSpec);
+cambiarOpcionesSpec();
+function cambiarOpcionesSpec() {
+    let graph_selector = document.getElementById('graph-selector');
+    let graph_spec = document.getElementById('graph-spec');
+
+    if (graph_selector.value == 1) {
+        graph_spec.innerHTML = '<option value="1" selected>Datos de todas las paradas indicando año y mes</option>' + 
+                               '<option value="2">Datos de una parada indicando año y mes</option>';
+    } else if (graph_selector.value == 2) {
+        graph_spec.innerHTML = '<option value="3" selected>Número de pasajeros por cada parada por año y mes</option>' + 
+                               '<option value="4">Número de pasajeros por cada parada por año</option>';
+    } else {
+        graph_spec.innerHTML = '<option value="5" selected>Visualizar actualización de datos</option>'; 
+    }
+
+    seleccionarGrafica();
+}
+
+document.getElementById('graph-spec').addEventListener('change', seleccionarGrafica);
+seleccionarGrafica();
+function seleccionarGrafica() {
+    let graph_spec = document.getElementById('graph-spec');
+    estilo_grafica = parseInt(graph_spec.value);
+    datos_grafica = cargarDatosGrafica(seleccion_parada);
+    pintarGrafica();
+
+}
+
+
+
+
+
+
+
