@@ -48,7 +48,7 @@ try {
 
 // Valores por defecto de qué gráfica se va a mostrar
 // TODO dani: volver a poner el por defecto (valor 1)
-var estilo_grafica = 4; 
+var estilo_grafica = 1; 
 var seleccion_parada = PARADAS[0];
 /** Miramos en el almacenamiento local si venimos de la ventana informacion */
 try {
