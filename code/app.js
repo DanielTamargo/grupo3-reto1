@@ -48,9 +48,9 @@ try {
 
 // Valores por defecto de qué gráfica se va a mostrar
 // TODO dani: volver a poner el por defecto (valor 1)
-var estilo_grafica = 3; 
-var parada_seleccionada = undefined;
-/** Miramos en el almacenamiento local si venimos de la pestaña info */
+var estilo_grafica = 4; 
+var seleccion_parada = PARADAS[0];
+/** Miramos en el almacenamiento local si venimos de la ventana informacion */
 try {
     let eg = localStorage.getItem(LOCALSTORAGE_CLAVE_ESTILOGRAFICA);
     let ps = localStorage.getItem(LOCALSTORAGE_CLAVE_PARADASELECCIONADA);
@@ -60,13 +60,13 @@ try {
     ps != null && ps != undefined && ps != '' && PARADAS.includes(ps)) {
         // Si existen, lo configuramos
         estilo_grafica = parseInt(eg);
-        parada_seleccionada = PARADAS[parseInt(ps)];
+        seleccion_parada = PARADAS[parseInt(ps)];
     }
 
 } catch (err) {
     console.error(`Error al cargar especificacion:\n${err}`);
     estilo_grafica = 1;
-    parada_seleccionada = undefined;
+    seleccion_parada = undefined;
 }
 
 /** ----------------------------------------------------------------- */
@@ -183,29 +183,30 @@ var row_width = 0,
 const svg = d3.select('svg');
 
 /** Preparar datos */
-var datos_grafica = cargarDatosGrafica();
+var datos_grafica = cargarDatosGrafica(seleccion_parada);
 
+/** funciones: pintar gráficas */
 /** Dependiendo del estilo_grafica, cargaremos una gráfica u otra */
 pintarGrafica();
-
 function pintarGrafica() {
     switch(estilo_grafica) {
         case 1:
         case 2:
             graficaDatosParada();
             break;
-        case 3:
-            graficaParadas();
+        case 5:
+            graficaDatosACero();
             break;
+        case 3:
         case 4:
-
+            graficaParadas();
             break;
         default:
             break;
     }
 }
 
-/** Dibuja la gráfica estilo 3 */
+/** Pinta la gráfica estilo 3 y 4 */
 function graficaParadas() {
     /** Limpiamos el contenido */
     svg.selectAll("*").remove();
@@ -264,8 +265,55 @@ function graficaParadas() {
         .attr('x', calcularPorcentajaBarraGraficaMesAnyo);
 }
 
+function graficaDatosACero() {
+        /** Limpiamos el contenido */
+        svg.selectAll("*").remove();
 
-/** Dibuja la gráfica estilo 1 y 2, donde salen todos los 5 datos */
+        /** Añadimos y configuramos las rectas */
+        // Las añadimos
+        svg.selectAll('rect')
+            .data(datos_grafica)
+            .enter()
+            .append('rect')
+            .attr('fill', (d, i) => datos_grafica[i].color)
+            .attr('y', (d, i) => (row_height * i + 5) + '%')
+            .attr('x', 0)
+            .attr('height', (row_height - 10) + '%')
+            .attr('width', 0) // Anchura inicial de 0 para la animación inicial
+            .on('mouseover', svgDatosParadaEventoMouseOver)
+            .on('mouseout', svgDatosParadaEventoMouseOut);
+    
+        /** Añadimos y configuramos las etiquetas de la leyenda */
+        // Izquierda
+        svg.selectAll('legend-left')
+            .data(datos_grafica)
+            .enter()
+            .append('text')
+            .attr('id', (d, i) => datos_grafica[i].id + '-name')
+            .attr('x', -5)
+            .attr('y', (d, i) => (row_height * i + 5 + (row_height / 4) + '%'))
+            .attr('fill', 'black')
+            .text((d, i) => datos_grafica[i].tipo)
+            .attr('text-anchor', 'end')
+            .attr('dominant-baseline', 'middle')
+            .attr('class', 'graph-legend legend-name graph-text medium-query-text');
+    
+        // Cantidad
+        svg.selectAll('legend-qt')
+            .data(datos_grafica)
+            .enter()
+            .append('text')
+            .attr('id', (d, i) => datos_grafica[i].id + '-qt')
+            .attr('x', 0) // Posición inicial de 0 para la animación inicial
+            .attr('y', (d, i) => (row_height * i + 5 + (row_height / 4) + '%'))
+            .attr('fill', 'black')
+            .text((d, i) => datos_grafica[i].cantidad)
+            .attr('dominant-baseline', 'middle')
+            .attr('class', 'graph-legend legend-qt graph-text');
+    
+}
+
+/** Pinta la gráfica estilo 1, 2 y 5, donde salen todos los 5 datos */
 function graficaDatosParada() {
     /** Limpiamos el contenido */
     svg.selectAll("*").remove();
@@ -284,8 +332,9 @@ function graficaDatosParada() {
         .on('mouseover', svgDatosParadaEventoMouseOver)
         .on('mouseout', svgDatosParadaEventoMouseOut);
 
-    // Animación inicial rectas
+    // Animación inicial rectas (movido al método actualizarGrafica)
     svg.selectAll('rect')
+        .data(datos_grafica)
         .transition()
         .duration(2000)
         .attr('width', calcularPorcentajaBarraGraficaMesAnyo);
@@ -318,13 +367,14 @@ function graficaDatosParada() {
         .attr('dominant-baseline', 'middle')
         .attr('class', 'graph-legend legend-qt graph-text');
 
-    // Animación inicial textos cantidad
+    // Animación inicial textos cantidad (movido al método actualizarGrafica)
     svg.selectAll('.legend-qt')
+        .data(datos_grafica)
         .transition()
         .duration(2000)
         .attr('x', calcularPorcentajaBarraGraficaMesAnyo);
-}
 
+}
 
 /** funciones: eventos mouse */
 var contador_mouse_over = 0;
@@ -405,29 +455,110 @@ function cargarDatosGrafica(seleccion_parada) {
             case 2: // Datos totales por año y mes, filtrando por parada
                 return cargarDatosGraficaMesAnyo(seleccion_parada);
             case 3: // Datos pasajeros por parada por año y mes
-                return cargarDatosGraficaPasajerosParadasMesAnyo()
+                return cargarDatosGraficaPasajerosParadasMesAnyo();
             case 4: // Datos pasajeros por parada en total
-                console.log('WIP')
-                break;
-            case 5: // Datos por año, viendo los meses (si da tiempo y lo consigo)
-                console.log('WIP')
+                return cargarDatosGraficaPasajerosParadasTotalAnyo();
+            case 5: // Datos a 0, mostrando cambios al actualizar
+                return cargarDatosACeroParaTiempoReal();
+            case 6: // Datos por año, viendo los meses (si da tiempo y lo consigo)
+                console.log('WIP');
                 break;
             default:
-                console.info('Opción no válida. ¿Todo bien?')
+                console.info('Opción no válida. ¿Todo bien?');
                 break;
         }
     } else {
         // TODO dani: si falla al cargar datos, ¿bloquear estadísticas? ¿vaciar datos y ya?
+        return cargarDatosACeroParaTiempoReal();
     }
 }
 
+/**
+ * Devuelve un array con los datos a 0, para que se aprecie cómo se actualiza en tiempo real
+ * @returns array con los datos para la gráfica
+ */
+function cargarDatosACeroParaTiempoReal() {
+    let datos_para_la_grafica = [];
+
+    datos_para_la_grafica.push({ 
+        id: 'graph-pasajeros',
+        tipo: 'Pasajeros',
+        cantidad: 0,
+        color: COLORES[0]
+    });
+    datos_para_la_grafica.push({ 
+        id: 'graph-revisores',
+        tipo: 'Revisores',
+        cantidad: 0,
+        color: COLORES[1]
+    });
+    datos_para_la_grafica.push({ 
+        id: 'graph-sin-pagar-atrapados',
+        tipo: 'Atrapados',
+        cantidad: 0,
+        color: COLORES[2]
+    });
+    datos_para_la_grafica.push({ 
+        id: 'graph-sin-pagar-escapados',
+        tipo: 'Escapados',
+        cantidad: 0,
+        color: COLORES[3]
+    });
+    datos_para_la_grafica.push({ 
+        id: 'graph-incidentes',
+        tipo: 'Incidentes',
+        cantidad: 0,
+        color: COLORES[4]
+    });
+
+    return datos_para_la_grafica;
+}
+
+/**
+ * Carga, de la variable global datos, los datos para la gráfica num pasajeros por parada, en total
+ * @returns array con los datos para la gráfica
+ */
+function cargarDatosGraficaPasajerosParadasTotalAnyo() {
+    let nombre_parada;
+    let datos_para_la_grafica = []; // De entre todos los datos, obtenemos los que nos interesan
+    let total_num_pasajeros = 0;
+    let array_datos_parada_mes_anyo;
+    try {
+        for (let index in datos) { // Recorremos cada parada, recogiendo datos en base al año y mes seleccionados
+            nombre_parada = datos[index][0].parada;
+            array_datos_parada_mes_anyo = datos[index].filter((elm) => filtrarDatosGraficaMesAnyo(elm.anyo, undefined, elm.parada, nombre_parada, 4));
+            
+            for (let elm of array_datos_parada_mes_anyo) {
+                total_num_pasajeros += elm.num_pasajeros;
+            }
+            
+            datos_para_la_grafica.push({ 
+                id: 'graph-parada-' + nombre_parada.toLowerCase().replace(/ /g, ''),
+                parada: nombre_parada,
+                cantidad: total_num_pasajeros,
+                clase: 'graph-bar'
+            });
+
+            total_num_pasajeros = 0
+        }
+    } catch(err) {
+        console.error('Error en el método cargarDatosGraficaPasajerosParadasTotal, error:\n' + err);
+    } finally {
+        return datos_para_la_grafica;
+    }
+}
+
+/**
+ * Carga, de la variable global datos, los datos para la gráfica num pasajeros por parada, mes y año
+ * @returns array con los datos para la gráfica
+ */
 function cargarDatosGraficaPasajerosParadasMesAnyo() {
     let nombre_parada;
-
     let datos_para_la_grafica = []; // De entre todos los datos, obtenemos los que nos interesan
+
     for (let index in datos) { // Recorremos cada parada, recogiendo datos en base al año y mes seleccionados
         nombre_parada = datos[index][0].parada;
-        let datos_parada_mes_anyo = datos[index].filter((elm) => filtrarDatosGraficaMesAnyo(elm.anyo, elm.mes, elm.parada, nombre_parada))[0];
+        let datos_parada_mes_anyo = datos[index].filter((elm) => filtrarDatosGraficaMesAnyo(elm.anyo, elm.mes, elm.parada, nombre_parada, 3))[0];
         if (datos_parada_mes_anyo != null && datos_parada_mes_anyo != undefined) {
             datos_para_la_grafica.push({ 
                 id: 'graph-parada-' + nombre_parada.toLowerCase().replace(/ /g, ''),
@@ -438,7 +569,6 @@ function cargarDatosGraficaPasajerosParadasMesAnyo() {
         }
     }
 
-    console.log(datos_para_la_grafica)
     return datos_para_la_grafica;
 }
 
@@ -447,6 +577,7 @@ function cargarDatosGraficaPasajerosParadasMesAnyo() {
  * Si no recibe valor de parada, sumará todos los números.
  * Si recibe valor de parada, se filtrará también por parada
  * @param {string} seleccion_parada texto con el nombre de la parada a cotejar
+ * @returns array con los datos para la gráfica
  */
 function cargarDatosGraficaMesAnyo(seleccion_parada) {
     let total_num_pasajeros = 0;
@@ -457,7 +588,7 @@ function cargarDatosGraficaMesAnyo(seleccion_parada) {
 
     let datos_para_la_grafica = []; // De entre todos los datos, obtenemos los que nos interesan
     for (let index in datos) { // Recorremos cada parada, recogiendo datos en base al año y mes seleccionados
-        let datos_parada_mes_anyo = datos[index].filter((elm) => filtrarDatosGraficaMesAnyo(elm.anyo, elm.mes, elm.parada, seleccion_parada))[0];
+        let datos_parada_mes_anyo = datos[index].filter((elm) => filtrarDatosGraficaMesAnyo(elm.anyo, elm.mes, elm.parada, seleccion_parada, 1))[0];
         if (datos_parada_mes_anyo != null && datos_parada_mes_anyo != undefined) {
             total_num_pasajeros += datos_parada_mes_anyo.num_pasajeros;
             total_num_sin_pagar_escapados += datos_parada_mes_anyo.num_sin_pagar_escapados;
@@ -511,15 +642,134 @@ function cargarDatosGraficaMesAnyo(seleccion_parada) {
  * @param {string} seleccion_parada  parada seleccionada para filtrar
  * @returns comprobación para el filtro
  */
-function filtrarDatosGraficaMesAnyo(anyo, mes, parada, seleccion_parada) {
-    if (seleccion_parada != undefined && seleccion_parada != null && seleccion_parada != '' && PARADAS.includes(seleccion_parada)) {
-        return anyo == seleccion_anyo && mes == seleccion_mes && parada == seleccion_parada;
-    } 
+function filtrarDatosGraficaMesAnyo(anyo, mes, parada, seleccion_parada, tipo) {
+    if (tipo == 4) {
+        return anyo == seleccion_anyo && parada == seleccion_parada;
+    } if (tipo >= 1 && tipo <= 3) {
+        if (seleccion_parada != undefined && seleccion_parada != null && seleccion_parada != '' && PARADAS.includes(seleccion_parada)) {
+            return anyo == seleccion_anyo && mes == seleccion_mes && parada == seleccion_parada;
+        } 
+    }
     return anyo == seleccion_anyo && mes == seleccion_mes;
 }
 /** ----------------------------------------------------------------- */
 /** ----------------------------------------------------------------- */
 
 
+/** funciones: datos tiempo real */
+setInterval(nuevosDatos, 5000);
+function nuevosDatos() {
+    let anyo_act = new Date().getFullYear();
+    let mes_act = new Date().getMonth() + 1;
+    for (let ind_arr in datos) {
+        for (let ind_elm in datos[ind_arr]) {
+            if (datos[ind_arr][ind_elm].anyo == anyo_act && datos[ind_arr][ind_elm].mes == mes_act) {
+                let num_pasajeros_random = numeroRandom(0, 18);
+                let num_revisores_random = numeroRandom(0, 2);
+                let num_sinpa_atrapados_random = numeroRandom(0, 2);
+                let num_sinpa_escapados_random = numeroRandom(0, 2);
 
+                datos[ind_arr][ind_elm].num_pasajeros += num_pasajeros_random;
+                datos[ind_arr][ind_elm].num_revisores_subieron += num_revisores_random;
+                datos[ind_arr][ind_elm].num_sin_pagar_atrapados += num_sinpa_atrapados_random;
+                datos[ind_arr][ind_elm].num_sin_pagar_escapados += num_sinpa_escapados_random;
+    
+                // Los incidentes serán algo muy poco común, si el número random devuelve 1, 
+                //     tendrá un 5% de probabilidades de surgir
+                let num_incidentes_random = numeroRandom(0, 1);
+                if (num_incidentes_random > 0) { 
+                    if (numeroRandom(1, 100) > 95) {
+                        datos[ind_arr][ind_elm].num_incidentes += num_incidentes_random;
+                        if (estilo_grafica == 5) { // Si es gráfica a cero para observar entrada datos, lo añadimos 
+                            datos_grafica[4].cantidad += num_incidentes_random;
+                        }
+                    }
+                }
+                if (estilo_grafica == 5) { // Si es gráfica a cero para observar entrada datos, lo añadimos 
+                    datos_grafica[0].cantidad += num_pasajeros_random;
+                    datos_grafica[1].cantidad += num_revisores_random;
+                    datos_grafica[2].cantidad += num_sinpa_atrapados_random;
+                    datos_grafica[3].cantidad += num_sinpa_escapados_random;
+                }
+            }
+        }
+    }
+    if (estilo_grafica != 5) {
+        datos_grafica = cargarDatosGrafica();
+    }
+    actualizarGraficas();
+}
 
+function actualizarGraficas() { 
+    switch(estilo_grafica) {
+        case 1:
+        case 2:
+        case 5:
+            svg.selectAll('rect')
+                .data(datos_grafica)
+                .transition()
+                .duration(2000)
+                .attr('width', calcularPorcentajaBarraGraficaMesAnyo);
+            
+            svg.selectAll('.legend-qt')
+                .data(datos_grafica)
+                .text((d, i) => {
+                    if (datos_grafica[i].cantidad == 0) {
+                        return 0;
+                    } else {
+                        if (i == 4 && datos_grafica[i].tipo == 'Incidentes') {
+                            return datos_grafica[i].cantidad;
+                        }
+                        incrementaNumElemento(i);
+                    }
+                })
+                .transition()
+                .duration(2000)
+                .attr('x', calcularPorcentajaBarraGraficaMesAnyo);
+            break;
+        case 3:
+        case 4:
+            svg.selectAll('rect')
+                .data(datos_grafica)
+                .transition()
+                .duration(2000)
+                .attr('width', calcularPorcentajaBarraGraficaMesAnyo);
+            
+            svg.selectAll('.legend-qt')
+                .data(datos_grafica)
+                .text((d, i) => datos_grafica[i].cantidad)
+                .transition()
+                .duration(2000)
+                .attr('x', calcularPorcentajaBarraGraficaMesAnyo);
+            break;
+        default:
+            break;
+    }
+}
+
+/* Función que busca el elemento y le ejecuta la recursividad */
+function incrementaNumElemento(index) {
+    let elemento = document.getElementById(datos_grafica[index].id + '-qt');
+    let numeroInicial = Number(elemento.innerHTML);
+    let numeroFinal = datos_grafica[index].cantidad;
+
+    if ((numeroFinal - numeroInicial) > 700) {
+        numeroInicial = numeroFinal - 700;
+    } else if (numeroFinal == 0 || (numeroFinal - numeroInicial) <= 0) {
+        elemento.innerHTML = numeroFinal;
+        return;
+    }
+
+    let velocidad = 20;
+    incNumRec(numeroInicial, numeroFinal, elemento, velocidad);
+}
+
+/* Función recursiva para incrementar el número. */
+function incNumRec(numeroInicial, numeroFinal, elemento, velocidad) {
+    if (numeroInicial <= numeroFinal) {
+        elemento.innerHTML = numeroInicial;
+        setTimeout(function() { // Pequeño delay para la recursividad
+            incNumRec(numeroInicial + 1, numeroFinal, elemento);
+        }, velocidad);
+    }
+}
