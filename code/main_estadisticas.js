@@ -18,7 +18,13 @@ const LOCALSTORAGE_CLAVE_ESTILOGRAFICA = 'estilo_grafica';
 const LOCALSTORAGE_CLAVE_PARADASELECCIONADA = 'parada_seleccionada';
 const COLORES = ['#33C7FF', '#33FF3C', '#FCFF33', '#FFC433', '#FF7433'];
 const PARADAS = ['Ibaiondo',  'Landaberde', 'Lakuabizkarra', 'Wellington', 'Txagorritxu', 'Euskal Herria', 'Honduras', 'Europa', 'Sancho El Sabio'];
-
+const TITULOS_GRAFICAS = ['Datos {mes}/{año}', 'Datos {parada} {mes}/{año}',
+                        'Pasajeros {mes}/{año}', 'Pasajeros {año}', 'Datos tiempo real'];
+const DESC_GRAFICAS = ['Muestra los datos generales de todas las paradas filtrando por año y por mes.',
+'Muestra los datos generales pero filtrando, además de por año y mes, también por parada', 
+'Muestra el número total de pasajeros por cada parada en el año y mes especificados',
+'Muestra el número total de pasajeros por año.',
+'Muestra la entrada de datos en tiempo real, mostrando los datos generales que se van recopilando continuamente.'];
 
 /** ----------------------------------------------------------------- */
 /** ESTADISTICAS: INICIALIZAR DATOS */
@@ -48,7 +54,7 @@ try {
 
 // Valores por defecto de qué gráfica se va a mostrar
 // TODO dani: volver a poner el por defecto (valor 1)
-var estilo_grafica = 1; 
+var estilo_grafica = 4; 
 var seleccion_parada = PARADAS[0];
 /** Miramos en el almacenamiento local si venimos de la ventana informacion */
 try {
@@ -779,20 +785,24 @@ function incNumRec(numeroInicial, numeroFinal, elemento, velocidad) {
  * TODO dani: 
  * 
  * BOTONES LARGE
+ * - clicar el botón que corresponda (si viene de info será distinto que cargando la pestaña)
  * - animacion boton
  * - cambiar color si esta seleccionado o no
- * - 
  * - afectar al mini
  * 
  * SELECT MINI
+ * - cambiar color seleccion
  * - cargar las opciones del select spec por defecto
  * - cargar las opciones del select spec si viene de la pestaña info
  * - cargar las opciones del select spec si ha cambiado la opción del selector
  * - afectar a los botones
  */
 
-document.getElementById('graph-selector').addEventListener('change', cambiarOpcionesSpec);
-cambiarOpcionesSpec();
+document.getElementById('graph-selector').addEventListener('change', cambiarOpcionesSpecYseleccionarGrafica);
+function cambiarOpcionesSpecYseleccionarGrafica(){
+    cambiarOpcionesSpec();
+    seleccionarGrafica();
+}
 function cambiarOpcionesSpec() {
     let graph_selector = document.getElementById('graph-selector');
     let graph_spec = document.getElementById('graph-spec');
@@ -806,17 +816,19 @@ function cambiarOpcionesSpec() {
     } else {
         graph_spec.innerHTML = '<option value="5" selected>Visualizar actualización de datos</option>'; 
     }
-
-    seleccionarGrafica();
 }
 
 document.getElementById('graph-spec').addEventListener('change', seleccionarGrafica);
-seleccionarGrafica();
 function seleccionarGrafica() {
     let graph_spec = document.getElementById('graph-spec');
     estilo_grafica = parseInt(graph_spec.value);
+    let boton_seleccionado = document.getElementById('graph-selector-button-' + estilo_grafica);
+    cambiarColorBotonSeleccionado(boton_seleccionado);
     datos_grafica = cargarDatosGrafica(seleccion_parada);
     pintarGrafica();
+
+    tituloGrafica();
+    descripcionGrafica();
 }
 
 /** 
@@ -842,20 +854,106 @@ function efectoBotonSelectorGrafica(evt) {
             boton_seleccionado = evt.target;
         }
 
-        let nombre_clase_selected = 'graph-selector-button-selected';
+        // cambiarColorBotonSeleccionado(boton_seleccionado);
 
-        // Animación de deseleccionar los demás botones (eliminar la clase)
-        // Aunque solo debería existir uno, cogemos todos y lo ejecutamos en todos
-        let botones_previamente_seleccionados = document.getElementsByClassName(nombre_clase_selected);
-        if (botones_previamente_seleccionados.length > 0) {
-            botones_previamente_seleccionados[0].classList.toggle(nombre_clase_selected)
+        estilo_grafica = parseInt(boton_seleccionado.value);
+        if (estilo_grafica == 2 && seleccion_parada == undefined) {
+            seleccion_parada = PARADAS[0];
         }
 
-        // Añadimos la clase selected al botón clicado
-        boton_seleccionado.classList.toggle(nombre_clase_selected);
+        let graph_mini_graph_selec = document.getElementById('graph-selector');
+        let graph_mini_spec_selec = document.getElementById('graph-spec');
 
+        switch(estilo_grafica) {
+            case 1:
+                graph_mini_graph_selec.value = 1;
+                cambiarOpcionesSpec();
+                graph_mini_spec_selec.value = 1;
+                seleccionarGrafica();
+                break;
+            case 2:
+                graph_mini_graph_selec.value = 1;
+                cambiarOpcionesSpec();
+                graph_mini_spec_selec.value = 2;
+                seleccionarGrafica();
+                break;
+            case 3:
+                graph_mini_graph_selec.value = 2;
+                cambiarOpcionesSpec();
+                graph_mini_spec_selec.value = 3;
+                seleccionarGrafica();
+                break;
+            case 4:
+                graph_mini_graph_selec.value = 2;
+                cambiarOpcionesSpec();
+                graph_mini_spec_selec.value = 4;
+                seleccionarGrafica();
+                break;
+            case 5:
+                graph_mini_graph_selec.value = 3;
+                cambiarOpcionesSpec();
+                graph_mini_spec_selec.value = 5;
+                seleccionarGrafica();
+                break;
+        }
     }
 }
 
+/**
+ * Quita la clase seleccionado a los demás botones y se la añade a él mismo
+ * @param {element} boton_seleccionado botón al cual añadirle la clase seleccionado
+ */
+function cambiarColorBotonSeleccionado(boton_seleccionado) {
+    let nombre_clase_selected = 'graph-selector-button-selected';
+
+    // Animación de deseleccionar los demás botones (eliminar la clase)
+    // Aunque solo debería existir uno, cogemos todos y lo ejecutamos en todos
+    let botones_previamente_seleccionados = document.getElementsByClassName(nombre_clase_selected);
+    if (botones_previamente_seleccionados.length > 0) {
+        botones_previamente_seleccionados[0].classList.toggle(nombre_clase_selected)
+    }
+
+    // Añadimos la clase selected al botón clicado
+    boton_seleccionado.classList.toggle(nombre_clase_selected);
+}
 
 
+function tituloGrafica() {
+    let titulo = TITULOS_GRAFICAS[estilo_grafica - 1];
+    titulo = titulo.replace('{mes}', seleccion_mes);
+    titulo = titulo.replace('{año}', seleccion_anyo);
+    titulo = titulo.replace('{parada}', seleccion_parada);
+    document.getElementById('graph-title').innerHTML = titulo;
+}
+
+function descripcionGrafica() {
+    document.getElementById('graph-desc').innerHTML = DESC_GRAFICAS[estilo_grafica - 1];
+}
+
+prepararPagina();
+function prepararPagina() {
+    document.getElementById('graph-selector-button-' + estilo_grafica).click();
+}
+
+
+/*
+distancia()
+function distancia() {
+    let dist = 7500; // A la que queremos ir
+
+    let dist_entre_paradas = 5000;
+
+    let paradas = parseInt(dist / dist_entre_paradas);
+    let resto = dist % dist_entre_paradas;
+
+    console.log(paradas)
+    console.log(resto)
+
+    let max = 13.1875;
+    let pos = (resto * max / 5000)
+
+    let posIni = 2 + ((paradas - 1) * max);
+    
+    console.log(posIni + pos)
+    
+}*/
