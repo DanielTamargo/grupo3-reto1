@@ -4,18 +4,20 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE-edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel= "stylesheet" href="./styleTranvia.css"/>
+        <link rel= "stylesheet" href="../source/styleTranvia.css"/>
         <title>Tranvia a tiempo real</title>
     </head>
-    <body>
+    <body class="verde">
         <div class="content">
             <header>
                 <div class="logo-container">
-                    <picture>
-                        <source media="(max-width: 480px)" srcset="../img/logoEuskotrenPequenno.png">
-                        <source media="(min-width: 480.01px)" srcset="../img/logoEuskotrenEntero.png">
-                        <img src="../img/logoEuskotrenEntero.png" alt="logo">
-                    </picture>
+                    <a href="../index.html">
+                        <picture>
+                            <source media="(max-width: 480px)" srcset="../img/logoEuskotrenPequenno.png">
+                            <source media="(min-width: 480.01px)" srcset="../img/logoEuskotrenEntero.png">
+                            <img src="../img/logoEuskotrenEntero.png" alt="logo">
+                        </picture>
+                    </a>
                 </div>
                 <div class="container" id="menu-button" onclick="cambiar(this)">
                     <div class="bar1"></div>
@@ -28,7 +30,7 @@
                     <a href="./estadisiticas.html">ESTAD&Iacute;STICAS</a>
                     <a href="./informacion.html">INFORMACI&Oacute;N</a>
                 </div>
-                <nav>
+                <nav class="nav2">
                     <ul>
                         <li><a href="../index.html">INICIO</a></li>
                         <li><a href="./tranvia.html">TIEMPO REAL</a></li>
@@ -41,7 +43,6 @@
                 <!--INICIO BOX MODEL-->
                 <div id="Mimodal" class="modal">
                     <div class="modal-content">
-                        <span class="close">&times;</span>
                         <p class="tipoRecorrido" id="milimetros" onclick="elegirOpc(this.id)">POR MILIMETROS</p>
                         <p class="tipoRecorrido" id="directa" onclick="elegirOpc(this.id)">DIRECTO</p>
                     </div>
@@ -86,6 +87,6 @@
                 <a target="blank" href="https://www.youtube.com/channel/UCHLmG5i2LeHqQ7wN4s11Ddg"><img id="youtube" class="rrss" src="../img/youtube.png" alt="twitter"></a>
             </div>
         </footer>
-    <script src="appTranvia.js"></script>
+    <script src="../source/app.js"></script>
     </body>
 </html>

@@ -30,6 +30,38 @@ TODO
 GENÉRICOS
 ---------------------------------------------------------------------------
 */
+.azul{
+    background: linear-gradient(135deg,#004494,#009036);
+}
+
+.verde{
+    background: linear-gradient(135deg,#58ab27,#ffdc00);
+}
+
+.rojo{
+    background: linear-gradient(135deg,#004494, #cb022b);
+}
+
+.main1{
+    width: 100%;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+}
+
+.nombre{
+    vertical-align: middle;
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    padding: 3em;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.nombre b{
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 10em;
+}
 
 .no-editable{
     user-select: none; /* Chrome & Opera */
@@ -40,7 +72,6 @@ GENÉRICOS
 }
 
 body{
-    background:linear-gradient(135deg,#009036 , #ffdc00);
     background-repeat: no-repeat;
 }
 
@@ -49,7 +80,7 @@ body{
 }
 
 .verde{
-    background: linear-gradient(135deg,#58ab27,#ffdc00);
+    background: linear-gradient(135deg,#009036,#ffdc00);
 }
 
 .content{
@@ -108,6 +139,15 @@ nav ul li a:hover{
     display: block;
     border: 1px solid #fcdb8f;
     color: #fcdb8f;
+    width: 100%;
+    transition: 0.2s;
+}
+
+.nav1 ul li a:hover{
+    font-family: 'Montserrat', sans-serif;
+    display: block;
+    border: 1px solid white;
+    color: white;
     width: 100%;
     transition: 0.2s;
 }
@@ -354,20 +394,6 @@ INICIO MODAL BOX
     height:9%;
 }
 
-.close{
-    color:#aaa;
-    float:right;
-    padding-left:2%;
-    font-size:28px;
-    font-weight:bold;
-}
-
-.close:hover, .close:focus{
-    color:black;
-    text-decoration:none;
-    cursor:pointer;
-}
-
 #milimetros{
     background-color:rgba(0,0,0,0);
     color:white;
@@ -425,6 +451,64 @@ INICIO MODAL BOX
 }
 #cambiarModo:hover{
    background-color: #888;
+}
+
+/*
+---------------------------------------------------------------------------
+ESTRUCTURA PÁGINA DE INFORMACIÓN
+---------------------------------------------------------------------------
+*/
+
+.main2{
+    width: 100%;
+}
+
+.parada{
+    transition: 0.3s ease-in-out;
+    display: inline-block;
+    border-radius: 20px;
+    box-sizing: border-box;
+    background: rgba(0,0,0,0.5);
+    padding: 2%;
+    margin: 1.5%;
+    margin-top: 80px;
+    width: 30%;
+}
+
+.parada h2{
+    margin-bottom: 10px;
+}
+
+.parada a{
+    color: lightblue;
+    text-decoration: none;
+    transition: 0.3s ease-in-out;
+}
+
+.parada a:hover{
+    color: rgb(46, 190, 238);
+    text-decoration: underline solid rgb(46, 190, 238);
+    transition: 0.3s ease-in-out;
+}
+
+.container-img-parada{
+    position: relative;
+    top: 0px;
+    width: 100%;
+    transition: 0.3s ease-in-out;
+}
+
+.container-img-parada img{
+    width: 100%;
+    border-radius: 4px;
+}
+
+.info-parada{
+    margin-top: 10px;
+    font-family: 'Montserrat', sans-serif;
+    transition: 0.3s ease-in-out;
+    color: white;
+    text-align: center;
 }
 
 /*
@@ -587,20 +671,6 @@ INICIO MEDIA QUERY
 
     .modal-content p{
         display:block;
-    }
-    
-    .close{
-        color:#aaa;
-        float:right;
-        padding-left:2%;
-        font-size:28px;
-        font-weight:bold;
-    }
-    
-    .close:hover, .close:focus{
-        color:black;
-        text-decoration:none;
-        cursor:pointer;
     }
     
     #milimetros{
