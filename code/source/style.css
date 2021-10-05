@@ -30,6 +30,38 @@ TODO
 GENÉRICOS
 ---------------------------------------------------------------------------
 */
+.azul{
+    background: linear-gradient(135deg,#004494,#009036);
+}
+
+.verde{
+    background: linear-gradient(135deg,#58ab27,#ffdc00);
+}
+
+.rojo{
+    background: linear-gradient(135deg,#004494, #cb022b);
+}
+
+.main1{
+    width: 100%;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+}
+
+.nombre{
+    vertical-align: middle;
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    padding: 3em;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.nombre b{
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 10em;
+}
 
 .no-editable{
     user-select: none; /* Chrome & Opera */
@@ -48,11 +80,7 @@ body{
 }
 
 .verde{
-    background: linear-gradient(135deg,#58ab27,#ffdc00);
-}
-
-.rojo{
-    background: linear-gradient(135deg,#004494, #cb022b);
+    background: linear-gradient(135deg,#009036,#ffdc00);
 }
 
 .content{
@@ -109,37 +137,26 @@ nav ul li a{
 nav ul li a:hover{
     font-family: 'Montserrat', sans-serif;
     display: block;
+    border: 1px solid #fcdb8f;
+    color: #fcdb8f;
+    width: 100%;
+    transition: 0.2s;
+}
+
+.nav1 ul li a:hover{
+    font-family: 'Montserrat', sans-serif;
+    display: block;
     border: 1px solid white;
     color: white;
     width: 100%;
     transition: 0.2s;
 }
 
-.main{
+#main{
     width: 100%;
     min-height: 90vh;
     display: flex;
     align-items: center;
-}
-
-/*
----------------------------------------------------------------------------
-NOMBRE EUSKO TREN
----------------------------------------------------------------------------
-*/
-
-.nombre{
-    vertical-align: middle;
-    display: inline-block;
-    text-align: center;
-    width: 100%;
-    padding: 3em;
-    font-family: 'Montserrat', sans-serif;
-}
-
-.nombre b{
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 10em;
 }
 
 /*
@@ -199,10 +216,10 @@ footer{
 }
 
 .footer-hover:hover{
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid #e6ff8a;
     transition: 0.3s;
     text-decoration: none;
-    color: white;
+    color: #e6ff8a;
 }
 
 .rrss-container{
@@ -237,6 +254,203 @@ BOTON MENÚ
     z-index: 2;
     display: none;
     cursor: pointer;
+}
+
+
+/*
+----------------------------------------------------------------------------
+INICIO SCROLLBAR
+----------------------------------------------------------------------------
+*/
+
+::-webkit-scrollbar
+{
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    background-color: rgb(184, 182, 182);
+}
+
+::-webkit-scrollbar-thumb:hover
+{
+    border-radius: 10px;
+    background-color: gray;
+}
+
+/*
+----------------------------------------------------------------------------
+INICIO PARADAS TRANVIA
+----------------------------------------------------------------------------
+*/
+
+.animacion-tranvia{
+    width: max-content;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 25%;
+    left: 50%;
+    overflow:visible;
+    align-items: center;
+}
+
+.paradas{
+    cursor: pointer;
+    transform: translate(-50%, 0%);
+    position: relative;
+    height: calc(100vw / 26);
+    width:calc(100vw / 26);
+    background-color: lightgray;
+    border-radius: 51%;
+    display:inline-block;
+}
+
+.paradas:hover{
+    background-color: black;
+}
+
+#tranvia{
+    width:15%;
+    left:-13.1875%;
+    position:relative;
+    transform: translate(-50%,0%);
+    transition: 1s;
+}
+
+.tranviaParada div:nth-child(1){
+    left: 2%;
+    top: 0%;
+}
+
+.tranviaParada div:nth-child(2){
+    left: 4%;
+    top: 0%;
+}
+
+.tranviaParada div:nth-child(3){
+    left: 6%;
+    top: 0%;
+}
+
+.tranviaParada div:nth-child(4){
+    left: 8%;
+    top: 0%;
+}
+
+.tranviaParada div:nth-child(5){
+    left: 10%;
+    top: 0%;
+}
+
+.tranviaParada div:nth-child(6){
+    left: 12%;
+    top: 0%;
+}
+
+.tranviaParada div:nth-child(7){
+    left: 14%;
+    top: 0%;
+}
+
+.tranviaParada div:nth-child(8){
+    left: 16%;
+    top: 0%;
+}
+
+.tranviaParada div:nth-child(9){
+    left: 18%;
+    top: 0%;
+}
+
+
+/*
+--------------------------------------------------------------------------
+INICIO MODAL BOX
+--------------------------------------------------------------------------
+*/
+
+.modal{
+    display:none;
+    position:fixed;
+    z-index:1;
+    padding-top:100px;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    overflow:auto;
+    background-color:rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content{
+    background-color:rgba(0,0,0,0.4);
+    margin:auto;
+    padding:20px;
+    border:1px solid #888;
+    width:90%;
+    height:9%;
+}
+
+#milimetros{
+    background-color:rgba(0,0,0,0);
+    color:white;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    float:left;
+    position:relative;
+    cursor: pointer;
+    
+}
+#milimetros:hover{
+    font-size:1.5em;
+}
+
+#directa{
+    background-color:rgba(0,0,0,0);
+    color:white;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    float:right;
+    position:relative;
+    cursor: pointer;
+}
+#directa:hover{
+    font-size:1.5em;
+}
+
+.introducirMilimetros{
+    display:none;
+    position: absolute;
+    width: max-content;
+    transform: translate(-50%,-50%);
+    top: 75%;
+    left: 50%;
+    font-size:16px;
+    font-family:'Roboto', sans-serif;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#Bintrodcir{
+    border-radius: 50%;
+    text-decoration: none;
+}
+
+#cambiarModo{
+    padding:1%;
+    border-radius:51%;
+    display:block;
+    position:absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    margin:0;
+}
+#cambiarModo:hover{
+   background-color: #888;
 }
 
 /*
@@ -298,34 +512,37 @@ ESTRUCTURA PÁGINA DE INFORMACIÓN
 }
 
 /*
----------------------------------------------------------------------------
-MEDIA QUERIES
----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+INICIO MEDIA QUERY
+----------------------------------------------------------------------------
 */
 
 @media screen and (max-width: 992px) {
-
-    .main{
-        height: 100vh;
-    }
 
     .parada{
         width: 46.5%;
         margin-top: 120px;
     }
-
-    .desplegable{
-        display: block;
-    }
     
     header{
-        background-color: rgba(0,0,0,0.5);
         z-index: 1;
         position: fixed;
     }
     
     .nombre b{
         font-size: 6em;
+    }
+
+    #main{
+        height: 100vh;
+    }
+
+    .main1{
+        height: 100vh;
+    }
+
+    .desplegable{
+        display: block;
     }
     
     nav{
@@ -358,9 +575,161 @@ MEDIA QUERIES
         -webkit-transform: rotate(45deg) translate(-8px, -8px);
         transform: rotate(45deg) translate(-8px, -8px);
     }
+
+    #cambiarModo{
+        margin:0 auto;
+        display: block;
+    }
+   
+    .introducirMilimetros{
+       margin:0 auto;
+       align-items: center;
+    }
+   
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width:480px){
+    #main{
+        width: 100%;
+        height:100vh;
+    }
+
+    .paradas{
+        cursor: pointer;
+        height: calc(100vw / 18);
+        width:calc(100vw / 18);
+        background-color: lightgray;
+        border-radius: 50%;
+        display:block;
+        margin:1em auto;
+    }
+
+    .animacion-tranvia{
+        top: 40%;
+    }
+
+    .tranviaParada div:nth-child(1){
+        left: 0%;
+        top: 2%;
+    }
+    
+    .tranviaParada div:nth-child(2){
+        left: 0%;
+        top: 4%;
+    }
+    
+    .tranviaParada div:nth-child(3){
+        left: 0%;
+        top: 6%;
+    }
+    
+    .tranviaParada div:nth-child(4){
+        left: 0%;
+        top: 8%;
+    }
+    
+    .tranviaParada div:nth-child(5){
+        left: 0%;
+        top: 10%;
+    }
+    
+    .tranviaParada div:nth-child(6){
+        left: 0%;
+        top: 12%;
+    }
+    
+    .tranviaParada div:nth-child(7){
+        left: 0%;
+        top: 14%;
+    }
+    
+    .tranviaParada div:nth-child(8){
+        left: 0%;
+        top: 16%;
+    }
+    
+    .tranviaParada div:nth-child(9){
+        left: 0%;
+        top: 18%;
+    }
+
+    #tranvia{
+        transform: rotate(90deg) translate(-50%, 0%);
+        width:200%;
+        left:50%;
+        top:-7.5%;
+        padding-bottom:2em;
+        position:absolute;
+        transition:1s;
+    }
+    .modal{
+        position:fixed;
+        z-index:1;
+        padding-top:100px;
+        left:0;
+        top:0;
+        width:100%;
+        height:100%;
+        overflow:auto;
+        background-color:rgb(0,0,0);
+        background-color: rgba(0,0,0,0.4);
+    }
+    
+    .modal-content{
+        background-color:rgba(0,0,0,0.4);
+        margin:auto;
+        padding:15%;
+        border:1px solid #888;
+        width:90%;
+        display:block;
+    }
+
+    .modal-content p{
+        display:block;
+    }
+    
+    #milimetros{
+        background-color:rgba(0,0,0,0);
+        color:white;
+        text-decoration: none;
+        font-family: 'Montserrat', sans-serif;
+        position:absolute;
+        top:20%;
+        cursor: pointer;
+        
+    }
+    #milimetros:hover{
+        font-size:1.5em;
+    }
+    
+    #directa{
+        background-color:rgba(0,0,0,0);
+        color:white;
+        text-decoration: none;
+        font-family: 'Montserrat', sans-serif;
+        left:30%;
+        padding-top:1%;
+        position:absolute;
+        cursor: pointer;
+    }
+    #directa:hover{
+        font-size:1.5em;
+    }
+
+    #cambiarModo{
+        position:absolute;
+        left:50%;
+        top:85%;
+    }
+
+    .introducirMilimetros{
+        position:absolute;
+        text-align: center;
+        width:100%;
+        top:75%;
+        left:50%;
+      
+    }
 
     .main{
         width: 100%;
@@ -386,27 +755,4 @@ MEDIA QUERIES
     header{
         height: 70px;
     }
-}
-
-/*
-----------------------------------------------------------------------------
-INICIO SCROLLBAR
-----------------------------------------------------------------------------
-*/
-
-::-webkit-scrollbar
-{
-    width: 10px;
-}
-
-::-webkit-scrollbar-thumb
-{
-    border-radius: 10px;
-    background-color: rgb(184, 182, 182);
-}
-
-::-webkit-scrollbar-thumb:hover
-{
-    border-radius: 10px;
-    background-color: gray;
 }
