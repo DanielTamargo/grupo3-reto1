@@ -42,25 +42,36 @@
                 <div id="Mimodal" class="modal">
                     <div class="modal-content">
                         <span class="close">&times;</span>
-                        <p class="tipoRecorrido" id="parada" onclick="elegirOpc(this.id)">POR PARADAS</p>
+                        <p class="tipoRecorrido" id="milimetros" onclick="elegirOpc(this.id)">POR MILIMETROS</p>
                         <p class="tipoRecorrido" id="directa" onclick="elegirOpc(this.id)">DIRECTO</p>
                     </div>
                 </div>
+                <div>
+                    <div class="introducirMilimetros">
+                        <form>
+                            <label id="milimetro" value="milimetro">Introduce los milimetros deseados</label>
+                            <input type="text" id="Imilimetro"/>
+                            <input type="button" id="Bintroducir" value="enviar"/>
+                        </form>
+                    </div>
+                </div>
+                
+                <button type="button" id="cambiarModo" onclick="cambiarModo()">Cambiar de Modo</button>
                  <!--INICIO ANIMACIÓN TRANVIA-->
                 <div class="animacion-tranvia">
                     <img id="tranvia" src="../img/tranvia.png"></img>
-                <div class="tranviaParada">
-                    <div class="paradas" id="0">&nbsp;</div>
-                    <div class="paradas" id="1">&nbsp;</div>
-                    <div class="paradas" id="2">&nbsp;</div>
-                    <div class="paradas" id="3">&nbsp;</div>
-                    <div class="paradas" id="4">&nbsp;</div>
-                    <div class="paradas" id="5">&nbsp;</div>
-                    <div class="paradas" id="6">&nbsp;</div>
-                    <div class="paradas" id="7">&nbsp;</div>
-                    <div class="paradas" id="8">&nbsp;</div>
+                    <div class="tranviaParada">
+                        <div class="paradas" id="0">&nbsp;</div>
+                        <div class="paradas" id="1">&nbsp;</div>
+                        <div class="paradas" id="2">&nbsp;</div>
+                        <div class="paradas" id="3">&nbsp;</div>
+                        <div class="paradas" id="4">&nbsp;</div>
+                        <div class="paradas" id="5">&nbsp;</div>
+                        <div class="paradas" id="6">&nbsp;</div>
+                        <div class="paradas" id="7">&nbsp;</div>
+                        <div class="paradas" id="8">&nbsp;</div>
+                    </div>
                 </div>
-            </div>
             </section>
         </div>
         <footer>

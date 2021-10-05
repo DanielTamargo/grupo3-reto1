@@ -247,20 +247,24 @@ INICIO PARADAS TRANVIA
 */
 
 .animacion-tranvia{
-    margin: 0 auto;
-    min-height: 50vh;
-    position: flex;
+    width: max-content;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 25%;
+    left: 50%;
+    overflow:visible;
     align-items: center;
 }
 
 .paradas{
     cursor: pointer;
+    transform: translate(-50%, 0%);
+    position: relative;
     height: calc(100vw / 26);
     width:calc(100vw / 26);
     background-color: lightgray;
     border-radius: 51%;
     display:inline-block;
-    margin:0 0.5em;
 }
 
 .paradas:hover{
@@ -269,10 +273,58 @@ INICIO PARADAS TRANVIA
 
 #tranvia{
     width:15%;
-    left:-20%;
+    left:-13.1875%;
     position:relative;
-    transition:  1s;
+    transform: translate(-50%,0%);
+    transition: 1s;
 }
+
+.tranviaParada div:nth-child(1){
+    left: 2%;
+    top: 0%;
+}
+
+.tranviaParada div:nth-child(2){
+    left: 4%;
+    top: 0%;
+}
+
+.tranviaParada div:nth-child(3){
+    left: 6%;
+    top: 0%;
+}
+
+.tranviaParada div:nth-child(4){
+    left: 8%;
+    top: 0%;
+}
+
+.tranviaParada div:nth-child(5){
+    left: 10%;
+    top: 0%;
+}
+
+.tranviaParada div:nth-child(6){
+    left: 12%;
+    top: 0%;
+}
+
+.tranviaParada div:nth-child(7){
+    left: 14%;
+    top: 0%;
+}
+
+.tranviaParada div:nth-child(8){
+    left: 16%;
+    top: 0%;
+}
+
+.tranviaParada div:nth-child(9){
+    left: 18%;
+    top: 0%;
+}
+
+
 /*
 --------------------------------------------------------------------------
 INICIO MODAL BOX
@@ -316,7 +368,7 @@ INICIO MODAL BOX
     cursor:pointer;
 }
 
-#parada{
+#milimetros{
     background-color:rgba(0,0,0,0);
     color:white;
     text-decoration: none;
@@ -326,7 +378,7 @@ INICIO MODAL BOX
     cursor: pointer;
     
 }
-#parada:hover{
+#milimetros:hover{
     font-size:1.5em;
 }
 
@@ -341,6 +393,38 @@ INICIO MODAL BOX
 }
 #directa:hover{
     font-size:1.5em;
+}
+
+.introducirMilimetros{
+    display:none;
+    position: absolute;
+    width: max-content;
+    transform: translate(-50%,-50%);
+    top: 75%;
+    left: 50%;
+    font-size:16px;
+    font-family:'Roboto', sans-serif;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#Bintrodcir{
+    border-radius: 50%;
+    text-decoration: none;
+}
+
+#cambiarModo{
+    padding:1%;
+    border-radius:51%;
+    display:block;
+    position:absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    margin:0;
+}
+#cambiarModo:hover{
+   background-color: #888;
 }
 
 /*
@@ -365,9 +449,6 @@ INICIO MEDIA QUERY
     
     nav{
         display: none;
-    }
-    .animacion-tranvia{
-        padding-top:3em;
     }
 
     .container {
@@ -396,10 +477,23 @@ INICIO MEDIA QUERY
         -webkit-transform: rotate(45deg) translate(-8px, -8px);
         transform: rotate(45deg) translate(-8px, -8px);
     }
+
+    #cambiarModo{
+        margin:0 auto;
+        display: block;
+    }
+   
+    .introducirMilimetros{
+       margin:0 auto;
+       align-items: center;
+    }
+   
 }
+
 @media screen and (max-width:480px){
     #main{
         width: 100%;
+        height:100vh;
     }
     .paradas{
         cursor: pointer;
@@ -410,11 +504,61 @@ INICIO MEDIA QUERY
         display:block;
         margin:1em auto;
     }
+
+    .animacion-tranvia{
+        top: 40%;
+    }
+
+    .tranviaParada div:nth-child(1){
+        left: 0%;
+        top: 2%;
+    }
+    
+    .tranviaParada div:nth-child(2){
+        left: 0%;
+        top: 4%;
+    }
+    
+    .tranviaParada div:nth-child(3){
+        left: 0%;
+        top: 6%;
+    }
+    
+    .tranviaParada div:nth-child(4){
+        left: 0%;
+        top: 8%;
+    }
+    
+    .tranviaParada div:nth-child(5){
+        left: 0%;
+        top: 10%;
+    }
+    
+    .tranviaParada div:nth-child(6){
+        left: 0%;
+        top: 12%;
+    }
+    
+    .tranviaParada div:nth-child(7){
+        left: 0%;
+        top: 14%;
+    }
+    
+    .tranviaParada div:nth-child(8){
+        left: 0%;
+        top: 16%;
+    }
+    
+    .tranviaParada div:nth-child(9){
+        left: 0%;
+        top: 18%;
+    }
+
     #tranvia{
-        transform: rotate(90deg);
-        width:15%;
+        transform: rotate(90deg) translate(-50%, 0%);
+        width:200%;
         left:50%;
-        top:15%;
+        top:-7.5%;
         padding-bottom:2em;
         position:absolute;
         transition:1s;
@@ -442,7 +586,7 @@ INICIO MEDIA QUERY
     }
 
     .modal-content p{
-        display:inline-block;
+        display:block;
     }
     
     .close{
@@ -459,17 +603,17 @@ INICIO MEDIA QUERY
         cursor:pointer;
     }
     
-    #parada{
+    #milimetros{
         background-color:rgba(0,0,0,0);
         color:white;
         text-decoration: none;
         font-family: 'Montserrat', sans-serif;
-        position:relative;
-        top:0;
+        position:absolute;
+        top:20%;
         cursor: pointer;
         
     }
-    #parada:hover{
+    #milimetros:hover{
         font-size:1.5em;
     }
     
@@ -478,11 +622,27 @@ INICIO MEDIA QUERY
         color:white;
         text-decoration: none;
         font-family: 'Montserrat', sans-serif;
-        float:right;
-        position:relative;
+        left:30%;
+        padding-top:1%;
+        position:absolute;
         cursor: pointer;
     }
     #directa:hover{
         font-size:1.5em;
+    }
+
+    #cambiarModo{
+        position:absolute;
+        left:50%;
+        top:85%;
+    }
+
+    .introducirMilimetros{
+        position:absolute;
+        text-align: center;
+        width:100%;
+        top:75%;
+        left:50%;
+      
     }
 }
