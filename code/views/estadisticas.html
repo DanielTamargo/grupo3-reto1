@@ -92,14 +92,32 @@
                     <div class="est__main__content__graph-selector__title">
                         <p>Selecciona el tipo de gráfica que quieres visualizar</p>
                     </div>
-                    <div class="est__main__content__graph-selector__left">
+                    <div class="est__main__content__graph-selector-large">
+                        <div id="graph-selector-buttons-wrapper" class="graph-selector-buttons-wrapper">
+                            <div class="graph-selector-button">
+                                <button value="1"><p><b>Datos generales</b></p><p>Paradas por mes y año</p></button>
+                            </div>
+                            <div class="graph-selector-button">
+                                <button value="2"><p><b>Datos generales</b></p><p>Paradas por mes y año</p></button>
+                            </div>
+                            <div class="graph-selector-button">
+                                <button value="3"><p><b>Número pasajeros</b></p><p>Paradas por mes y año</p></button>
+                            </div>
+                            <div class="graph-selector-button">
+                                <button value="4"><p><b>Número pasajeros</b></p><p>Paradas por mes y año</p></button>
+                            </div>
+                            <div class="graph-selector-button">
+                                <button value="5"><p><b>Observar Datos</b></p><p>Paradas por mes y año</p></button>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="est__main__content__graph-selector-mini">
                         <select name="graph-selector" id="graph-selector">
                             <option value="1" selected>Datos generales</option>
                             <option value="2">Número de pasajeros</option>
                             <option value="3">Observar entrada de datos</option>
                         </select>
-                    </div>
-                    <div class="est__main__content__graph-selector__right">
                         <select name="graph-spec" id="graph-spec">
 
                         </select>
@@ -144,5 +162,6 @@
     
     <script src="../libs/d3.min.js"></script>
     <script src="../app.js"></script>
+    <script src="../main_estadisticas.js"></script>
 </body>
 </html>

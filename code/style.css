@@ -189,7 +189,10 @@ nav ul li a:hover{
     width: 100%;
     border-top: 1px solid gray;
 }
-
+/* TODO dani: quitar */
+.est__main__content__intro{
+    display: none;
+}
 .est__main__content__intro__left{
     width: calc(100% - 500px - 3em);
     float: left;
@@ -342,15 +345,72 @@ nav ul li a:hover{
     100%{transform: translateX(-180%);}
 }
 
+.est__main__content__graph-selector{
+    width: 100%;
+}
 .est__main__content__graph-selector__title{
     text-align: center;
     text-transform: uppercase;
 }
-.est__main__content__graph-selector__left{
-    float: left;
+
+.est__main__content__graph-selector-large{
+    width: 100%;
 }
-.est__main__content__graph-selector__right{
-    float: right;
+.graph-selector-buttons-wrapper{
+    width: 100%;
+}
+.graph-selector-button{
+    padding: 0;
+}
+.graph-selector-buttons-wrapper{
+    text-align: center;
+}
+.graph-selector-buttons-wrapper button {
+    padding: 0.2em;
+    margin: 0;
+}
+.graph-selector-button{
+    display: inline-block;
+    width: 19%;
+}
+.graph-selector-button button{
+    width: 100%;
+}
+.graph-selector-button button, .graph-selector.button button * {
+    cursor: pointer;
+}
+.graph-selector-button button:active {
+    transform: scale(0.98);
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+}
+.graph-selector-button-selected{
+    background-color: rgb(250, 198, 102);
+    transform: 2s ease;
+}
+
+.est__main__content__graph-selector{
+    padding: 0.5em;
+}
+.est__main__content__graph-selector *{
+    margin-top: 0.5em;
+}
+
+
+.est__main__content__graph-selector-mini{
+    clear: both;
+    width: 100%;
+}
+.est__main__content__graph-selector-mini select {
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    width: 100%;
+    height: 2em;
+    margin: 0.5em;
+    padding: 0.2em;
+}
+.est__main__content__graph-selector-mini select:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.2em rgba(54, 54, 54, 0.884);
 }
 
 .est__main__content__graph{
