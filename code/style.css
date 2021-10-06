@@ -101,6 +101,10 @@ header{
                     rgba(53, 53, 53, 0));
 }
 
+.display-none{
+    display: none !important;
+}
+
 /*
 ---------------------------------------------------------------------------
 BARRA DE NAVEGACIÓN
@@ -408,6 +412,43 @@ nav ul li a:hover{
 .est__main__content__graph-selector-mini select:focus {
     outline: 0;
     box-shadow: 0 0 0 0.2em rgba(54, 54, 54, 0.884);
+}
+
+.est__main__content__graph-selector-spec-parada{
+    width: 100%;
+    padding: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.est__main__content__graph-selector-spec-parada button{
+    width: 3em;
+    height: 3em;
+}
+.est__main__content__graph-selector-spec-parada .parada{
+    text-align: center;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+}
+.est__main__content__graph-selector-spec-parada .parada p{
+    margin: 0;
+    margin-bottom: -1em;
+    padding: 0;
+}
+.est__main__content__graph-selector-spec-parada .parada p#parada-title{
+    font-size: 2em;
+    font-weight: bold;
+}
+.est__main__content__graph-selector-spec-parada button:active {
+    transform: scale(0.98);
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+}
+.est__main__content__graph-selector-spec-parada p {
+    height: 3em;
+    
+    clear: none;
 }
 
 .est__main__content__graph{

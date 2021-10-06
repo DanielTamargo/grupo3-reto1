@@ -53,9 +53,9 @@ try {
 }
 
 // Valores por defecto de qué gráfica se va a mostrar
-// TODO dani: volver a poner el por defecto (valor 1)
-var estilo_grafica = 4; 
-var seleccion_parada = PARADAS[0];
+var estilo_grafica = 1; 
+var index_parada = 0;
+var seleccion_parada = PARADAS[index_parada];
 /** Miramos en el almacenamiento local si venimos de la ventana informacion */
 try {
     let eg = localStorage.getItem(LOCALSTORAGE_CLAVE_ESTILOGRAFICA);
@@ -67,6 +67,7 @@ try {
         // Si existen, lo configuramos
         estilo_grafica = parseInt(eg);
         seleccion_parada = PARADAS[parseInt(ps)];
+        index_parada = PARADAS.indexOf(seleccion_parada);
     }
 
 } catch (err) {
@@ -701,7 +702,7 @@ function nuevosDatos() {
         }
     }
     if (estilo_grafica != 5) {
-        datos_grafica = cargarDatosGrafica();
+        datos_grafica = cargarDatosGrafica(seleccion_parada);
     }
     actualizarGraficas();
 }
@@ -826,6 +827,13 @@ function seleccionarGrafica() {
     cambiarColorBotonSeleccionado(boton_seleccionado);
     datos_grafica = cargarDatosGrafica(seleccion_parada);
     pintarGrafica();
+ 
+    // Si es la gráfica dos, mostramos la opción seleccionar mes
+    if (estilo_grafica == 2) {
+        document.getElementById('graph-selector-parada').classList.remove('display-none');
+    } else { // Si no, lo ocultamos
+        document.getElementById('graph-selector-parada').classList.add('display-none');
+    }
 
     tituloGrafica();
     descripcionGrafica();
@@ -917,6 +925,27 @@ function cambiarColorBotonSeleccionado(boton_seleccionado) {
     boton_seleccionado.classList.toggle(nombre_clase_selected);
 }
 
+/** Botones siguiente y anterior parada */
+function siguienteParada() {
+    index_parada++;
+    if (index_parada >= PARADAS.length) {
+        index_parada = 0;
+    }
+
+    seleccion_parada = PARADAS[index_parada];
+    tituloParada();
+    seleccionarGrafica();
+}
+function anteriorParada() {
+    index_parada--;
+    if (index_parada < 0) {
+        index_parada = PARADAS.length - 1;
+    }
+
+    seleccion_parada = PARADAS[index_parada];
+    tituloParada();
+    seleccionarGrafica();
+}
 
 function tituloGrafica() {
     let titulo = TITULOS_GRAFICAS[estilo_grafica - 1];
@@ -930,8 +959,14 @@ function descripcionGrafica() {
     document.getElementById('graph-desc').innerHTML = DESC_GRAFICAS[estilo_grafica - 1];
 }
 
+function tituloParada() {
+    document.getElementById('parada-title').innerHTML = seleccion_parada;
+}
+
 prepararPagina();
+/** Prepara la página para cuando cargue (puede cargar en distintos estados) */
 function prepararPagina() {
+    tituloParada();
     document.getElementById('graph-selector-button-' + estilo_grafica).click();
 }
 
