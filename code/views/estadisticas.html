@@ -109,7 +109,6 @@
                             <div class="graph-selector-button">
                                 <button id="graph-selector-button-5" value="5"><p><b>Observar Datos</b></p><p>Ver llegada datos</p><p>en tiempo real</p></button>
                             </div>
-
                         </div>
                     </div>
                     <div class="est__main__content__graph-selector-mini">
@@ -122,7 +121,17 @@
 
                         </select>
                     </div>
-                    <div id="graph-selector-parada" class="est__main__content__graph-selector-spec-parada display-none">
+                    <!-- <div id="graph-selector-anyo-mes" class="est__main__content__graph-selector-anyo-mes">
+                        <div class="selector-anyo-mes">
+                            <select name="graph-selector-anyo" id="graph-selector-anyo" class="graph-selector-anyo">
+                                
+                            </select>
+                            <select name="graph-selector-mes" id="graph-selector-mes" class="graph-selector-mes">
+    
+                            </select>
+                        </div>
+                    </div> -->
+                    <div id="graph-selector-parada" class="est__main__content__graph-selector-spec-parada">
                         <button id="parada-prev" onclick="anteriorParada()"><<</button>
                         <div class="parada">
                             <p>Selecciona la parada</p>
@@ -168,7 +177,11 @@
         </div>
     </footer>
     
+    <!-- Librerías -->
     <script src="../libs/d3.min.js"></script>
+    <script src="../libs/jquery-3.6.0.min.js"></script>
+
+    <!-- Código -->
     <script src="../app.js"></script>
     <script src="../main_estadisticas.js"></script>
 </body>

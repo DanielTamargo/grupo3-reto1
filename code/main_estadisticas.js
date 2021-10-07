@@ -29,6 +29,12 @@ const DESC_GRAFICAS = ['Muestra los datos generales de todas las paradas filtran
 /** ----------------------------------------------------------------- */
 /** ESTADISTICAS: INICIALIZAR DATOS */
 
+/** Variables que utilizaremos para cotejar con la fecha actual */
+var fecha_actual = new Date();
+var anyo_actual = fecha_actual.getFullYear();
+var mes_actual = fecha_actual.getMonth() + 1;
+var dia_actual = fecha_actual.getDate();
+
 /** Obtenemos los datos del almacenamiento local 
  * (así podemos mover los datos entre páginas) */
 var datos_cargados_con_exito = false;
@@ -108,11 +114,6 @@ function inicializarDatosParada(parada) {
     
     // Generamos datos desde 2020
     let anyo = 2020;
-    let fecha_actual = new Date();
-    let anyo_actual = fecha_actual.getFullYear();
-    let mes_actual = fecha_actual.getMonth() + 1;
-    let dia_actual = fecha_actual.getDate();
-
     let num_meses = 12;
 
     let num_pasajeros;
@@ -831,8 +832,10 @@ function seleccionarGrafica() {
     // Si es la gráfica dos, mostramos la opción seleccionar mes
     if (estilo_grafica == 2) {
         document.getElementById('graph-selector-parada').classList.remove('display-none');
+        $('#graph-selector-parada').slideDown();
     } else { // Si no, lo ocultamos
-        document.getElementById('graph-selector-parada').classList.add('display-none');
+        // document.getElementById('graph-selector-parada').classList.add('display-none');
+        $('#graph-selector-parada').hide();
     }
 
     tituloGrafica();
@@ -947,6 +950,50 @@ function anteriorParada() {
     seleccionarGrafica();
 }
 
+/** Cargamos opciones para los selecs de año y mes */
+// function cargarAnyos() {
+//     let contenido_html = '';
+    
+//     // Obtenemos los diferentes años disponibles
+//     let anyos_unicos = [...new Set(datos[0].map((elem) => elem.anyo))];
+//     for (let anyo of anyos_unicos) {
+//         contenido_html += `<option value="${anyo}" ${(anyo == anyo_actual) ? 'selected ' : ''}>${anyo}</option>`;
+//     }
+//     document.getElementById('graph-selector-anyo').innerHTML = contenido_html;
+
+//     seleccionAnyo();
+// }
+// function cargarMeses() {
+//     let contenido_html = '';
+//     let mes_a_elegir = mes_actual;
+
+//     if (anyo_actual != seleccion_anyo) {
+//         mes_a_elegir = 12;
+//     }
+    
+//     // Obtenemos los diferentes meses disponibles
+//     let meses_unicos = [...new Set(datos[0].filter((elem) => elem.anyo == seleccion_anyo).map((elem) => elem.mes))];
+//     for (let mes of meses_unicos) {
+//         contenido_html += `<option value="${mes}" ${(mes == mes_a_elegir) ? 'selected ' : ''}>${mes}</option>`;
+//     }
+//     document.getElementById('graph-selector-mes').innerHTML = contenido_html;
+
+//     seleccion_mes = document.getElementById('graph-selector-mes').value;
+//     seleccionMes();
+// }
+
+
+// document.getElementById('graph-selector-anyo').addEventListener('change', seleccionAnyo);
+// function seleccionAnyo() {
+//     seleccion_anyo = document.getElementById('graph-selector-anyo').value;
+//     cargarMeses();
+// }
+// document.getElementById('graph-selector-anyo').addEventListener('change', seleccionMes);
+// function seleccionMes() {
+//     seleccion_mes = document.getElementById('graph-selector-mes').value;
+// }
+
+
 function tituloGrafica() {
     let titulo = TITULOS_GRAFICAS[estilo_grafica - 1];
     titulo = titulo.replace('{mes}', seleccion_mes);
@@ -966,6 +1013,7 @@ function tituloParada() {
 prepararPagina();
 /** Prepara la página para cuando cargue (puede cargar en distintos estados) */
 function prepararPagina() {
+    // cargarAnyos();
     tituloParada();
     document.getElementById('graph-selector-button-' + estilo_grafica).click();
 }
