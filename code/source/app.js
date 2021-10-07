@@ -34,10 +34,9 @@ function elegirOpc(idOpc){
     }
     if(idOpc=="milimetros"){
         opc="milimetros"
-        document.getElementsByClassName("directo")[0].value="false";
-        document.getElementsByClassName("directo")[1].value="false";
-        document.getElementsByClassName("distancia")[0].value="true";
-        document.getElementsByClassName("distancia")[1].value="true";
+        document.getElementById("distancia").value="true";
+        document.getElementById("directo").value="false";
+        $("#bEnviarModo").trigger("click");
         let introducirMilimetros=document.getElementsByClassName("introducirMilimetros");
         modal.style.display = "none";
         introducirMilimetros[0].style.display="inline";
@@ -45,10 +44,9 @@ function elegirOpc(idOpc){
     }
     else{
         opc="directa"
-        document.getElementsByClassName("directo")[0].value="true";
-        document.getElementsByClassName("directo")[1].value="true";
-        document.getElementsByClassName("distancia")[0].value="false";
-        document.getElementsByClassName("distancia")[1].value="false";
+        document.getElementById("distancia").value="false";
+        document.getElementById("directo").value="true";
+        $("#bEnviarModo").trigger("click");
         modal.style.display = "none";
         paradasDirecta();
     }
@@ -207,6 +205,20 @@ $(document).ready(function(){
     });
 
 });
+
+$(document).ready(function(){
+    $("#enviarModo").submit(function(){
+        console.log($(this).serialize());
+        $.ajax({
+            type: 'POST',
+            url: $(this).attr('action'),
+            data: $(this).serialize()
+        });
+        return false;
+    });
+
+});
+
 $(document).ready(function(){
     $("#enviarMilimetro").submit(function(){
         console.log($(this).serialize());

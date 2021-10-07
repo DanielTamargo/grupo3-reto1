@@ -2,6 +2,7 @@
 <!-- AWP_In_Variable Name='"web".posmm'-->
 <!-- AWP_In_Variable Name='"web".distancia'-->
 <!-- AWP_In_Variable Name='"web".directo'-->
+<!-- AWP_In_Variable Name='"web".ocupado'-->
 <!DOCTYPE html>
 <html>
     <head>
@@ -56,12 +57,16 @@
                         <form method="POST" id="enviarMilimetro">
                             <label id="milimetro" value="milimetro">Introduce los milimetros deseados</label>
                             <input type="text" name='"web".posmm' id="Imilimetro"/>
-                            <input style="display: none;" type="text" name='"web".distancia' class="distancia">
-                            <input style="display: none;" type="text" name='"web".directo' class="directo">
                             <input type="button" id="Bintroducir" value="enviar"/>
                             <input style="display: none;" type="submit" id="bEnviarMm">
                         </form>
                     </div>
+
+                    <form method="POST" id="enviarModo">
+                        <input style="display: none;" type="text" name='"web".distancia' id="distancia">
+                        <input style="display: none;" type="text" name='"web".directo' id="directo">
+                        <input style="display: none;" type="submit" id="bEnviarModo">
+                    </form>
                 </div>
                 
                 <button type="button" id="cambiarModo" onclick="cambiarModo()">Cambiar de Modo</button>
@@ -82,13 +87,12 @@
                 </div>
                 <form method="POST"  action="" id="enviarDirecto">
                     <input style="display: none;" type="text" name='"web".dato_web' id="textoParada"/>
-                    <input style="display: none;" type="text" name='"web".directo' class="directo">
-                    <input style="display: none;" type="text" name='"web".distancia' class="distancia">
                     <input type="submit" value="" id="btnSubmitDirecto"/>
                 </form>
             </section>
         </div>
         <footer>
+            <p class="etiqueta"></p>
             <div class="texto">
                 <div class="copyright"><a class="footer-hover" target="blank" href="http://govindtiwari.blogspot.com/">Informaci&oacute;n legal y copyright &copy;</a></div>
                 <div class="sobre-nosotros"><a class="footer-hover" target="blank" href="https://codefun973161967.wordpress.com/">Enlace a la pagina web de los desarrolladores</a></div>
