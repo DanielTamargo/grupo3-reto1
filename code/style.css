@@ -806,6 +806,15 @@ MEDIA QUERIES
         margin-bottom: 1em;
     }
 
+    .est__main__content__graph-selector-spec-parada button{
+        width: 2em;
+        height: 2em;
+    }
+    .est__main__content__graph-selector-spec-parada .parada p#parada-title{
+        font-size: 1em;
+        text-align: center;
+    }
+
     .graph-container{
         overflow-x: hidden;
         height: auto;
