@@ -1,3 +1,7 @@
+<!-- AWP_In_Variable Name='"web".dato_web'-->
+<!-- AWP_In_Variable Name='"web".posmm'-->
+<!-- AWP_In_Variable Name='"web".distancia'-->
+<!-- AWP_In_Variable Name='"web".directo'-->
 <!DOCTYPE html>
 <html>
     <head>
@@ -49,10 +53,13 @@
                 </div>
                 <div>
                     <div class="introducirMilimetros">
-                        <form>
+                        <form method="POST" id="enviarMilimetro">
                             <label id="milimetro" value="milimetro">Introduce los milimetros deseados</label>
-                            <input type="text" id="Imilimetro"/>
+                            <input type="text" name='"web".posmm' id="Imilimetro"/>
+                            <input style="display: none;" type="text" name='"web".distancia' class="distancia">
+                            <input style="display: none;" type="text" name='"web".directo' class="directo">
                             <input type="button" id="Bintroducir" value="enviar"/>
+                            <input style="display: none;" type="submit" id="bEnviarMm">
                         </form>
                     </div>
                 </div>
@@ -73,6 +80,12 @@
                         <div class="paradas" id="8">&nbsp;</div>
                     </div>
                 </div>
+                <form method="POST"  action="" id="enviarDirecto">
+                    <input style="display: none;" type="text" name='"web".dato_web' id="textoParada"/>
+                    <input style="display: none;" type="text" name='"web".directo' class="directo">
+                    <input style="display: none;" type="text" name='"web".distancia' class="distancia">
+                    <input type="submit" value="" id="btnSubmitDirecto"/>
+                </form>
             </section>
         </div>
         <footer>
@@ -87,6 +100,7 @@
                 <a target="blank" href="https://www.youtube.com/channel/UCHLmG5i2LeHqQ7wN4s11Ddg"><img id="youtube" class="rrss" src="../img/youtube.png" alt="twitter"></a>
             </div>
         </footer>
+    <script src="../source/jquery-3.6.0.min.js"></script>
     <script src="../source/app.js"></script>
     </body>
 </html>

@@ -34,6 +34,10 @@ function elegirOpc(idOpc){
     }
     if(idOpc=="milimetros"){
         opc="milimetros"
+        document.getElementsByClassName("directo")[0].value="false";
+        document.getElementsByClassName("directo")[1].value="false";
+        document.getElementsByClassName("distancia")[0].value="true";
+        document.getElementsByClassName("distancia")[1].value="true";
         let introducirMilimetros=document.getElementsByClassName("introducirMilimetros");
         modal.style.display = "none";
         introducirMilimetros[0].style.display="inline";
@@ -41,6 +45,10 @@ function elegirOpc(idOpc){
     }
     else{
         opc="directa"
+        document.getElementsByClassName("directo")[0].value="true";
+        document.getElementsByClassName("directo")[1].value="true";
+        document.getElementsByClassName("distancia")[0].value="false";
+        document.getElementsByClassName("distancia")[1].value="false";
         modal.style.display = "none";
         paradasDirecta();
     }
@@ -56,16 +64,17 @@ function paradasDirecta(){
     let paradas=document.getElementsByClassName("paradas");
     var idParada="";
     for(let x=0;x<paradas.length;x++){
-        paradas[x].onclick=Movertranvia; 
+        paradas[x].onclick=Movertranvia;
     }
     
 
     function Movertranvia(e){
-        let id=""; 
+        var id=""; 
         id=e.target.id;
         let tranvia=document.getElementById("tranvia");
         if(opc!="milimetros")
         {
+            document.getElementById("textoParada").value=id;
             if(window.innerWidth<=("480")){
                 switch(id){
                     case '0':tranvia.style.top='2.5%';
@@ -91,6 +100,7 @@ function paradasDirecta(){
             else{
                 switch(id){
                     case '0':tranvia.style.left='2%';
+                    
                         break;
                     case '1':tranvia.style.left='15.1875%';
                         break;
@@ -111,7 +121,8 @@ function paradasDirecta(){
                 }
             }
         }
-        
+        $("#btnSubmitDirecto").trigger("click");
+       
     }
 }
 function paradasPorMilimetro(){
@@ -126,7 +137,7 @@ function paradasPorMilimetro(){
             mover();
 
             function mover(){
-                let milimetro=document.getElementById("Imilimetro");
+                var milimetro=document.getElementById("Imilimetro");
                 milimetro=Number(milimetro.value);
                 let distanciaParadas=5000;
                 let paradasRecorre=parseInt(milimetro/distanciaParadas);
@@ -134,12 +145,11 @@ function paradasPorMilimetro(){
                 let porcentajeExtra=(resto*10.5/distanciaParadas);
                 let porcentaje=2.5+((paradasRecorre-1)*10.5)+porcentajeExtra;
                 tranvia.style.top = porcentaje+"%";
-                document.getElementById("Imilimetro").value="";
+                
             }
             
         }
         else{
-            let paradas=["11%","22%","33%","44%","55%","66%","77%","88%","99%"];
         /*
         for(let x=-1;x<Number(id);x++){
                 console.log(paradas+'%')
@@ -158,9 +168,11 @@ function paradasPorMilimetro(){
                 let porcentajeExtra=(resto*13.1875/distanciaParadas);
                 let porcentaje=2+((paradasRecorre-1)*13.1875)+porcentajeExtra;
                 tranvia.style.left = porcentaje+"%";
-                document.getElementById("Imilimetro").value="";
+                
             }
         }
+        $("#bEnviarMm").trigger("click");
+        document.getElementById("Imilimetro").value="";
     }
 
 }
@@ -182,3 +194,27 @@ function cambiar(evt) {
         document.getElementsByClassName("desplegable")[0].style.width="";
     }
 }
+
+$(document).ready(function(){
+    $("#enviarDirecto").submit(function(){
+        console.log($(this).serialize());
+        $.ajax({
+            type: 'POST',
+            url: $(this).attr('action'),
+            data: $(this).serialize()
+        });
+        return false;
+    });
+
+});
+$(document).ready(function(){
+    $("#enviarMilimetro").submit(function(){
+        console.log($(this).serialize());
+        $.ajax({
+            type: 'POST',
+            url: $(this).attr('action'),
+            data: $(this).serialize()
+        });
+        return false;
+    });
+});
