@@ -708,6 +708,7 @@ function nuevosDatos() {
     actualizarGraficas();
 }
 
+/** Actualiza las rectas y cifras de las gráficas (animación movimiento) */
 function actualizarGraficas() { 
     switch(estilo_grafica) {
         case 1:
@@ -783,23 +784,7 @@ function incNumRec(numeroInicial, numeroFinal, elemento, velocidad) {
 }
 
 
-/**
- * TODO dani: 
- * 
- * BOTONES LARGE
- * - clicar el botón que corresponda (si viene de info será distinto que cargando la pestaña)
- * - animacion boton
- * - cambiar color si esta seleccionado o no
- * - afectar al mini
- * 
- * SELECT MINI
- * - cambiar color seleccion
- * - cargar las opciones del select spec por defecto
- * - cargar las opciones del select spec si viene de la pestaña info
- * - cargar las opciones del select spec si ha cambiado la opción del selector
- * - afectar a los botones
- */
-
+/** Cambiar las opciones del segundo select cuando selecciona una opción u otra en el primer select*/
 document.getElementById('graph-selector').addEventListener('change', cambiarOpcionesSpecYseleccionarGrafica);
 function cambiarOpcionesSpecYseleccionarGrafica(){
     cambiarOpcionesSpec();
@@ -820,6 +805,7 @@ function cambiarOpcionesSpec() {
     }
 }
 
+/** Cambiar la gráfica dependiendo */
 document.getElementById('graph-spec').addEventListener('change', seleccionarGrafica);
 function seleccionarGrafica() {
     let graph_spec = document.getElementById('graph-spec');
@@ -951,47 +937,50 @@ function anteriorParada() {
 }
 
 /** Cargamos opciones para los selecs de año y mes */
-// function cargarAnyos() {
-//     let contenido_html = '';
+cargarAnyos();
+function cargarAnyos() {
+    let contenido_html = '';
     
-//     // Obtenemos los diferentes años disponibles
-//     let anyos_unicos = [...new Set(datos[0].map((elem) => elem.anyo))];
-//     for (let anyo of anyos_unicos) {
-//         contenido_html += `<option value="${anyo}" ${(anyo == anyo_actual) ? 'selected ' : ''}>${anyo}</option>`;
-//     }
-//     document.getElementById('graph-selector-anyo').innerHTML = contenido_html;
+    // Obtenemos los diferentes años disponibles
+    let anyos_unicos = [...new Set(datos[0].map((elem) => elem.anyo))];
+    for (let anyo of anyos_unicos) {
+        contenido_html += `<option value="${anyo}" ${(anyo == anyo_actual) ? 'selected ' : ''}>${anyo}</option>`;
+    }
+    document.getElementById('graph-selector-anyo').innerHTML = contenido_html;
 
-//     seleccionAnyo();
-// }
-// function cargarMeses() {
-//     let contenido_html = '';
-//     let mes_a_elegir = mes_actual;
+    seleccionAnyo();
+}
+function cargarMeses() {
+    let contenido_html = '';
+    let mes_a_elegir = mes_actual;
 
-//     if (anyo_actual != seleccion_anyo) {
-//         mes_a_elegir = 12;
-//     }
+    if (anyo_actual != seleccion_anyo) {
+        mes_a_elegir = 12;
+    }
     
-//     // Obtenemos los diferentes meses disponibles
-//     let meses_unicos = [...new Set(datos[0].filter((elem) => elem.anyo == seleccion_anyo).map((elem) => elem.mes))];
-//     for (let mes of meses_unicos) {
-//         contenido_html += `<option value="${mes}" ${(mes == mes_a_elegir) ? 'selected ' : ''}>${mes}</option>`;
-//     }
-//     document.getElementById('graph-selector-mes').innerHTML = contenido_html;
+    // Obtenemos los diferentes meses disponibles
+    let meses_unicos = [...new Set(datos[0].filter((elem) => elem.anyo == seleccion_anyo).map((elem) => elem.mes))];
+    for (let mes of meses_unicos) {
+        contenido_html += `<option value="${mes}" ${(mes == mes_a_elegir) ? 'selected ' : ''}>${mes}</option>`;
+    }
+    document.getElementById('graph-selector-mes').innerHTML = contenido_html;
 
-//     seleccion_mes = document.getElementById('graph-selector-mes').value;
-//     seleccionMes();
-// }
+    seleccion_mes = document.getElementById('graph-selector-mes').value;
+    seleccionMes();
+}
 
 
-// document.getElementById('graph-selector-anyo').addEventListener('change', seleccionAnyo);
-// function seleccionAnyo() {
-//     seleccion_anyo = document.getElementById('graph-selector-anyo').value;
-//     cargarMeses();
-// }
-// document.getElementById('graph-selector-anyo').addEventListener('change', seleccionMes);
-// function seleccionMes() {
-//     seleccion_mes = document.getElementById('graph-selector-mes').value;
-// }
+document.getElementById('graph-selector-anyo').addEventListener('change', seleccionAnyo);
+function seleccionAnyo() {
+    seleccion_anyo = document.getElementById('graph-selector-anyo').value;
+    cargarMeses();
+}
+document.getElementById('graph-selector-mes').addEventListener('change', seleccionMes);
+function seleccionMes() {
+    seleccion_mes = document.getElementById('graph-selector-mes').value;
+    datos_grafica = cargarDatosGrafica();
+    pintarGrafica();
+}
 
 
 function tituloGrafica() {
