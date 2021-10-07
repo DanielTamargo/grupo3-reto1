@@ -16,9 +16,7 @@ CAMBIAR MODO
 function cambiarModo(){
     document.getElementsByClassName("introducirMilimetros")[0].style.display="none";
     modal.style.display = "block";
-    
 }
-
 
 var btn = document.getElementById("btnModal");
 
@@ -64,7 +62,6 @@ function paradasDirecta(){
     for(let x=0;x<paradas.length;x++){
         paradas[x].onclick=Movertranvia;
     }
-    
 
     function Movertranvia(e){
         var id=""; 
@@ -72,55 +69,71 @@ function paradasDirecta(){
         let tranvia=document.getElementById("tranvia");
         if(opc!="milimetros")
         {
-            document.getElementById("textoParada").value=id;
+            document.getElementById("textoParada").value=Number(id)+Number(1);
             if(window.innerWidth<=("480")){
                 switch(id){
-                    case '0':tranvia.style.top='2.5%';
+                    case '0':
+                        tranvia.style.top='2.5%';
                         break;
-                    case '1':tranvia.style.top='13%';
+                    case '1':
+                        tranvia.style.top='13%';
                         break;
-                    case '2':tranvia.style.top='23.5%';
+                    case '2':
+                        tranvia.style.top='23.5%';
                         break;
-                    case '3':tranvia.style.top='34%';
+                    case '3':
+                        tranvia.style.top='34%';
                         break;
-                    case '4':tranvia.style.top='44.5%';
+                    case '4':
+                        tranvia.style.top='44.5%';
                         break;
-                    case '5':tranvia.style.top='55%';
+                    case '5':
+                        tranvia.style.top='55%';
                         break;
-                    case '6':tranvia.style.top='65.5%';
+                    case '6':
+                        tranvia.style.top='65.5%';
                         break;
-                    case '7':tranvia.style.top='76%';
+                    case '7':
+                        tranvia.style.top='76%';
                         break;
-                    case '8':tranvia.style.top='86.5%';
+                    case '8':
+                        tranvia.style.top='86.5%';
                         break;
                 }
             }
             else{
                 switch(id){
-                    case '0':tranvia.style.left='2%';
-                    
+                    case '0':
+                        tranvia.style.left='2%';
                         break;
-                    case '1':tranvia.style.left='15.1875%';
+                    case '1':
+                        tranvia.style.left='15.1875%';
                         break;
-                    case '2':tranvia.style.left='28.375%';
+                    case '2':
+                        tranvia.style.left='28.375%';
                         break;
-                    case '3':tranvia.style.left='41.5625%';
+                    case '3':
+                        tranvia.style.left='41.5625%';
                         break;
-                    case '4':tranvia.style.left='54.75%';
+                    case '4':
+                        tranvia.style.left='54.75%';
                         break;
-                    case '5':tranvia.style.left='67.9375%';
+                    case '5':
+                        tranvia.style.left='67.9375%';
                         break;
-                    case '6':tranvia.style.left='81.1225%';
+                    case '6':
+                        tranvia.style.left='81.1225%';
                         break;
-                    case '7':tranvia.style.left='94.31%';
+                    case '7':
+                        tranvia.style.left='94.31%';
                         break;
-                    case '8':tranvia.style.left='107.5%';
+                    case '8':
+                        tranvia.style.left='107.5%';
                         break;
                 }
             }
         }
         $("#btnSubmitDirecto").trigger("click");
-       
     }
 }
 function paradasPorMilimetro(){
@@ -128,7 +141,6 @@ function paradasPorMilimetro(){
     let bEnviar=document.getElementById("Bintroducir");
     bEnviar.onclick=Movertranvia;
     
-
     function Movertranvia(e){
         let tranvia=document.getElementById("tranvia");
         if(window.innerWidth<=("480")){
@@ -137,45 +149,43 @@ function paradasPorMilimetro(){
             function mover(){
                 var milimetro=document.getElementById("Imilimetro");
                 milimetro=Number(milimetro.value);
-                let distanciaParadas=5000;
-                let paradasRecorre=parseInt(milimetro/distanciaParadas);
-                let resto=milimetro % distanciaParadas;
-                let porcentajeExtra=(resto*10.5/distanciaParadas);
-                let porcentaje=2.5+((paradasRecorre-1)*10.5)+porcentajeExtra;
-                tranvia.style.top = porcentaje+"%";
-                
+                if(milimetro<0 || milimetro>50000){
+                    alert("No se admiten valores menores de 0 y mayores que 50000");
+                }
+                else{
+                    let distanciaParadas=5000;
+                    let paradasRecorre=parseInt(milimetro/distanciaParadas);
+                    let resto=milimetro % distanciaParadas;
+                    let porcentajeExtra=(resto*10.5/distanciaParadas);
+                    let porcentaje=2.5+((paradasRecorre-1)*10.5)+porcentajeExtra;
+                    tranvia.style.top = porcentaje+"%";
+                    $("#bEnviarMm").trigger("click");
+                }   
             }
-            
         }
         else{
-        /*
-        for(let x=-1;x<Number(id);x++){
-                console.log(paradas+'%')
-                window.setTimeout(tranvia.style.left=paradas+'%',2000);
-                paradas=paradas+11;
-            }
-        */
            mover();
 
             function mover(){
                 let milimetro=document.getElementById("Imilimetro");
                 milimetro=Number(milimetro.value);
-                let distanciaParadas=5000;
-                let paradasRecorre=parseInt(milimetro/distanciaParadas);
-                let resto=milimetro % distanciaParadas;
-                let porcentajeExtra=(resto*13.1875/distanciaParadas);
-                let porcentaje=2+((paradasRecorre-1)*13.1875)+porcentajeExtra;
-                tranvia.style.left = porcentaje+"%";
-                
+                if(milimetro<0 || milimetro>50000){
+                    alert("No se pueden introducir valores menores de 0 y mayores de 50000")
+                }
+                else{
+                     let distanciaParadas=5000;
+                        let paradasRecorre=parseInt(milimetro/distanciaParadas);
+                        let resto=milimetro % distanciaParadas;
+                        let porcentajeExtra=(resto*13.1875/distanciaParadas);
+                        let porcentaje=2+((paradasRecorre-1)*13.1875)+porcentajeExtra;
+                        tranvia.style.left = porcentaje+"%";
+                        $("#bEnviarMm").trigger("click");
+                }
             }
         }
-        $("#bEnviarMm").trigger("click");
         document.getElementById("Imilimetro").value="";
     }
-
 }
-
-
 
 /*
 -----------------------------------------------------------
@@ -195,7 +205,6 @@ function cambiar(evt) {
 
 $(document).ready(function(){
     $("#enviarDirecto").submit(function(){
-        console.log($(this).serialize());
         $.ajax({
             type: 'POST',
             url: $(this).attr('action'),
@@ -208,7 +217,6 @@ $(document).ready(function(){
 
 $(document).ready(function(){
     $("#enviarModo").submit(function(){
-        console.log($(this).serialize());
         $.ajax({
             type: 'POST',
             url: $(this).attr('action'),
@@ -221,7 +229,6 @@ $(document).ready(function(){
 
 $(document).ready(function(){
     $("#enviarMilimetro").submit(function(){
-        console.log($(this).serialize());
         $.ajax({
             type: 'POST',
             url: $(this).attr('action'),

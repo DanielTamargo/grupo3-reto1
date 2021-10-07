@@ -191,6 +191,7 @@ MENÚ DESPLEGABLE
 .desplegable a:hover{
     color: white;
 }
+
 #first{
     margin-top: 80px;
 }
@@ -305,10 +306,13 @@ INICIO PARADAS TRANVIA
     background-color: lightgray;
     border-radius: 51%;
     display:inline-block;
+    text-align: center;
+    color: black;
 }
 
 .paradas:hover{
     background-color: black;
+    color: white;
 }
 
 #tranvia{
@@ -404,6 +408,7 @@ INICIO MODAL BOX
     cursor: pointer;
     
 }
+
 #milimetros:hover{
     font-size:1.5em;
 }
@@ -417,6 +422,7 @@ INICIO MODAL BOX
     position:relative;
     cursor: pointer;
 }
+
 #directa:hover{
     font-size:1.5em;
 }
@@ -449,6 +455,7 @@ INICIO MODAL BOX
     left: 50%;
     margin:0;
 }
+
 #cambiarModo:hover{
    background-color: #888;
 }
@@ -662,6 +669,7 @@ INICIO MEDIA QUERY
         position:absolute;
         transition:1s;
     }
+
     .modal{
         position:fixed;
         z-index:1;
@@ -698,6 +706,7 @@ INICIO MEDIA QUERY
         cursor: pointer;
         
     }
+
     #milimetros:hover{
         font-size:1.5em;
     }
@@ -712,6 +721,7 @@ INICIO MEDIA QUERY
         position:absolute;
         cursor: pointer;
     }
+
     #directa:hover{
         font-size:1.5em;
     }
@@ -728,7 +738,6 @@ INICIO MEDIA QUERY
         width:100%;
         top:75%;
         left:50%;
-      
     }
 
     .main{
