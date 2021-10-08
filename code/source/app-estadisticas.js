@@ -2,13 +2,16 @@
 /** FUNCIONES COMUNES */
 function cambiar(evt) {
     evt.classList.toggle("change");
-    if(document.getElementsByClassName("desplegable")[0].style.width==""){
-        document.getElementsByClassName("desplegable")[0].style.width="250px";
+    if (document.getElementsByClassName("desplegable")[0].style.width == "") {
+        document.getElementsByClassName("desplegable")[0].style.width = "250px";
     }
-    else{
-        document.getElementsByClassName("desplegable")[0].style.width="";
+    else {
+        document.getElementsByClassName("desplegable")[0].style.width = "";
     }
 }
+
+// Fondo más oscuro para que se visualice mejor
+document.getElementsByClassName("desplegable")[0].style.background = 'rgba(0, 0, 0, 0.9)';
 
 
 /** ----------------------------------------------------------------- */
