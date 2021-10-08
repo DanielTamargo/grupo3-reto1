@@ -1,5 +1,12 @@
 # Reto 1: Euskotren
 
+## Proyecto: Servidor Web Siemens
+
+- [Enlace a la documentación](./documentacion/documentacion.pdf)
+- [Enlace a la guía de estilos](./documentacion/guia-de-estilos.pdf)
+
+-----------------------------------------------------------------------
+
 ## Descripción
 
 > Somos una empresa de reciente creación dedicada a la prestación de todo tipo de servicios informáticos y acabamos de leer en el BOPV que el Gobierno Vasco saca a concurso el desarrollo de un servidor web que permita a los trabajadores de EuskoTren obtener información en tiempo real sobre el tranvía de Vitoria-Gasteiz.  
@@ -12,7 +19,7 @@
 ## Recursos
 
 - [Enunciado Reto](https://ikas.egibide.org/moodle/pluginfile.php/111928/mod_resource/content/12/RETO1_ALUMNO-AV1.pdf)
-- [Discord](#wip)
+- [Discord](#wip) (resultó no ser necesario en este reto)
 - [Kanban](https://egibidedawgrupo3reto1.kanbantool.com/b/764751-reto1)
 - [Drive (unidad compartida)](https://drive.google.com/drive/u/1/folders/0AIKzzKTSVREIUk9PVA)
 - [Rúbrica](https://tknika.setskills.org/ebaluazioa/faces/pages/consultaMediciones/consultaMedicionAlumno.xhtml)
@@ -65,4 +72,5 @@ https://codefun973161967.wordpress.com/
 
 ## Misc
 
-Inspirado en: http://govindtiwari.blogspot.com/
+- [Atribuciones](./documentacion/atribuciones.md)
+- Inspirado en: http://govindtiwari.blogspot.com/
