@@ -66,7 +66,7 @@ body{
 
 .small-italic{
     font-style: italic;
-    font-size: 0.7em;
+    font-size: 0.9em;
 }
 
 .content{
@@ -755,6 +755,22 @@ MEDIA QUERIES
     }
     .est__main__content__graph-selector-mini{
         display: block;
+    }
+
+    .est__main__content__graph-selector__title p:first-child{
+        text-align: center;
+    }
+
+    #graph-selector{
+        font-size: 0.8em;
+    }
+    #graph-spec{
+        font-size: 0.8em;
+    }
+
+    div.parada p:first-child{
+        font-size: 0.75em;
+        text-align: center;
     }
 
     .est__main__content__graph__left{
