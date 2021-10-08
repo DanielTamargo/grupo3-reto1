@@ -245,7 +245,7 @@ nav ul li a:hover{
     left: 0;
     height: 40%;
     width: 100%;
-    background: url(./img/egibide-tranvia-vias.png) repeat-x 0 / 100% auto;
+    background: url(../img/egibide-tranvia-vias.png) repeat-x 0 / 100% auto;
     animation: 8s linear infinite;
 }
 .animation-tranvia__vias.sentido-contrario{
@@ -271,7 +271,7 @@ nav ul li a:hover{
     position: absolute;
     bottom: 0;
     width: 100%;
-    background: url(./img/egibide-tranvia.png) no-repeat 0 / 30% auto;
+    background: url(../img/egibide-tranvia.png) no-repeat 0 / 30% auto;
 }
 .animation-tranvia__tranvia.sentido-principal{
     height: 31%;
@@ -321,10 +321,10 @@ nav ul li a:hover{
     animation-delay: calc(-2s * var(--i));
 }
 .animation-tranvia__edificio.pueblo-1{
-    background: url(./img/pueblo-1.svg) no-repeat 0 / 23%;
+    background: url(../img/pueblo-1.svg) no-repeat 0 / 23%;
 }
 .animation-tranvia__edificio.pueblo-2{
-    background: url(./img/pueblo-2.svg) no-repeat 0 / 23%;
+    background: url(../img/pueblo-2.svg) no-repeat 0 / 23%;
 }
 @keyframes animacion-pueblo{
     0%{background-position: 140%;} /* JS coger width y ponerle dicha posición */
@@ -338,7 +338,7 @@ nav ul li a:hover{
     width: 100%;
     height: 80%;
     animation: animacion-montana 40s linear infinite;
-    background: url(./img/mountain.svg) no-repeat 0 / 60%;
+    background: url(../img/mountain.svg) no-repeat 0 / 60%;
     animation-delay: calc(-5s * var(--i));
 }
 @keyframes animacion-montana{
