@@ -739,6 +739,15 @@ INICIO MODAL BOX
     margin-top: 0;
 }
 
+#selecciona-parada{
+    text-align: center;
+}
+#parada-title{
+    text-align: center;
+    font-size: 3em;
+    font-weight: bold;
+}
+
 .est__main__content__graph-selector-mini{
     display: none;
     clear: both;
@@ -774,7 +783,7 @@ INICIO MODAL BOX
     margin: 0;
     padding: 0;
 }
-.est__main__content__graph-selector-spec-parada .parada p{
+.est__main__content__graph-selector-spec-parada .selecciona-parada p{
     margin: 0;
     margin-bottom: -1em;
     padding: 0;
@@ -1139,6 +1148,9 @@ INICIO MEDIA QUERY
         font-size: 0.7em;
     }
    
+    #parada-title {
+        font-size: 2em;
+    }
 }
 
 @media screen and (max-width:480px){
@@ -1346,6 +1358,15 @@ INICIO MEDIA QUERY
     }
     .graph-text{
         font-size: 0.7em;
+    }
+
+    #parada-next, #parada-prev {
+        width: 1.5em;
+        height: 1.5em;
+    }
+    #parada-title {
+        vertical-align: middle;
+        font-size: 1em;
     }
 
 }

@@ -72,13 +72,14 @@ try {
 
     // Miramos que existan y no sean valores no válidos o nulos
     if (eg != null && eg != undefined && eg != '' &&
-    ps != null && ps != undefined && ps != '' && PARADAS.includes(ps)) {
+    ps != null && ps != undefined && ps != '') {
         // Si existen, lo configuramos
         estilo_grafica = parseInt(eg);
         seleccion_parada = PARADAS[parseInt(ps)];
         index_parada = PARADAS.indexOf(seleccion_parada);
     }
-
+    localStorage.removeItem(LOCALSTORAGE_CLAVE_ESTILOGRAFICA);
+    localStorage.removeItem(LOCALSTORAGE_CLAVE_PARADASELECCIONADA);
 } catch (err) {
     console.error(`Error al cargar especificacion:\n${err}`);
     estilo_grafica = 1;
