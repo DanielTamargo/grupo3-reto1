@@ -203,6 +203,30 @@ function cambiar(evt) {
     }
 }
 
+/*
+-----------------------------------------------------------
+INFORMACION.HTML
+-----------------------------------------------------------
+*/
+
+/**
+ * Guarda en el almacén local los valores para cargar la gráfica deseada
+ * cuando se cargue la página estadisticas.html
+ * @param {int} id id de la parada
+ */
+function prepararSeleccionEstadisticas(id) {
+    try {
+        localStorage.setItem('estilo_grafica', 2);
+        localStorage.setItem('parada_seleccionada', id)
+    } catch (err) { /* no nos interesa tratar un error aquí */}
+}
+
+/*
+-----------------------------------------------------------
+JQUERY y AJAX
+-----------------------------------------------------------
+*/
+
 $(document).ready(function(){
     $("#enviarDirecto").submit(function(){
         $.ajax({
