@@ -87,12 +87,8 @@ try {
 /** Función que inicializa todos los datos */
 function inicializarDatos() {
     /** Tabla que se pretende simular:
-     *  año | mes | parada | num_pasajeros | num_sin_pagar_escapados | num_sin_pagar_atrapados | num_revisores_subieron | num_incidentes
+     *  año | mes | parada | pasajeros | sp_escapados | sp_atrapados | revisores | incidentes
      */
-
-    // TODO dani: cuando surge una incidencia, ¿mostrarlo como alerta?
-
-
     let array_datos = [];
 
     // Por cada parada se generarán una serie de datos aleatorios

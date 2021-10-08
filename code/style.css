@@ -193,6 +193,7 @@ nav ul li a:hover{
     width: 100%;
     border-top: 1px solid gray;
 }
+
 .est__main__content__intro__left{
     width: calc(100% - 500px - 3em);
     float: left;
