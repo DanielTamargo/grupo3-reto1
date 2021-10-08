@@ -1,9 +1,17 @@
 # Reto 1: Euskotren
 
+## Grupo
+
+**Grupo 3**, miembros:
+- Daniel Tamargo
+- Alaitz Candela
+- Raúl Melgosa
+
 ## Proyecto: Servidor Web Siemens
 
 - [Enlace a la documentación](./documentacion/documentacion.pdf)
 - [Enlace a la guía de estilos](./documentacion/guia-de-estilos.pdf)
+
 
 -----------------------------------------------------------------------
 
